@@ -1,0 +1,28 @@
+\documentclass[class=article, crop=false]{standalone}
+\usepackage[subpreambles=true]{standalone}
+\usepackage{import}
+\usepackage{amsmath}
+\usepackage{enumitem} % Format list spacing 
+
+\begin{document}
+
+\subsection{Oracle Whitelist}
+The following liquidity pool is \term{Whitelisted} for inclusion in the calculation of $\Delta B_{\overline{t-1}}$.
+\subsubsection{$\Phi$}
+    \begin{enumerate}
+        \item \textbf{Pool Address:} The $\Phi$ liquidity pool address is 0xc9C32cd16Bf7eFB85Ff14e0c8603cc90F6F2eE49.
+        \item \textbf{$\Delta b_{\overline{t-1}}$ Calculation:} The liquidity and time weighted average shortage or excess of Beans in the BEAN:3CRV Curve liquidity pool over the previous \term{Season} ($\Delta b_{\overline{t-1}}^{\Phi}$) is calculated as the difference between the optimal liquidity and time weighted average number of Beans ($\Phi_{\overline{t-1}}^{{\bean}^*}$) and the liquidity and time weighted average number of Beans ($\Phi_{\overline{t-1}}^{\bean}$) in $\Phi$ over the previous \term{Season}, such that $\Delta b_{\overline{t-1}}^{\Phi},\ \Phi_{\overline{t-1}}^{{\bean}^*},\ \Phi_{\overline{t-1}}^{\bean} \in \{j \times 10^{-6} \mid j \in \mathbb{Z}^{+} \}$. $\Phi_{\overline{t-1}}^{{\bean}^*}$ is calculated from $\Phi_{\overline{t-1}}^{\bean}$, the time weighted average number of 3CRV in $\Phi$ over the previous \term{Season} ($\Phi_{\overline{t-1}}^{\text{3CRV}}$), such that $\Phi_{\overline{t-1}}^{\text{3CRV}}\in \{j \times 10^{-18} \mid j \in \mathbb{Z}^{+} \}$, $P^{\text{3CRV}}$ and $\Phi^{A}$. The absolute value of $\Delta b_{\overline{t-1}}$ is at most 1\% of $B_{t-1}$.
+
+Beanstalk calculates a liquidity and time weighted average price invariant for $\Phi$ over the previous \term{Season} ($\zeta^{\Phi}_{\overline{t-1}}$), such that $\zeta^{\Phi}_{\overline{t-1}}\in \{j \times 10^{-18} \mid j \in \mathbb{Z}^{+} \}$, by calling the Curve \code{get\_D()} function on $\Phi_{\overline{t-1}}^{\bean}$, $\Phi_{\overline{t-1}}^{\text{3CRV}}$, $P^{\text{3CRV}}$ and $\Phi^{A}$ as:
+$$\zeta^{\Phi}_{\overline{t-1}} = \code{get\_D(}[\Phi_{\overline{t-1}}^{\bean},\ \Phi_{\overline{t-1}}^{\text{3CRV}} \times P^{\text{3CRV}}],\ \Phi^{A}\code{)}$$
+Beanstalk calculates $\Phi_{\overline{t-1}}^{{\bean}^*}$ from $\zeta^{\Phi}_{\overline{t-1}}$ as:
+$$\Phi_{\overline{t-1}}^{{\bean}^*} = \frac{\zeta^{\Phi}_{\overline{t-1}}}{2}$$
+Beanstalk calculates $\Delta b_{\overline{t-1}}^{\Phi}$ for a given $\Phi_{\overline{t-1}}^{{\bean}^*}$, $\Phi_{\overline{t-1}}^{\bean}$ and $B_{t-1}$ as:
+$$\Delta b_{\overline{t-1}}^{\Phi} = \begin{cases} \text{max}\left(\Phi_{\overline{t-1}}^{{\bean}^*} - \Phi_{\overline{t-1}}^{\bean}, -\frac{B_{t-1}}{100}\right) & \text{if} \; \Phi_{\overline{t-1}}^{{\bean}^*} - \Phi_{\overline{t-1}}^{\bean} < 0 \vspace{.3cm} \\ 
+\text{min}\left(\Phi_{\overline{t-1}}^{{\bean}^*} - \Phi_{\overline{t-1}}^{\bean}, \frac{B_{t-1}}{100}\right) & \text{else} \end{cases}$$
+\end{enumerate}
+
+Therefore, we define $\Delta B_{\overline{t-1}}$ for a given $\Delta b_{\overline{t-1}}^{\Phi}$ as:
+$$\Delta B_{\overline{t-1}} = \Delta b_{\overline{t-1}}^{\Phi}$$
+    
+\end{document}

@@ -1,0 +1,30 @@
+\documentclass[class=article, crop=false]{standalone}
+\usepackage[subpreambles=true]{standalone}
+\usepackage{import}
+\usepackage{enumitem} % Format list spacing 
+
+\begin{document}
+
+\subsection{Depot}
+The following \term{Pipeline} to the \term{Depot} currently exists.
+
+\subsubsection{Curve}
+The Curve \term{Pipeline} allows anyone to call functions in any pool registered in any of the following Curve registries.
+\begin{itemize}
+    \item 0xB9fC157394Af804a3578134A6585C0dc9cc990d4\fref{etherscan.io/address/0xB9fC157394Af804a3578134A6585C0dc9cc990d4\#readContract}
+    \item 0x90E00ACe148ca3b23Ac1bC8C240C2a7Dd9c2d7f5\fref{etherscan.io/address/0x90E00ACe148ca3b23Ac1bC8C240C2a7Dd9c2d7f5\#readContract}
+    \item 0x8F942C20D02bEfc377D41445793068908E2250D0\fref{etherscan.io/address/0x8F942C20D02bEfc377D41445793068908E2250D0\#readContract}
+\end{itemize}
+
+The following functions to interact with Curve pools can be called through the Curve \term{Pipeline}.
+\begin{itemize}
+    \item $\code{exchange(...)}$
+    \item $\code{exchange\_underlying(...)}$
+    \item $\code{add\_liquidity(...)}$
+    \item $\code{remove\_liquidity(...)}$
+    \item $\code{remove\_liquidity\_imbalanced(...)}$
+    \item $\code{remove\_liquidity\_one\_token(...)}$
+\end{itemize}
+
+\end{document}
+

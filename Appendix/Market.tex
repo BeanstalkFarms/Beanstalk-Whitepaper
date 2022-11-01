@@ -1,0 +1,48 @@
+\documentclass[class=article, crop=false]{standalone}
+\usepackage[subpreambles=true]{standalone}
+\usepackage{import}
+\usepackage{enumitem} % Format list spacing 
+
+\begin{document}
+
+\subsection{Market}
+Beanstalk supports the following exchanges on the \term{Market}.
+
+\subsubsection{Pods}
+\term{Pods} can be bought and sold in a decentralized fashion at the \term{Pod} \term{Market}. 
+
+\paragraph{Pod Orders}
+
+Anyone with Beans not in the \term{Silo} can \term{Order} \term{Pods}. 
+
+A \term{Pod Order} has three inputs: (1) the maximum number of \term{Pods} to be purchased, (2) the maximum price per \term{Pod}, denominated in Beans, and (3) the maximum place in the \term{Pod Line} (\term{i.e.}, the number of \term{Pods} that will become \term{Harvestable} before a given \term{Pod}) to purchase from.
+
+A \term{Pod Order} can be \term{Cancelled} at any time until it is entirely \term{Filled}. To facilitate instant clearance, Beans are locked in a \term{Pod Order} until it is entirely \term{Filled} or \term{Cancelled}. Beans can only be locked in a single \term{Pod Order} at a time.
+
+\paragraph{Pod Listings}
+
+\term{Pods} that \term{Yield} from Beans that were \term{Sown} from a single call of the \code{sow()} function form a \term{Plot}. Anyone with a \term{Plot} can \term{List} a whole or partial \term{Plot} to be sold for Beans.
+
+A \term{Pod Listing} has five inputs: (1) the \term{Plot} being \term{Listed}, (2) the difference between the front of the portion of the \term{Plot} included in the \term{Pod Listing} from the front of the whole \term{Plot}, denominated in \term{Pods}, where a null input \term{Lists} from the back of the \term{Plot}, (3) the number of \term{Pods} in the \term{Plot} for sale, where a null input \term{Lists} the whole \term{Plot}, (4) the minimum price per \term{Pod}, denominated in Beans, and (5) the maximum number of total \term{Harvestable} \term{Pods} over all \term{Seasons} before the \term{Pod Listing} expires. 
+
+A \term{Pod Listing} can be \term{Cancelled} at any time until it is entirely \term{Filled}. \term{Plots} can only be \term{Listed} in a single \term{Pod Listing} at a time. \term{Pod Listings} are automatically \term{Cancelled} if the owner of the \term{Plot} transfers, or simultaneously includes in another \term{Listing}, any \term{Pods} in the \term{Plot}.
+
+\paragraph{Clearance}
+
+An outstanding \term{Pod Order} can be entirely or partially \term{Filled} at any time by a \term{Pod} seller. If the \term{Pod Order} is partially \term{Filled}, the rest of the \term{Pod Order} remains \term{Listed}. Similarly, an outstanding \term{Pod Listing} can be entirely or partially \term{Filled} at any time by a \term{Pod} buyer. If the \term{Pod Listing} is partially \term{Filled}, the rest of the \term{Pod Listing} remains \term{Listed}.
+
+In instances where $0 < \Delta D_t$ causes a \term{Pod Order} and \term{Pod Listing} that previously were not overlapping to overlap, either the buyer or seller can \term{Fill} their \term{Order} or \term{Listing}, respectively, at their preferred price. 
+
+\paragraph{Future Work}
+
+The \term{Pod Market} is a work in progress. The following are potential improvements that can be implemented as one or more \term{BIPs}.
+
+\begin{itemize}
+    \item \term{Pod Orders} and \term{Pod Listings} can support arbitrary pricing functions. 
+    \item Multiple \term{Plots} can be \term{Listed} in the same \term{Pod Listing}.
+    \item Transferring or \term{Listing} \term{Pods} not \term{Listed} in a partial \term{Listing} should not \term{Cancel} the \term{Listing}.
+    \item Overlapping \term{Pod Orders} and \term{Pod Listings} can be cleared automatically. 
+    \item \term{Deposited} Beans can be used to place \term{Pod Orders} once there is no \term{Withdrawal} \term{Freeze} upon \term{Withdrawal} from the \term{Silo}.
+\end{itemize}
+
+\end{document}

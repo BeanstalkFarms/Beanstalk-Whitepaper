@@ -1,0 +1,36 @@
+\documentclass{standalone}
+\usepackage{tikz,pgf}
+
+\begin{document}
+
+\begin{tikzpicture}[scale=7]
+
+\node [draw=none] at (1.25,0.04) {Excessively};
+\node [draw=none] at (1.25,-0.04) {High Debt};
+
+\node [draw=none] at (0.75,0.04) {Reasonably};
+\node [draw=none] at (0.75,-0.04) {High Debt};
+
+\node [draw=none] at (0.25,0.04) {Reasonably};
+\node [draw=none] at (0.25,-0.04) {Low Debt};
+
+\node [draw=none] at (-0.25,0.04) {Excessively};
+\node [draw=none] at (-0.25,-0.04) {Low Debt};
+
+\node [draw=none] at (0.075,0.1) {$R^{D^{\text{lower}}}$};
+\node [draw=none] at (1.075,0.095) {$R^{D^{\text{upper}}}$};
+
+\node [draw=none] at (0.5,0.15) {\bm{$P$}};
+
+\foreach \Point in {0, 0.5, 1}{
+    \node[label={[label distance=1mm]:\rotatebox{0}{}}] at (\Point,0) {\textbullet};
+}
+\draw[thick,<->,color=black] (-0.5,0) -- (1.5,0); % Draw horizontal line
+\draw[thick,<->,color=black] (0.5,0.1) -- (0.5,-0.1); % Draw vertical line
+
+\node [draw=none] at (-0.6,0) {\bm{$R^D$}}; % Chart label
+\node [draw=none] at (1.6,0)  {\color{white} $R_D$}; % Added to center chart
+
+\end{tikzpicture}
+
+\end{document}

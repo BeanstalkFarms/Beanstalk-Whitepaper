@@ -1,0 +1,39 @@
+\documentclass[class=article, crop=false]{standalone}
+\usepackage[subpreambles=true]{standalone}
+\usepackage[stable]{footmisc}
+\usepackage{import}
+\usepackage{amsmath}
+\usepackage{enumitem} % Format list spacing 
+
+\begin{document}
+
+\subsection{Fundraisers}
+Fundraisers allow Beanstalk to issue \term{Pods} in exchange for assets pegged to $V$ other than Beans, independent of the \term{Soil} minting schedule, in order to raise funds to facilitate payments in other currencies (\term{e.g.}, to cover the cost of an audit) without directly affecting Beanstalk's normal peg maintenance model. \term{Fundraisers} are created via \term{Beanstalk Improvement Proposals} and mint new Beans. 
+
+Each \term{Fundraiser} requires (1) the token address of the token to raise, (2) the number of tokens to raise (\term{i.e.}, the number of Beans to mint), and (3) the wallet address to send the tokens to upon completion of the \term{Fundraiser}. 
+
+Up to (2) assets pegged to $V$ can be exchanged for 1 \term{Sown} Bean's \term{Yield} of \term{Pods} each, based on the \term{Temperature} at the time of the contribution to the \term{Fundraiser}. Tokens raised via a \term{Fundraiser} are automatically distributed to (3) upon completion of the \term{Fundraiser}.
+
+The following \term{Fundraisers} have been approved via Beanstalk governance.
+
+\subsubsection[Trail of Bits Audit]{Trail of Bits Audit\protect \footnote{\href{https://github.com/BeanstalkFarms/Beanstalk-Governance-Proposals/blob/master/bip/bip-04-trail-of-bits-fundraiser.md}{github.com/BeanstalkFarms/Beanstalk-Governance-Proposals/blob/master/bip/bip-04-trail-of-bits-\\fundraiser.md}}}
+    \begin{enumerate}
+        \item \textbf{Token Address:} The USDC token address is 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48.
+        \item \textbf{Tokens to Raise:} The \term{Fundraiser} is for 347,440 USDC.
+        \item \textbf{Wallet to Send Tokens:} The tokens are sent to 0x925753106FCdB6D2f30C3db295328a0A1c5fD1D1 upon completion of the \term{Fundraiser}.
+    \end{enumerate}
+
+\subsubsection[Omniscia Audit]{Omniscia Audit\protect \footnote{\href{https://github.com/BeanstalkFarms/Beanstalk-Governance-Proposals/blob/master/bip/bip-05-omniscia-fundraiser.md}{github.com/BeanstalkFarms/Beanstalk-Governance-Proposals/blob/master/bip/bip-05-omniscia-\\fundraiser.md}}}
+    \begin{enumerate}
+        \item \textbf{Token Address:} The USDC token address is 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48.
+        \item \textbf{Tokens to Raise:} The \term{Fundraiser} is for 140,000 USDC.
+        \item \textbf{Wallet to Send Tokens:} The tokens are sent to 0x925753106FCdB6D2f30C3db295328a0A1c5fD1D1 upon completion of the \term{Fundraiser}.
+    \end{enumerate}
+
+\subsubsection[Omniscia Retainer]{Omniscia Retainer\protect \footnote{\href{https://github.com/BeanstalkFarms/Beanstalk-Governance-Proposals/blob/master/bip/bip-10-omniscia-retainer.md}{github.com/BeanstalkFarms/Beanstalk-Governance-Proposals/blob/master/bip/bip-10-omniscia-retainer.md}}}
+    \begin{enumerate}
+        \item \textbf{Token Address:} The USDC token address is 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48.
+        \item \textbf{Tokens to Raise:} The \term{Fundraiser} is for 250,000 USDC.
+        \item \textbf{Wallet to Send Tokens:} The tokens are sent to 0x21DE18B6A8f78eDe6D16C50A167f6B222DC08DF7 upon completion of the \term{Fundraiser}.
+    \end{enumerate}
+\end{document}

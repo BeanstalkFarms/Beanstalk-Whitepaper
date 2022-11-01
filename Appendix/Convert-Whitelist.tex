@@ -1,0 +1,62 @@
+\documentclass[class=article, crop=false]{standalone}
+\usepackage[subpreambles=true]{standalone}
+\usepackage{import}
+\usepackage{amsmath}
+\usepackage{enumitem} % Format list spacing 
+
+\begin{document}
+
+\subsection{Convert Whitelist} 
+
+The following \term{Conversions} within the \term{Silo} are \term{Whitelisted}.
+\subsubsection{$\lambda$ $\rightarrow$ $\lambda$}
+    \begin{enumerate}
+        \item \textbf{From Token Address:} The from token address must match the to token address.
+        \item \textbf{To Token Address:} The to token address must match the from token address.
+        \item \textbf{Conditions:} \term{Deposited} $\lambda$ can be \term{Converted} to a $\lambda$ \term{Deposit} at anytime. 
+        \item \textbf{Convert Function:} The number of $\lambda$ received for \term{Converting} \term{Deposited} $\lambda$ within the \term{Silo} is equivalent to the number of $\lambda$ \term{Converted}. Therefore, we define  function as:
+$$f^{\lambda \rightarrow \lambda}(z^{\lambda}) = z^{\lambda}$$
+
+    \end{enumerate}
+\subsubsection{\Bean\ $\rightarrow$ $\Phi$}
+    \begin{enumerate}
+        \item \textbf{From Token Address:} The \Bean\ token address is 0xBEA0000029AD1c77D3d5D23Ba2D8893dB9d1Efab.
+        \item \textbf{To Token Address:} The $\Phi$ token address is 0xc9C32cd16Bf7eFB85Ff14e0c8603cc90F6F2eE49.
+        \item \textbf{Conditions:} \term{Deposited} \Bean\ cannot be \term{Converted} to \term{Deposited} $\Phi$ when the USD price of \Bean1 in the pool ($\$^{\bean(\Phi)}$), such that $\$^{\bean(\Phi)}\in \{j \times 10^{-6} \mid j \in \mathbb{Z}^{+} \}$, is below \$1 (\term{i.e}, $\$^{\bean(\Phi)} < 1$). 
+
+$\$^{\bean(\Phi)}$ is calculated using the number of Beans ($\Phi^{\bean}$), such that $\Phi^{\bean} \in \{j \times 10^{-6} \mid j \in \mathbb{Z}^{+} \}$, and number of 3CRV ($\Phi^{\text{3CRV}}$), such that $\Phi^{\text{3CRV}} \in \{j \times 10^{-18} \mid j \in \mathbb{Z}^{+} \}$, in the BEAN:3CRV Curve pool, $P^{\text{3CRV}}$, $\Phi^{A}$, $P^{\Phi}$. 
+
+Beanstalk calculates a price invariant for the BEAN:3CRV Curve pool ($\zeta^{\Phi}$), such that $\zeta^{\Phi}\in \{j \times 10^{-18} \mid j \in \mathbb{Z}^{+} \}$, by calling the Curve \code{get\_D()} function on $\Phi^{\bean}$, $\Phi^{\text{3CRV}}$, $P^{\text{3CRV}}$ and $\Phi^{A}$ as:
+$$\zeta^{\Phi} = \code{get\_D(}[\Phi^{\bean},\ \Phi^{\text{3CRV}} \times P^{\text{3CRV}}],\ \Phi^{A}\code{)}$$
+Beanstalk calculates a total number of $\Phi$, such that $\Phi\in \{j \times 10^{-18} \mid j \in \mathbb{Z}^{+} \}$, from $\zeta^{\Phi}$ and $P^{\Phi}$ as:
+$$\Phi = \frac{\zeta^{\Phi}}{P^{\Phi}}$$
+Beanstalk calculates the $\$^{\bean(\Phi)}$ by calling the Curve \code{get\_y()} function on $\Phi^{\bean}$, $\Phi^{\text{3CRV}}$ and $P^{\text{3CRV}}$ as:
+$$\$^{\bean(\Phi)} =  \Phi^{\bean} - \code{get\_y(}0, 1, \Phi^{\bean} + 1, [\Phi^{\bean},\ \Phi^{\text{3CRV}} \times P^{\text{3CRV}}]\code{)} - 10^{-6}$$
+        \item \textbf{Convert Function:} The number of $\Phi$ received for \term{Converting} \term{Deposited} Beans within the \term{Silo} for a given minimum $\Phi$ received ($\Phi^{\text{min}}$), such that $\Phi^{\text{min}} \in \{j \times 10^{-18} \mid j \in \mathbb{N} \}$, is the result of calling the Curve \code{add\_liquidity()} function on $\Phi$ and $\Phi^{\text{min}}$ as:
+$$f^{\bean \rightarrow \Phi}(z^{\bean}) = \code{add\_liquidity(} \Phi,\ [z^{\bean},\ 0],\ \Phi^{\text{min}} \code{)}$$
+    \end{enumerate}
+\subsubsection{$\Phi$ $\rightarrow$ \Bean}
+    \begin{enumerate}
+        \item \textbf{From Token Address:} The $\Phi$ token address is 0xc9C32cd16Bf7eFB85Ff14e0c8603cc90F6F2eE49.
+        \item \textbf{To Token Address:} The \Bean\ token address is 0xBEA0000029AD1c77D3d5D23Ba2D8893dB9d1Efab.
+        \item \textbf{Conditions:} \term{Deposited} $\Phi$ cannot be \term{Converted} to \term{Deposited} \Bean\ when the price of \Bean1 in the pool is greater than or equal to \$1 (\term{i.e}, $1 \leq \$^{\bean(\Phi)}$). 
+        \item \textbf{Convert Function:} The number of Beans received for \term{Converting} \term{Deposited} $\Phi$ within the \term{Silo} for a given minimum Beans received ($\Bean^{\text{min}}$), such that $\Bean^{\text{min}} \in \{j \times 10^{-18} \mid j \in \mathbb{N} \}$, is the result of calling the Curve \code{remove\_liquidity\_one\_coin()} function on $\Phi$ and $\Bean^{\text{min}}$ as:
+$$f^{\Phi \rightarrow \bean}(z^{\Phi}) = \code{remove\_liquidity\_one\_coin(} \Phi,\ z^{\Phi},\ 0,\ \Bean^{\text{min}} \code{)}$$
+    \end{enumerate}
+\subsubsection{$\mathfrak{z}^{\bean}$ $\rightarrow$ $\mathfrak{z}^{\Phi}$}
+    \begin{enumerate}
+        \item \textbf{From Token Address:} The $\mathfrak{z}^{\bean}$ token address is 0x1BEA0050E63e05FBb5D8BA2f10cf5800B6224449.
+        \item \textbf{To Token Address:} The $\mathfrak{z}^{\Phi}$ token address is 0x1BEA3CcD22F4EBd3d37d731BA31Eeca95713716D.
+        \item \textbf{Conditions:} \term{Deposited} $\mathfrak{z}^{\bean}$ cannot be \term{Converted} to \term{Deposited} $\mathfrak{z}^{\Phi}$ when the price of \Bean1 in the BEAN:3CRV liquidity pool is less than or equal to \$1 (\term{i.e}, $\$^{\bean(\Phi)} \leq 1$). 
+        \item \textbf{Convert Function:} The number of $\mathfrak{z}^{\Phi}$ received for \term{Converting} \term{Deposited} $\mathfrak{z}^{\bean}$ within the \term{Silo} for a given $\mathfrak{S}$, $\mathfrak{Z}_{\bigotimes}^{\Phi}$, $\mathfrak{Z}^{\Phi}$, $\mathfrak{R}^{\Phi}$, $\mathfrak{R}^{\bean}$, $\mathfrak{Z}^{\bean}$ and minimum \term{Unripe} $\Phi$ received ($\mathfrak{z}^{\Phi^{\text{min}}}$), such that $\mathfrak{z}^{\Phi^{\text{min}}} \in \{j \times 10^{-18} \mid j \in \mathbb{N} \}$, is the result of calling the Curve \code{add\_liquidity()} function as:
+$$f^{\mathfrak{z}^{\tinybean} \rightarrow \mathfrak{z}^{\Phi}}(z^{\mathfrak{z}^{\tinybean}}) = \frac{\mathfrak{S} \times \mathfrak{Z}_{\bigotimes}^{\Phi} \times \mathfrak{Z}^{\Phi}}{7.7 \times 10^{7} \times \mathfrak{R}^{\Phi}} \times \code{add\_liquidity}\left( \Phi,\ \left[\frac{z^{\mathfrak{z}^{\tinybean}} \times \mathfrak{R}^{\bean}}{\mathfrak{Z}^{\bean}},\ 0\right],\ \mathfrak{z}^{\Phi^{\text{min}}} \right)$$
+    \end{enumerate}
+\subsubsection{$\mathfrak{z}^{\Phi}$ $\rightarrow$ $\mathfrak{z}^{\bean}$}
+    \begin{enumerate}
+        \item \textbf{From Token Address:} The $\mathfrak{z}^{\Phi}$ token address is 0x1BEA3CcD22F4EBd3d37d731BA31Eeca95713716D.
+        \item \textbf{To Token Address:} The $\mathfrak{z}^{\bean}$ token address is 0x1BEA0050E63e05FBb5D8BA2f10cf5800B6224449.
+        \item \textbf{Conditions:} \term{Deposited} $\mathfrak{z}^{\Phi}$ cannot be \term{Converted} to \term{Deposited} $\mathfrak{z}^{\bean}$ when the price of \Bean1 in the pool is greater than or equal \$1 (\term{i.e}, $1 \leq \$^{\bean(\Phi)}$). 
+        \item \textbf{Convert Function:} The number of $\mathfrak{z}^{\bean}$ received for \term{Converting} \term{Deposited} $\mathfrak{z}^{\Phi}$ within the \term{Silo} for a given $\mathfrak{Z}^{\Phi}$, $\mathfrak{S}$, $\mathfrak{Z}_{\bigotimes}^{\Phi}$, $\mathfrak{R}^{\Phi}$ and minimum \term{Unripe} Beans received ($\mathfrak{z}^{\bean^{\text{min}}}$), such that $\mathfrak{z}^{\bean^{\text{min}}} \in \{j \times 10^{-18} \mid j \in \mathbb{N} \}$, is the result of calling the Curve \code{remove\_liquidity\_one\_coin()} function as:
+$$f^{\mathfrak{z}^{\Phi} \rightarrow \mathfrak{z}^{\tinybean}}(z^{\mathfrak{z}^{\Phi}}) = \frac{7.7 \times 10^{7} \times \mathfrak{Z}^{\Phi}}{\mathfrak{S} \times \mathfrak{Z}_{\bigotimes}^{\Phi}} \times \code{remove\_liquidity\_one\_coin}\left( \Phi,\ \left[\frac{z^{\mathfrak{z}^{\Phi}} \times \mathfrak{R}^{\Phi}}{\mathfrak{Z}^{\Phi}},\ 0\right],\ \mathfrak{z}^{\bean^{\text{min}}} \right)$$
+    \end{enumerate}
+\end{document}

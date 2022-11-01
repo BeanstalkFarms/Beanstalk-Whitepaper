@@ -1,0 +1,68 @@
+\setlength{\aboverulesep}{0pt} % Added to fix white space before horizontal line
+\setlength{\belowrulesep}{0pt} % Added to fix white space after horizontal line
+
+\scalebox{0.9}{%
+\begin{tabular}{ c Q|Q|Q|QV{2.5}Q|Q|Q| }
+
+\multicolumn{3}{c}{} & 
+\multicolumn{4}{c}{\bm{$R^D_{t-1}$}}\\
+\hhline{~~~----}\rowm
+
+& \multicolumn{2}{c|}{\textbf{\underline{Temperature Changes}}} &
+\textbf{Excessively\break Low Debt} & 
+\textbf{Reasonably\break Low Debt} & 
+\textbf{Reasonably\break High Debt} & 
+\textbf{Excessively\break High Debt}\\
+\hhline{~------}\rows
+
+\parbox[t]{3mm}{\multirow{9.7}{*}{\rotatebox[origin=c]{90}{\textbf{Current State}}}} % Rotates row
+
+&\multicolumn{2}{|S|}{\textbf{Accelerating Away From}} &
+\cellcolor{lightgray!30}-3 & 
+\cellcolor{lightgray!30}-3 & 
+\cellcolor{lightgray!30}3 &
+\cellcolor{lightgray!30}3\\ 
+\hhline{~~-----}\rows
+
+&\multicolumn{2}{|S|}{\textbf{Steady Away From}} &
+\cellcolor{lightgray!30}-3 &
+\cellcolor{lightgray!30}-3 & 
+\cellcolor{lightgray!30}3 & 
+\cellcolor{lightgray!30}3\\ 
+\hhline{~~-----}\rows
+
+&\multicolumn{2}{|S|}{\textbf{Decelerating Away From}} &
+\cellcolor{lightgray!30}-1 & 
+\cellcolor{lightgray!30}-1 & 
+\cellcolor{lightgray!30}1 & 
+\cellcolor{lightgray!30}1\\ 
+\cmidrule[1pt](r{0em}){2-7} % Thickness of horizontal middle price line
+
+\rule{0pt}{13pt}&\multicolumn{2}{|S|}{\textbf{Decelerating Toward}} & % Added rule to fix top row height to bolded line
+\cellcolor{lightgray!30}0 &
+\cellcolor{lightgray!30}0 & 
+\cellcolor{lightgray!30}0 & 
+\cellcolor{lightgray!30}0\\ 
+
+&\multicolumn{2}{|S|}{} &
+\cellcolor{lightgray!30} &
+\cellcolor{lightgray!30} &
+\cellcolor{lightgray!30} &
+\cellcolor{lightgray!30}\\[-8pt] % Fix bottom row height to bolded line
+\hhline{~~-----}\rows
+
+&\multicolumn{2}{|S|}{\textbf{Steady Toward}} &
+\cellcolor{lightgray!30}1 & 
+\cellcolor{lightgray!30}1 &
+\cellcolor{lightgray!30}-1 &
+\cellcolor{lightgray!30}-1\\ 
+\hhline{~~-----}\rows
+
+&\multicolumn{2}{|S|}{\textbf{Accelerating Toward}} &
+\cellcolor{lightgray!30}3 &
+\cellcolor{lightgray!30}3 &
+\cellcolor{lightgray!30}-3 & 
+\cellcolor{lightgray!30}-3\\ 
+\cline{2-7}
+
+\end{tabular}}
