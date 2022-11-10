@@ -184,13 +184,13 @@
         \footnotesize{Published:} \normalsize{August 6, 2021}
         
         \vspace{-0.25cm}
-        \footnotesize{Modified:} \normalsize{October 6, 2022}
+        \footnotesize{Modified:} \normalsize{November 11, 2022}
         
         \vspace{-0.25cm}
-        \footnotesize{Whitepaper Version:} {\normalsize{2.1.1}}
+        \footnotesize{Whitepaper Version:} {\normalsize{2.2.0}}
         
         \vspace{-0.25cm}
-        \footnotesize{Code Version:} \href{https://github.com/BeanstalkFarms/Beanstalk}{\normalsize{2.1.0}}\footnote{\href{https://github.com/BeanstalkFarms/Beanstalk}{github.com/BeanstalkFarms/Beanstalk}}
+        \footnotesize{Code Version:} \href{https://github.com/BeanstalkFarms/Beanstalk}{\normalsize{2.2.0}}\footnote{\href{https://github.com/BeanstalkFarms/Beanstalk}{github.com/BeanstalkFarms/Beanstalk}}
         
 
         \vspace{0.1cm}
@@ -282,7 +282,7 @@ Beanstalk does not require actions from, impose rent on, or affect in any way, r
 
 The \term{Farm} has five primary components: the \term{Sun}, \term{Silo}, \term{Field}, \term{Market} and \term{Depot}. Beanstalk-native financial incentives coordinate the components to create a stalwart system of governance, regularly cross the price of \Bean1 over its value peg, consistently grow Bean liquidity and maximize composability, without collateral.
 
-The \term{Sun} offers payment for participation in timekeeping and execution. Time on the \term{Farm} is kept in \term{Seasons}. Anyone can earn Beans for successfully calling the \code{sunrise()} function to begin the next \term{Season} at the top of each hour.
+The \term{Sun} offers payment for participation in timekeeping and execution. Time on the \term{Farm} is kept in \term{Seasons}. Anyone can earn Beans for successfully calling the \code{sunrise} function to begin the next \term{Season} at the top of each hour.
 
 The \term{Silo} is the Beanstalk DAO. The \term{Silo} offers passive yield opportunities to owners of \Bean\ and other assets ($\lambda$) on the \term{Deposit} \term{Whitelist} ($\Lambda$) (\term{i.e.}, $\Bean \subset \lambda \in \Lambda$) for participation in governance of Beanstalk upgrades and passive contribution to security, stability and liquidity. Anyone can become a \term{Stalkholder} by \term{Depositing} $\lambda$ into the \term{Silo} to earn \term{Stalk}. \term{Stalkholders} govern Beanstalk upgrades and are rewarded with Beans when the Bean supply increases. Active contributions to peg maintenance within the \term{Silo} earn additional \term{Stalk}.
 
@@ -295,15 +295,15 @@ The \term{Depot} facilitates interactions with other Ethereum-native protocols t
 \section{Sun}
 The Beanstalk governance and peg maintenance mechanisms require a protocol-native timekeeping mechanism and regular code execution on the Ethereum blockchain. The \term{Sun} creates a cost-efficient protocol-native timekeeping mechanism and incentivizes cost-efficient code execution on Ethereum at regular intervals. In general, Beanstalk uses Ethereum block timestamps ($E$), such that $E \in \mathbb{Z}^{+}$.
 
-We define a \term{Season} ($t$), such that $t \in \mathbb{Z}^{+}$, as an approximately 3,600 second (1 Hour) interval. The first \term{Season} begins when a successful transaction on the Ethereum blockchain that includes a \code{sunrise()} function call is mined. When Beanstalk accepts the \code{sunrise()} function call, the necessary code is executed.
+We define a \term{Season} ($t$), such that $t \in \mathbb{Z}^{+}$, as an approximately 3,600 second (1 Hour) interval. The first \term{Season} begins when a successful transaction on the Ethereum blockchain that includes a \code{sunrise} function call is mined. When Beanstalk accepts the \code{sunrise} function call, the necessary code is executed.
 
-Beanstalk only accepts one \code{sunrise()} function call per \term{Season}. Beanstalk accepts the first \code{sunrise()} function call provided that the timestamp in the Ethereum block containing it is sufficiently distant from the timestamp in the Ethereum block containing the Beanstalk deployment ($E_1$).
+Beanstalk only accepts one \code{sunrise} function call per \term{Season}. Beanstalk accepts the first \code{sunrise} function call provided that the timestamp in the Ethereum block containing it is sufficiently distant from the timestamp in the Ethereum block containing the Beanstalk deployment ($E_1$).
 
-The minimum timestamp Beanstalk accepts a \code{sunrise()} function call for a given $t$ ($E_{t}^{\text{min}}$), $\forall\ E_{t}^{\text{min}}$ such that $1 < t$, and $E_1$ is:
+The minimum timestamp Beanstalk accepts a \code{sunrise} function call for a given $t$ ($E_{t}^{\text{min}}$), $\forall\ E_{t}^{\text{min}}$ such that $1 < t$, and $E_1$ is:
 $$E_{t}^{\text{min}} = 3600{\left({\left\lfloor\frac{E_1}{3600}\right\rfloor} + t\right)}$$
-The cost to execute the \code{sunrise()} function changes depending on the traffic on the Ethereum network and the state of Beanstalk. Beanstalk covers the transaction cost by awarding the sender of an accepted \code{sunrise()} function call with newly minted Beans. To encourage regular \code{sunrise()} function calls even during periods of congestion on the Ethereum network while minimizing cost, the award starts at 100 Beans and compounds 1\% every additional second that elapses past $E_{t}^{\text{min}}$ for 300 seconds.
+The cost to execute the \code{sunrise} function changes depending on the traffic on the Ethereum network and the state of Beanstalk. Beanstalk covers the transaction cost by awarding the sender of an accepted \code{sunrise} function call with newly minted Beans. To encourage regular \code{sunrise} function calls even during periods of congestion on the Ethereum network while minimizing cost, the award starts at 100 Beans and compounds 1\% every additional second that elapses past $E_{t}^{\text{min}}$ for 300 seconds.
 
-The award for successfully calling the \code{sunrise()} function for $t$ ($a_t$), such that $a_t \in \{j \times 10^{-6} \mid j \in \mathbb{Z}^{+} \}$ and $1 < t$, in a block with a given timestamp ($E_t$) is:
+The award for successfully calling the \code{sunrise} function for $t$ ($a_t$), such that $a_t \in \{j \times 10^{-6} \mid j \in \mathbb{Z}^{+} \}$ and $1 < t$, in a block with a given timestamp ($E_t$) is:
 $$a_t = 100 \times 1.01^{\text{min}\{{E_t - E_{t}^{\text{min}}},\ 300\}}$$
 To minimize the cost of calculating $a_t$, the \term{Sun} uses a binomial estimation with a margin of error of less than 0.05\% of $a^t$. Thus, Beanstalk creates a cost-efficient protocol-native timekeeping mechanism and ensures cost-efficient code execution on the Ethereum blockchain at regular intervals.
 
@@ -317,7 +317,7 @@ Beanstalk requires the ability to coordinate protocol upgrades. The \term{Silo} 
 %\vspace*{-1mm}
 The \term{Stalk System} decentralizes ownership over time and creates Beanstalk-native financial incentives to (1) align DAO voters' interests with the health of Beanstalk, (2) leave assets \term{Deposited} in the \term{Silo}, and (3) allocate liquidity in ways that benefit Beanstalk.
 
-Anyone can become a \term{Stalkholder} by \term{Depositing} assets on the \term{Deposit} \term{Whitelist} into the \term{Silo} to earn \term{Stalk} and \term{Seeds}. \term{Stalk} and \term{Seeds} are not liquid. Every \term{Season}, $1 \times 10^{-4}$ additional \term{Stalk} \term{Grows} from each \term{Seed}. \term{Grown} \term{Stalk} become \term{Stalk} when \term{Mown}. \term{Grown} \term{Stalk} are automatically \term{Mown} each time a \term{Stalkholder} interacts with the Silo (\term{i.e.}, \term{Deposit}, \term{Withdraw}, \term{Convert}, \term{Transfer}, \term{Plant} and \term{Enroot}), or when they call the \code{mow()} function.
+Anyone can become a \term{Stalkholder} by \term{Depositing} assets on the \term{Deposit} \term{Whitelist} into the \term{Silo} to earn \term{Stalk} and \term{Seeds}. \term{Stalk} and \term{Seeds} are not liquid. Every \term{Season}, $1 \times 10^{-4}$ additional \term{Stalk} \term{Grows} from each \term{Seed}. \term{Grown} \term{Stalk} become \term{Stalk} when \term{Mown}. \term{Grown} \term{Stalk} are automatically \term{Mown} each time a \term{Stalkholder} interacts with the Silo (\term{i.e.}, \term{Deposit}, \term{Withdraw}, \term{Convert}, \term{Transfer}, \term{Plant} and \term{Enroot}), or when they call the \code{mow} function.
 
 \term{Stalkholders} are entitled to participate in Beanstalk governance and a portion of Bean mints. The influence in governance of, and distribution of Beans paid to, a \term{Stalkholder} are proportional to their \term{Stalk} holdings relative to total outstanding \term{Stalk}. \term{Stalk} holdings become less concentrated over time.
 
@@ -346,7 +346,7 @@ The number of \term{Stalk}, \term{Seeds}, and \term{Stalk} from \term{Seeds} rew
 
 \subsection{Calculating Stalk and Seeds}
 A \term{Stalkholder's} total \term{Stalk} is the sum of the \term{Stalk} for each of their \term{Deposits} and \term{Earned} \Bean\ ($\eta^{\bean}$), such that $\eta^{\bean} \in \{j \times 10^{-6} \mid j \in \mathbb{N} \}$. 
-\term{Earned} \Bean\ are Beans paid to a \term{Stalkholder} after the last \term{Season} the \term{Stalkholder} called the \code{plant()} function ($\eta$).\footnote{\href{https://github.com/BeanstalkFarms/Beanstalk-Governance-Proposals/blob/master/bip/bip-00-silo-refactor.md}{github.com/BeanstalkFarms/Beanstalk-Governance-Proposals/blob/master/bip/bip-00-silo-refactor.md}}$^{,}$\footnote{\href{https://snapshot.org/\#/beanstalkfarms.eth/proposal/0xffc6033eb5a4e53f4da5df1c4011bacc12244914885fe11e6a6f2d09d856feed}{snapshot.org/\#/beanstalkfarms.eth/proposal/Beanstalk\_Pause\_Proposal-0\:Next\_Steps}}$^{,}$\footnote{\href{https://github.com/BeanstalkFarms/Beanstalk-Governance-Proposals/blob/master/bip/bip-21-replant.md}{github.com/BeanstalkFarms/Beanstalk-Governance-Proposals/blob/master/bip/bip-21-replant.md}} \term{Earned} \Bean\ automatically earn \term{Stalk}. The next time the \term{Stalkholder} calls the \code{plant()} function, \term{Earned} \Bean\ are \term{Deposited} in the current \term{Season} and the associated \term{Seeds} are \term{Planted} to start \term{Growing} \term{Stalk}.
+\term{Earned} \Bean\ are Beans paid to a \term{Stalkholder} after the last \term{Season} the \term{Stalkholder} called the \code{plant} function ($\eta$).\footnote{\href{https://github.com/BeanstalkFarms/Beanstalk-Governance-Proposals/blob/master/bip/bip-00-silo-refactor.md}{github.com/BeanstalkFarms/Beanstalk-Governance-Proposals/blob/master/bip/bip-00-silo-refactor.md}}$^{,}$\footnote{\href{https://snapshot.org/\#/beanstalkfarms.eth/proposal/0xffc6033eb5a4e53f4da5df1c4011bacc12244914885fe11e6a6f2d09d856feed}{snapshot.org/\#/beanstalkfarms.eth/proposal/Beanstalk\_Pause\_Proposal-0\:Next\_Steps}}$^{,}$\footnote{\href{https://github.com/BeanstalkFarms/Beanstalk-Governance-Proposals/blob/master/bip/bip-21-replant.md}{github.com/BeanstalkFarms/Beanstalk-Governance-Proposals/blob/master/bip/bip-21-replant.md}} \term{Earned} \Bean\ automatically earn \term{Stalk}. The next time the \term{Stalkholder} calls the \code{plant} function, \term{Earned} \Bean\ are \term{Deposited} in the current \term{Season} and the associated \term{Seeds} are \term{Planted} to start \term{Growing} \term{Stalk}.
 
 When a \term{Stalkholder} \term{Deposits} $\lambda$, they update the total number of $\lambda$ \term{Deposited} during \term{Season} $i$ ($Z_i^{\lambda}$) and its total BDV when \term{Deposited} ($L_i^{\lambda}$), such that $Z_i^{\lambda},\ L_i^{\lambda} \in \{j \times 10^{-6} \mid j \in \mathbb{Z}^{+} \}$, as $Z_i^{\lambda} \mathrel{+}= z^{\lambda}$ and $L_i^{\lambda} \mathrel{+}= f^{\lambda}(z^{\lambda})$. Beanstalk stores a map of each \term{Stalkholder's} \term{Deposits} that are still in the \term{Silo}, from \term{Stalkholder} to token address to \term{Season} to \term{Deposit} totals (\term{i.e.}, ($Z_i^{\lambda},\ L_i^{\lambda}$)).
 
@@ -401,7 +401,7 @@ If at the end of the \term{Voting Period}:
 If at any time before the end of the \term{Voting Period} more than two-thirds of the total outstanding \term{Stalk} at the time the \term{BIP} was submitted to Snapshot that still exists votes in favor of the \term{BIP}, it can be committed to the Ethereum blockchain.
 
 \subsubsection{Pause}
-In case of a particularly dangerous vulnerability to Beanstalk, the \term{Silo} can \term{Pause} or \term{Unpause} Beanstalk via \term{BIP}. When \term{Paused}, Beanstalk does not accept a \code{sunrise()} function call. When \term{Unpaused}, the \code{sunrise()} function can be called at the beginning of the next hour.
+In case of a particularly dangerous vulnerability to Beanstalk, the \term{Silo} can \term{Pause} or \term{Unpause} Beanstalk via \term{BIP}. When \term{Paused}, Beanstalk does not accept a \code{sunrise} function call. When \term{Unpaused}, the \code{sunrise} function can be called at the beginning of the next hour.
 
 For a given timestamp of last \term{Unpause} ($E_{\Psi}$) during \term{Season} $t^{'}$, we define $E_{t}^{\text{min}}\ \forall\ E_{t}^{\text{min}}$ such that $t^{'} < t$ as:
 $$E_{t}^{\text{min}} = 3600{\left({\left\lfloor\frac{E_{\Psi}}{3600}\right\rfloor} + t - t^{'}\right)}$$
@@ -429,7 +429,7 @@ When Beanstalk is willing to borrow more Beans to remove them from the Bean supp
 \subsection{Pods}
 \term{Pods} are the primary debt asset of Beanstalk. Beanstalk never defaults on debt: \term{Pods} automatically \term{Yield} from \term{Sown} \Bean\ and never expire.
 
-In the future, when the average price of \Bean1 is above its value peg over a \term{Season}, \term{Pods} \term{Ripen} and become \term{Harvestable} (redeemable) for \Bean1 at anytime. \term{Pods} \term{Ripen} on a first in, first out (FIFO) basis: \term{Pods} \term{Yielded} from Beans that are \term{Sown} first \term{Ripen} into \term{Harvestable} \term{Pods} first. \term{Pod} holders can \term{Harvest} their \term{Harvestable} \term{Pods} anytime by calling the \code{harvest()} function. There is no penalty for waiting to \term{Harvest} \term{Pods}.
+In the future, when the average price of \Bean1 is above its value peg over a \term{Season}, \term{Pods} \term{Ripen} and become \term{Harvestable} (redeemable) for \Bean1 at anytime. \term{Pods} \term{Ripen} on a first in, first out (FIFO) basis: \term{Pods} \term{Yielded} from Beans that are \term{Sown} first \term{Ripen} into \term{Harvestable} \term{Pods} first. \term{Pod} holders can \term{Harvest} their \term{Harvestable} \term{Pods} anytime by calling the \code{harvest} function. There is no penalty for waiting to \term{Harvest} \term{Pods}.
 
 \term{Pods} are transferable. In practice, \term{Pods} are non-callable zero-coupon bonds with priority for maturity represented as a place in line. The number of \term{Pods} that \term{Yield} from \term{Sown} \Bean\ is determined by the \term{Temperature}.
 
@@ -461,7 +461,7 @@ Anytime there is \term{Available} \term{Fertilizer} (defined below) in the \term
 
 We define \term{Available} \term{Fertilizer} ($\mathfrak{V}$) as the number of \term{Fertilizer} that can be bought from Beanstalk in exchange for 1 USDC each, \term{Active} \term{Fertilizer} ($\mathfrak{A}$) as the number of \term{Fertilizer} that have been bought but have not \term{Fertilized} all associated \term{Sprouts}, and \term{Used} \term{Fertilizer} ($\mathfrak{U}$), such that $\mathfrak{V},\ \mathfrak{A},\ \mathfrak{U} \in \mathbb{N}$, as the number of \term{Fertilizer} that have been bought and \term{Fertilized} all associated \term{Sprouts}. 
 
-In the future, when the average price of \Bean1 is above its value peg over a \term{Season}, \term{Active} \term{Fertilizer} \term{Fertilizes} \term{Sprouts} such that they become \term{Rinsable} (redeemable) for \Bean1 at anytime. \term{Active} \term{Fertilizer} \term{Fertilizes} a pro-rata portion of \term{Sprouts}, by \term{Fertilizer}. \term{Fertilizer} owners can \term{Rinse} their \term{Rinsable} \term{Sprouts} anytime by calling the \code{rinse()} function. There is no penalty for waiting to \term{Rinse} \term{Sprouts}.
+In the future, when the average price of \Bean1 is above its value peg over a \term{Season}, \term{Active} \term{Fertilizer} \term{Fertilizes} \term{Sprouts} such that they become \term{Rinsable} (redeemable) for \Bean1 at anytime. \term{Active} \term{Fertilizer} \term{Fertilizes} a pro-rata portion of \term{Sprouts}, by \term{Fertilizer}. \term{Fertilizer} owners can \term{Rinse} their \term{Rinsable} \term{Sprouts} anytime by calling the \code{rinse} function. There is no penalty for waiting to \term{Rinse} \term{Sprouts}.
 
 \term{Fertilizer} is transferable. In practice, \term{Fertilizer} is a non-callable zero-coupon pari passu bond without a fixed maturity. The number of \term{Sprouts} that \term{Fertilizer} ultimately \term{Fertilizes} is dependent on the \term{Humidity} at its time of purchase.
 
@@ -498,7 +498,7 @@ A \term{Stalkholder's} \term{Stalk} upon \term{Replant} ($K_{\bigotimes}$) given
 $$K_{\bigotimes} = \mathfrak{X}_{\bigotimes} \times K_{\bigodot}$$
 A \term{Stalkholder's} \term{Seeds} upon \term{Replant} ($C_{\bigotimes}$) given $\mathfrak{X}_{\bigotimes}$, their \term{Seeds} at the end of the block prior to the \term{Exploit} ($C_{\bigodot}$) and their \term{Plantable} \term{Seeds} at the end of the block prior to the \term{Exploit} ($\eta_{\bigodot}^c$), such that $C_{\bigotimes},\ C_{\bigodot},\ \eta_{\bigodot}^c \in \{j \times 10^{-6} \mid j \in \mathbb{Z}^{+} \}$, is:
 $$C_{\bigotimes} = \mathfrak{X}_{\bigotimes} \times (C_{\bigodot} + \eta_{\bigodot}^c)$$
-The number of \term{Revitalized} \term{Stalk} (${\varphi}_t^K$), such that ${\varphi}_t^K \in \{j \times 10^{-10} \mid j \in \mathbb{Z}^{+} \}$, and \term{Revitalized} \term{Seeds} (${\varphi}_t^C$), such that ${\varphi}_t^C \in \{j \times 10^{-6} \mid j \in \mathbb{Z}^{+} \}$, that can be \term{Enrooted} by a \term{Stalkholder} during $t$ are functions of the change in $\mathfrak{X}$ ($\Delta \mathfrak{X}$), such that $\Delta \mathfrak{X} \in \{j \times 10^{-6} \mid j \in \mathbb{Z}^{+} \}$, between (1) the \term{Season} they last called the \code{enroot()} function ($\varphi$) or (2) the \term{Replant} if they have never \term{Enrooted} their \term{Revitalized} \term{Stalk} and \term{Revitalized} \term{Seeds} (\term{i.e.}, $\varphi = 0$), and $t$, and $K_{\bigodot}$ or $C_{\bigodot}$ and $\eta_{\bigodot}^c$, respectively. 
+The number of \term{Revitalized} \term{Stalk} (${\varphi}_t^K$), such that ${\varphi}_t^K \in \{j \times 10^{-10} \mid j \in \mathbb{Z}^{+} \}$, and \term{Revitalized} \term{Seeds} (${\varphi}_t^C$), such that ${\varphi}_t^C \in \{j \times 10^{-6} \mid j \in \mathbb{Z}^{+} \}$, that can be \term{Enrooted} by a \term{Stalkholder} during $t$ are functions of the change in $\mathfrak{X}$ ($\Delta \mathfrak{X}$), such that $\Delta \mathfrak{X} \in \{j \times 10^{-6} \mid j \in \mathbb{Z}^{+} \}$, between (1) the \term{Season} they last called the \code{enroot} function ($\varphi$) or (2) the \term{Replant} if they have never \term{Enrooted} their \term{Revitalized} \term{Stalk} and \term{Revitalized} \term{Seeds} (\term{i.e.}, $\varphi = 0$), and $t$, and $K_{\bigodot}$ or $C_{\bigodot}$ and $\eta_{\bigodot}^c$, respectively. 
 
 We define $\Delta \mathfrak{X}$ for a given \term{Stalkholder} that last \term{Enrooted} their \term{Revitalized} \term{Stalk} and \term{Revitalized} \term{Seeds} in $\varphi$ as:
 $$\Delta \mathfrak{X} = \begin{cases} \mathfrak{X}_{t} - \mathfrak{X}_\varphi & \text{if} \; \varphi > 0 \vspace{.3cm} \\ 
@@ -518,7 +518,7 @@ The change in \term{Ripe} \Bean\ ($\Delta \mathfrak{R}^{\bean}$) for a given pur
 
 We define $\Delta \mathfrak{R}^{\bean}$ for a given $\Delta \mathfrak{S}_{\Game}$, $\mathfrak{Z}^{\bean}$, $\mathfrak{R}_{<\Game}^{\bean}$, $\mathfrak{F}$, $\mathfrak{S}_{<\Game}$ as:
 $$\Delta \mathfrak{R}^{\bean} = \frac{\Delta \mathfrak{S}_{\Game} \times (\mathfrak{Z}^{\bean} - \mathfrak{R}_{<\Game}^{\bean})}{\mathfrak{F} - \mathfrak{S}_{<\Game}}$$
-The change in \term{Ripe} $\Phi$ ($\Delta \mathfrak{R}^{\Phi}$), such that $\Delta \mathfrak{R}^{\Phi} \in \{j \times 10^{-18} \mid j \in \mathbb{Z}^{+} \}$, is the result of calling the \code{calc\_token\_amount()} function on the Curve Zap contract\fref{etherscan.io/address/0xA79828DF1850E8a3A3064576f380D90aECDD3359} for a given $\Delta \mathfrak{S}_{\Game}$.
+The change in \term{Ripe} $\Phi$ ($\Delta \mathfrak{R}^{\Phi}$), such that $\Delta \mathfrak{R}^{\Phi} \in \{j \times 10^{-18} \mid j \in \mathbb{Z}^{+} \}$, is the result of calling the \code{calc\_token\_amount} function on the Curve Zap contract\fref{etherscan.io/address/0xA79828DF1850E8a3A3064576f380D90aECDD3359} for a given $\Delta \mathfrak{S}_{\Game}$.
 
 We define $\Delta \mathfrak{R}^{\Phi}$ for a given $\Delta \mathfrak{S}_{\Game}$ as:
 $$\Delta \mathfrak{R}^{\Phi} = \code{calc\_token\_amount(}\Phi,\ [0.866616 \times \Delta \mathfrak{S}_{\Game},\ 0,\ \Delta \mathfrak{S}_{\Game},\ 0],\ true\code{)}$$
@@ -788,7 +788,7 @@ We define an optimal state of Beanstalk as accelerating toward ideal equilibrium
 \end{figure}
 
 \subsection{Bean Supply}
-At the beginning of each \term{Season}, if $V < P_{\overline{t-1}}$, Beanstalk increases the Bean supply based on $\Delta B_{\overline{t-1}}$ in addition to the award for successfully calling the \code{sunrise()} function. Up to two thirds of the additional Bean supply increase is used to pay off debt; the remainder is distributed to \term{Stalkholders}.
+At the beginning of each \term{Season}, if $V < P_{\overline{t-1}}$, Beanstalk increases the Bean supply based on $\Delta B_{\overline{t-1}}$ in addition to the award for successfully calling the \code{sunrise} function. Up to two thirds of the additional Bean supply increase is used to pay off debt; the remainder is distributed to \term{Stalkholders}.
 
 At the beginning of each \term{Season}, Beanstalk mints $m_t$ Beans, such that $m_t \in \{j \times 10^{-6} \mid j \in \mathbb{Z}^{+} \}$.
 We define $m_t$ for a given $\Delta B_{\overline{t-1}}$ and $a_t$ as:
@@ -901,10 +901,10 @@ $$m_t = D_{\gamma} + a_t + \Delta B_{\overline{t-1}} + \Delta B_{t-1}$$
 Thus, Beanstalk regularly crosses the price of \Bean1 over its value peg during both long run increases and decreases in demand for Beans.
 
 \section{Market}
-Current DEXs are unable to attract liquidity without offering protocol-native emissions derived primarily from AMM trading fees. Beanstalk's ability to attract liquidity without fee-based emissions allows it to create a DEX without trading fees. The \term{Market} is the Beanstalk-native DEX. Specifications of the \term{Market} are outside the scope of this whitepaper. For information on the \term{Market}, refer to the \hyperlink{section.12}{Appendix}.
+Current DEXs are unable to attract liquidity without offering protocol-native emissions derived primarily from AMM trading fees. Beanstalk's ability to attract liquidity without fee-based emissions allows it to create a DEX without trading fees. The \term{Market} is the Beanstalk-native DEX. Specifications of the \term{Market} are outside the scope of this whitepaper. For information on the \term{Market}, refer to the \hyperlink{section.14}{Appendix}.
 
 \section{Depot}
-Current complex interactions with Ethereum-native protocols are tedious, cumbersome and expensive. The \term{Depot} facilitates complex, gas-efficient interactions with other Ethereum-native protocols in a single transaction. Any protocol with a \term{Pipeline} to the \term{Depot} can be used via Beanstalk in a single transaction. \term{Pipelines} to the \term{Depot} can be added via Beanstalk governance. The specifications of specific \term{Pipelines} are outside the scope of this whitepaper. For information on the \term{Depot}, refer to the \hyperlink{section.12}{Appendix}.
+Current complex interactions with Ethereum-native protocols are tedious, cumbersome and expensive. The \term{Depot} facilitates complex, gas-efficient interactions with other Ethereum-native protocols in a single transaction. Any protocol with a \term{Pipeline} to the \term{Depot} can be used via Beanstalk in a single transaction. \term{Pipelines} to the \term{Depot} can be added via Beanstalk governance. The specifications of specific \term{Pipelines} are outside the scope of this whitepaper. For information on the \term{Depot}, refer to the \hyperlink{section.14}{Appendix}.
 
 \section{Economics}
 Beanstalk is designed from economic first principles to increase trustlessness, stability and liquidity over time.
@@ -914,7 +914,7 @@ A design that lowers the Gini coefficient\fref{wikipedia.org/wiki/Gini\_coeffici
 
 Older \term{Deposits} have their \term{Stalk} from \term{Seeds} diluted relative to newer \term{Deposits} every \term{Season}. Therefore, newly minted Beans are more widely distributed over time.
 
-Beanstalk does not require a pre-mine. The first 100 Beans are created when the \code{init()} function is called to deploy Beanstalk.
+Beanstalk does not require a pre-mine. The first 100 Beans are created when the \code{init} function is called to deploy Beanstalk.
 
 \subsection{Strong Credit}
 Beanstalk is credit based and only fails if it can no longer attract creditors. A reasonable level of debt, strong credit history and competitive interest rate attract creditors. 
