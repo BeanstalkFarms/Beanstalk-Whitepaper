@@ -6,7 +6,7 @@
 \begin{document}
 
 \subsection{Market}
-Beanstalk supports the following exchanges on the \term{Market}.
+Beanstalk supports the following exchanges on the \term{Market}:
 
 \subsubsection{Pods}
 \term{Pods} can be bought and sold in a decentralized fashion at the \term{Pod} \term{Market}. 
@@ -19,7 +19,7 @@ A \term{Pod Order} has four inputs:
 \begin{enumerate}
         \item The maximum number of \term{Pods} to be purchased;
         \item The maximum place in the \term{Pod Line} (\term{i.e.}, the number of \term{Pods} that will become \term{Harvestable} before a given \term{Pod}) to purchase from;
-        \item The minimum number of Beans that can \term{Fill} the \term{Pod Order}; and
+        \item The minimum number of Pods that can \term{Fill} the \term{Pod Order}; and
         \item Either (a) a constant that represents the maximum price per \term{Pod} or (b) a piecewise polynomial function that determines the price per \term{Pod} by its current place in the \term{Pod Line}, denominated in Beans.
 \end{enumerate}
 
@@ -34,7 +34,7 @@ A \term{Pod Listing} has six inputs:
         \item The \term{Plot} being \term{Listed};
         \item The difference between the front of the portion of the \term{Plot} included in the \term{Pod Listing} from the front of the whole \term{Plot}, denominated in \term{Pods}, where a null input \term{Lists} from the back of the \term{Plot};
         \item The number of \term{Pods} in the \term{Plot} for sale, where a null input \term{Lists} the whole \term{Plot};
-        \item The minimum number of Beans that can \term{Fill} the \term{Pod Listing}; 
+        \item The minimum number of Pods that can \term{Fill} the \term{Pod Listing}; 
         \item The maximum number of total \term{Harvestable} \term{Pods} over all \term{Seasons} before the \term{Pod Listing} expires; and
         \item Either (a) a constant that represents the minimum price per \term{Pod} or (b) a piecewise polynomial function that determines the price per \term{Pod} by its current place in the \term{Pod Line}, denominated in Beans.
 \end{enumerate}
