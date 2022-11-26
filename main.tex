@@ -141,21 +141,18 @@
 \newcommand{\rows}[1]{\xrowht{13.333pt}} % Command to set row height for cell with 1 rows
 
 % Bean symbols
-\newcommand{\BeanCover}{\includesvg[scale=2.2]{./Logos/black_bean.svg}} % Logo on cover page
-\newcommand{\Bean}{\includesvg[scale=0.23]{./Logos/bean.svg}} % Bean used throughout the paper in text form
-\newcommand{\bean}{\includesvg[scale=0.17]{./Logos/microbean_wide.svg}} % Bean used in formulas - micro bean wide
-
-\newcommand{\tinybean}{\includesvg[scale=0.13]{./Logos/microbean_wide.svg}} % Bean used in formulas - micro bean wide
-
-\newcommand{\lambdabean}{\includesvg[scale=0.17]{./Logos/microbean.svg}} % Bean used in formulas for lambda superscript - micro bean
+\newcommand{\BeanCover}{\includesvg[scale=2.2]{./logos/black-bean.svg}} % Logo on cover page
+\newcommand{\Bean}{\includesvg[scale=0.23]{./logos/bean.svg}} % Bean used throughout the paper in text form
+\newcommand{\bean}{\includesvg[scale=0.17]{./logos/microbean-wide.svg}} % Bean used in formulas - micro bean wide
+\newcommand{\tinybean}{\includesvg[scale=0.13]{./logos/microbean-wide.svg}} % Bean used in formulas - micro bean wide
+\newcommand{\lambdabean}{\includesvg[scale=0.17]{./logos/microbean.svg}} % Bean used in formulas for lambda superscript - micro bean
 
 % List Key
 \SetEnumitemKey{midsep}{topsep=0pt, itemsep=3pt} % Itemize key
 
 % File paths
-\newcommand{\tablepath}{Figures} % Tables file path
-\graphicspath{{Figures/}} % Figures file path
-
+\newcommand{\tablepath}{figures} % Tables file path
+\graphicspath{{figures/}} % Figures file path
 
 %%%%%%%   Begin Document   %%%%%%%
 \begin{document}
@@ -604,7 +601,7 @@ Beanstalk requires three $R^D$ levels to be set: (1) $R^{D^{\text{lower}}}$, bel
 %\vspace*{2.5mm}
 \begin{figure}[h!]
     \centering
-    \include{./Figures/Figure4}
+    \include{./figures/Figure4}
     \vspace*{-7mm}
     \setlength{\belowcaptionskip}{-8pt} % reduce space after caption
     \caption{Debt Level}
@@ -617,7 +614,7 @@ The position of Beanstalk with respect to ideal equilibrium can be represented o
 %\vspace*{2.5mm}
 \begin{figure}[h!]
     \centering
-    \include{./Figures/Figure5}
+    \include{./figures/Figure5}
     \vspace*{-7mm}
     \caption{Position}
     \label{Fig 5}
@@ -701,7 +698,7 @@ Beanstalk requires two $\frac{\partial \Delta S}{\partial t}$ levels to be set: 
 \vspace*{-3.5mm} % addedSpace
 \begin{figure}[h!]
     \centering
-    \include{./Figures/Figure8}
+    \include{./figures/Figure8}
     % \vspace*{-5mm}
     \vspace*{-10.5mm}
     \caption{Soil Demand Changes From $\frac{\partial \Delta S}{\partial t}$}
@@ -728,7 +725,7 @@ Thus, Beanstalk measures changing demand for \term{Soil}.
 % \vspace*{-3mm} % addedSpace
 \begin{figure}[h!]
     \centering
-    \include{./Figures/Figure9}
+    \include{./figures/Figure9}
     % \vspace*{-5mm}
     \vspace*{-10.5mm} % reduce space before caption
     \setlength{\belowcaptionskip}{-8pt} % reduce space after caption
@@ -983,39 +980,39 @@ Beanstalk is a work in progress. The following are potential improvements that c
 
 \newpage
 \section{Appendix}
-\input{Appendix/Parameters} % Initial Parameters
+\input{appendix/Parameters} % Initial Parameters
 
 \newpage
-\input{Appendix/Deposit-Whitelist} % Deposit Whitelist
+\input{appendix/Deposit-Whitelist} % Deposit Whitelist
 
 \newpage
-\input{Appendix/Silo-Governance} % Silo Governance
+\input{appendix/Silo-Governance} % Silo Governance
 
 \newpage
-\input{Appendix/Convert-Whitelist} % Convert Whitelist
+\input{appendix/Convert-Whitelist} % Convert Whitelist
 
 \newpage
-\input{Appendix/Barn} % Barn
+\input{appendix/Barn} % Barn
 
 \newpage
-\input{Appendix/Oracle-Whitelist} % Oracle Whitelist
+\input{appendix/Oracle-Whitelist} % Oracle Whitelist
 
 \newpage
-\input{Appendix/Flood} % Flood
+\input{appendix/Flood} % Flood
 
 \newpage
-\input{Appendix/Market} % Market
+\input{appendix/Market} % Market
 
 \newpage
-\input{Appendix/Depot} % Depot
+\input{appendix/Depot} % Depot
 
 \newpage
-\input{Appendix/Fundraisers} % Fundraisers
+\input{appendix/Fundraisers} % Fundraisers
 
 \newpage
-\input{Appendix/Glossary} % Glossary
+\input{appendix/Glossary} % Glossary
 
 \newpage
-\input{Appendix/Version-History} % Whitepaper Version History 
+\input{appendix/Version-History} % Whitepaper Version History 
 
 \end{document}
