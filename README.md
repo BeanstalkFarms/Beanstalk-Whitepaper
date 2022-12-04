@@ -1,3 +1,5 @@
+<img src="https://github.com/BeanstalkFarms/Beanstalk-Brand-Assets/blob/main/BEAN/bean.svg" alt="Beanstalk logo" align="right" width="120" />
+
 # Beanstalk Whitepaper
 
 LaTeX for the Beanstalk Whitepaper.
