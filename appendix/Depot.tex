@@ -6,7 +6,7 @@
 \begin{document}
 
 \subsection{Depot}
-The following \term{Pipeline} to the \term{Depot} currently exists:
+The following \term{Pipelines} to the \term{Depot} currently exist:
 
 \subsubsection{Curve}
 The Curve \term{Pipeline} allows anyone to call functions in any pool registered in any of the following Curve registries.
@@ -24,6 +24,16 @@ The following functions to interact with Curve pools can be called through the C
     \item $\code{remove\_liquidity(...)}$
     \item $\code{remove\_liquidity\_imbalanced(...)}$
     \item $\code{remove\_liquidity\_one\_token(...)}$
+\end{itemize}
+
+\subsubsection{Pipeline}
+The Pipeline \term{Pipeline} allows anyone to perform an arbitrary series of actions in the EVM in a single transaction by using 0xb1bE0000bFdcDDc92A8290202830C4Ef689dCeaa\fref{etherscan.io/address/0xb1bE0000bFdcDDc92A8290202830C4Ef689dCeaa\#readContract} as a sandbox for execution.
+
+The following functions to interact with Pipeline can be called through the Pipeline \term{Pipeline}.
+\begin{itemize}
+    \item $\code{pipe(...)}$
+    \item $\code{multiPipe(...)}$
+    \item $\code{advancedPipe(...)}$
 \end{itemize}
 
 \end{document}

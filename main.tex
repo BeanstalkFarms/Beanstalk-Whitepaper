@@ -181,18 +181,18 @@
         \footnotesize{Published:} \normalsize{August 6, 2021}
         
         \vspace{-0.25cm}
-        \footnotesize{Modified:} \normalsize{November 11, 2022}
+        \footnotesize{Modified:} \normalsize{December 8, 2022}
         
         \vspace{-0.25cm}
-        \footnotesize{Whitepaper Version:} {\normalsize{2.2.0}}
+        \footnotesize{Whitepaper Version:} {\normalsize{2.3.0}}
         
         \vspace{-0.25cm}
-        \footnotesize{Code Version:} \href{https://github.com/BeanstalkFarms/Beanstalk}{\normalsize{2.2.0}}\footnote{\href{https://github.com/BeanstalkFarms/Beanstalk}{github.com/BeanstalkFarms/Beanstalk}}
+        \footnotesize{Code Version:} \href{https://github.com/BeanstalkFarms/Beanstalk}{\normalsize{2.3.0}}\footnote{\href{https://github.com/BeanstalkFarms/Beanstalk}{github.com/BeanstalkFarms/Beanstalk}}
         
 
         \vspace{0.1cm}
         \flushleft{\normalsize{\term{“A national debt if it is not excessive will be to us a national blessing; it will be powerfull cement of our union.”}}}
-        
+    
         \normalsize{\hspace{2.5em}- Alexander Hamilton, Letter to Robert Morris, April 30, 1781}\fref{founders.archives.gov/documents/Hamilton/01-02-02-1167}
         \vspace{0.4cm}
         \begin{abstract}
@@ -298,10 +298,10 @@ Beanstalk only accepts one \code{sunrise} function call per \term{Season}. Beans
 
 The minimum timestamp Beanstalk accepts a \code{sunrise} function call for a given $t$ ($E_{t}^{\text{min}}$), $\forall\ E_{t}^{\text{min}}$ such that $1 < t$, and $E_1$ is:
 $$E_{t}^{\text{min}} = 3600{\left({\left\lfloor\frac{E_1}{3600}\right\rfloor} + t\right)}$$
-The cost to execute the \code{sunrise} function changes depending on the traffic on the Ethereum network and the state of Beanstalk. Beanstalk covers the transaction cost by awarding the sender of an accepted \code{sunrise} function call with newly minted Beans. To encourage regular \code{sunrise} function calls even during periods of congestion on the Ethereum network while minimizing cost, the award starts at 100 Beans and compounds 1\% every additional second that elapses past $E_{t}^{\text{min}}$ for 300 seconds.
+The cost to execute the \code{sunrise} function changes depending on the traffic on the Ethereum network and the state of Beanstalk. Beanstalk covers the transaction cost by awarding the sender of an accepted \code{sunrise} function call with newly minted Beans. To encourage regular \code{sunrise} function calls even during periods of congestion on the Ethereum network while minimizing cost, the award starts at 25 Beans and compounds 1\% every additional second that elapses past $E_{t}^{\text{min}}$ for 300 seconds.
 
 The award for successfully calling the \code{sunrise} function for $t$ ($a_t$), such that $a_t \in \{j \times 10^{-6} \mid j \in \mathbb{Z}^{+} \}$ and $1 < t$, in a block with a given timestamp ($E_t$) is:
-$$a_t = 100 \times 1.01^{\text{min}\{{E_t - E_{t}^{\text{min}}},\ 300\}}$$
+$$a_t = 25 \times 1.01^{\text{min}\{{E_t - E_{t}^{\text{min}}},\ 300\}}$$
 To minimize the cost of calculating $a_t$, the \term{Sun} uses a binomial estimation with a margin of error of less than 0.05\% of $a^t$. Thus, Beanstalk creates a cost-efficient protocol-native timekeeping mechanism and ensures cost-efficient code execution on the Ethereum blockchain at regular intervals.
 
 %\vspace*{-1mm}
@@ -325,7 +325,7 @@ Any ERC-20 Standard token can be added to and removed from $\Lambda$ via Beansta
 In order for a given $\lambda$ to be added to $\Lambda$ Beanstalk requires (1) its token address, (2) a function to calculate the flash-loan-resistant Bean-denominated-value (BDV) for a given number of $\lambda$ \term{Deposited}, ($f^{\lambda}(z^{\lambda})$), such that $z^{\lambda} \in \{j \times 10^{-6} \mid j \in \mathbb{Z}^{+} \}$, $f^{\lambda}\colon \{j \times 10^{-\lambda} \mid j \in \mathbb{Z}^{+} \} \rightarrow \{j \times 10^{-6} \mid j \in \mathbb{Z}^{+} \}$, where $z^{\lambda}$ is the number of $\lambda$ \term{Deposited}, (3) the number of \term{Stalk} per BDV of $\lambda$ \term{Deposited} ($k^{\lambda}$), such that $k^{\lambda} \in \{j \times 10^{-4} \mid j \in \mathbb{Z}^{+} \}$, and (4) the number of \term{Seeds} per BDV of $\lambda$ \term{Deposited} ($c^{\lambda}$), such that $c^{\lambda} \in \mathbb{Z}^{+}$, to be stored.
 
 \subsection{Deposits, Withdrawals, Transfers and Conversions}
-$\lambda$ can be \term{Deposited} into, \term{Withdrawn} from and \term{Converted} within, the \term{Silo} at any time. Upon \term{Withdrawal}, assets are \term{Frozen} until the end of the current \term{Season} and for $\xi$, such that $\xi \in \mathbb{N}$, additional \term{Seasons}.\footnote{\href{https://github.com/BeanstalkFarms/Beanstalk-Governance-Proposals/blob/master/bip/bip-09-efficiency-improvements.md}{github.com/BeanstalkFarms/Beanstalk-Governance-Proposals/blob/master/bip/bip-09-efficiency-\\improvements.md}}
+$\lambda$ can be \term{Deposited} into, \term{Withdrawn} from and \term{Converted} within, the \term{Silo} at any time. Upon \term{Withdrawal}, assets are \term{Frozen} until the end of the current \term{Season} and for $\xi$, such that $\xi \in \mathbb{N}$, additional \term{Seasons}.\footnote{\href{https://bean.money/bip-9}{bean.money/bip-9}}
 
 Beanstalk rewards \term{Stalk} and \term{Seeds} to \term{Depositors} immediately upon \term{Depositing} $\lambda$ into the \term{Silo} based on its BDV when \term{Deposited}, $k^{\lambda}$ and $c^{\lambda}$.
 
@@ -343,7 +343,7 @@ The number of \term{Stalk}, \term{Seeds}, and \term{Stalk} from \term{Seeds} rew
 
 \subsection{Calculating Stalk and Seeds}
 A \term{Stalkholder's} total \term{Stalk} is the sum of the \term{Stalk} for each of their \term{Deposits} and \term{Earned} \Bean\ ($\eta^{\bean}$), such that $\eta^{\bean} \in \{j \times 10^{-6} \mid j \in \mathbb{N} \}$. 
-\term{Earned} \Bean\ are Beans paid to a \term{Stalkholder} after the last \term{Season} the \term{Stalkholder} called the \code{plant} function ($\eta$).\footnote{\href{https://github.com/BeanstalkFarms/Beanstalk-Governance-Proposals/blob/master/bip/bip-00-silo-refactor.md}{github.com/BeanstalkFarms/Beanstalk-Governance-Proposals/blob/master/bip/bip-00-silo-refactor.md}}$^{,}$\footnote{\href{https://snapshot.org/\#/beanstalkfarms.eth/proposal/0xffc6033eb5a4e53f4da5df1c4011bacc12244914885fe11e6a6f2d09d856feed}{snapshot.org/\#/beanstalkfarms.eth/proposal/Beanstalk\_Pause\_Proposal-0\:Next\_Steps}}$^{,}$\footnote{\href{https://github.com/BeanstalkFarms/Beanstalk-Governance-Proposals/blob/master/bip/bip-21-replant.md}{github.com/BeanstalkFarms/Beanstalk-Governance-Proposals/blob/master/bip/bip-21-replant.md}} \term{Earned} \Bean\ automatically earn \term{Stalk}. The next time the \term{Stalkholder} calls the \code{plant} function, \term{Earned} \Bean\ are \term{Deposited} in the current \term{Season} and the associated \term{Seeds} are \term{Planted} to start \term{Growing} \term{Stalk}.
+\term{Earned} \Bean\ are Beans paid to a \term{Stalkholder} after the last \term{Season} the \term{Stalkholder} called the \code{plant} function ($\eta$).\footnote{\href{https://bean.money/bip-0}{bean.money/bip-0}}$^{,}$\footnote{\href{https://bean.money/bpp-0}{bean.money/bpp-0}}$^{,}$\footnote{\href{https://bean.money/bip-21}{bean.money/bip-21}} \term{Earned} \Bean\ automatically earn \term{Stalk}. The next time the \term{Stalkholder} calls the \code{plant} function, \term{Earned} \Bean\ are \term{Deposited} in the current \term{Season} and the associated \term{Seeds} are \term{Planted} to start \term{Growing} \term{Stalk}.
 
 When a \term{Stalkholder} \term{Deposits} $\lambda$, they update the total number of $\lambda$ \term{Deposited} during \term{Season} $i$ ($Z_i^{\lambda}$) and its total BDV when \term{Deposited} ($L_i^{\lambda}$), such that $Z_i^{\lambda},\ L_i^{\lambda} \in \{j \times 10^{-6} \mid j \in \mathbb{Z}^{+} \}$, as $Z_i^{\lambda} \mathrel{+}= z^{\lambda}$ and $L_i^{\lambda} \mathrel{+}= f^{\lambda}(z^{\lambda})$. Beanstalk stores a map of each \term{Stalkholder's} \term{Deposits} that are still in the \term{Silo}, from \term{Stalkholder} to token address to \term{Season} to \term{Deposit} totals (\term{i.e.}, ($Z_i^{\lambda},\ L_i^{\lambda}$)).
 
@@ -379,7 +379,7 @@ A robust decentralized governance mechanism must balance the principles of decen
 \vspace*{-1mm}
 Any $\lambda$ owner can become a \term{Stalkholder} and participate in Beanstalk governance by \term{Depositing} $\lambda$ into the \term{Silo} to earn \term{Stalk}.
 
-Any \term{Stalkholder} that owns more than $K^{\text{min}}$, such that $K^{\text{min}} \in \{j \times 10^{-10} \mid j \in \mathbb{N},\ j \leq 10^{6} \}$, of total outstanding \term{Stalk} can submit a \term{BIP} via the \term{Beanstalk Community Multisig}\fref{arweave.net/upe2rEGeEDQ3F7rF9jVAP8FgAkbgniBgz2puvE6CKxs} (\term{BCM}). In the future, as the ownership concentration of \term{Stalk} decreases, we expect a \term{BIP} to lower this threshold.
+Any \term{Stalkholder} that owns more than $K^{\text{min}}$, such that $K^{\text{min}} \in \{j \times 10^{-10} \mid j \in \mathbb{N},\ j \leq 10^{6} \}$, of total outstanding \term{Stalk} can submit a \term{BIP} via the \term{Beanstalk Community Multisig}\fref{bean.money/bcm-process} (\term{BCM}). In the future, as the ownership concentration of \term{Stalk} decreases, we expect a \term{BIP} to lower this threshold.
 
 Beanstalk only accepts votes in favor of \term{BIPs}. A \term{Stalkholder's} vote is counted in proportion to their \term{Stalk} when the \term{BIP} is submitted to Snapshot.\fref{snapshot.org/\#/beanstalkdao.eth}
 
@@ -409,7 +409,7 @@ Beanstalk implements EIP-2535.\fref{eips.ethereum.org/EIPS/eip-2535} Beanstalk i
 A BIP has four inputs: (1) a ternary for whether Beanstalk should \term{Pause} or \term{Unpause}, where a 1 \term{Pauses} Beanstalk, a 2 \term{Unpauses Beanstalk}, and a null input does neither, (2) a list of facets and functions to add and remove upon commit, (3) a function to run upon commit, and (4) the Ethereum address of the contract with (3).
 
 \subsubsection{Beanstalk Community Multisig}
-The \term{BCM} address has the exclusive and unilateral ability to \term{Pause} and \term{Unpause} Beanstalk, and submit and commit \term{BIPs}. The \term{BCM} is a 5-of-9 Gnosis\fref{gnosis-safe.io/app/eth:0xa9bA2C40b263843C04d344727b954A545c81D043} multisig wallet with anonymous signers consisting of community members and contributors to Beanstalk. The \term{BCM} will provide sufficient notice of the submission, its contents and the submission time before submitting a \term{BIP} to Snapshot. In the future, we expect \term{BIPs} will reimplement permissionless governance and revoke these abilities from the \term{BCM}.
+The \term{BCM} address has the exclusive and unilateral ability to \term{Pause} and \term{Unpause} Beanstalk, and submit and commit \term{BIPs}. The \term{BCM} is a 5-of-9 Safe\fref{app.safe.global/eth:0xa9bA2C40b263843C04d344727b954A545c81D043} multisig wallet with anonymous signers consisting of community members and contributors to Beanstalk. The \term{BCM} will provide sufficient notice of the submission, its contents and the submission time before submitting a \term{BIP} to Snapshot. In the future, we expect \term{BIPs} will reimplement permissionless governance and revoke these abilities from the \term{BCM}.
 
 Thus, Beanstalk creates a robust decentralized governance mechanism and consistently improves security, stability and liquidity.
 
@@ -449,7 +449,7 @@ The \term{Temperature} is constant each \term{Season}. Beanstalk changes the \te
 
 \newpage
 \section{Barn}
-The \term{Barn} is the Beanstalk recapitalization facility, being used for the Beanstalk \term{Replant}.\footnote{\href{https://snapshot.org/\#/beanstalkfarms.eth/proposal/0xb87854d7f6f40f0877a1333028eab829b213fbcce03f16f9dd3832c8a98ab99b}{snapshot.org/\#/beanstalkfarms.eth/proposal/0xb87854d7f6f40f0877a1333028eab829b213fbcce03f16f9dd3832c8\\a98ab99b}}$^{,}$\footnote{\href{https://ncmftnvalcgiqxtaxtvi4qccnl52nlqu7xsyy4kxpjyodita.arweave.net/aJhZtqBYjIhe-YLzqjkBCavumrhT95YxxV3pw4-aJgM}{arweave.net/aJhZtqBYjIhe-YLzqjkBCavumrhT95YxxV3pw4-aJgM}}
+The \term{Barn} is the Beanstalk recapitalization facility, being used for the Beanstalk \term{Replant}.\footnote{\href{https://bean.money/bfp-72}{bean.money/bfp-72}}$^{,}$\footnote{\href{https://bean.money/barn}{bean.money/barn}}
 
 Anytime there is \term{Available} \term{Fertilizer} (defined below) in the \term{Barn}, any owner of ETH or USDC can buy \term{Fertilizer} from Beanstalk. The \term{Humidity} is the interest rate on \term{Fertilizer} purchases.
 
@@ -951,7 +951,7 @@ Thus, Beanstalk consistently increases trustlessness, stability and liquidity ov
 \section{Risk}
 There are numerous risks associated with Beanstalk. This is not an exhaustive list.
 
-The Beanstalk code base and peg maintenance mechanism are novel. Neither had been tested in the “real world” prior to the initial Beanstalk deployment. Portions of the Beanstalk code base are unaudited.\footnote{\href{https://2adxrezjguhnrdzzvzwmcc52v4kdhtpw3vjk4x6gde4czm54f4.arweave.net/0Ad4kyk1DtiPOa5swQu6rxQzzfbdUq5\_fxhk4LLO8L0}{arweave.net/0Ad4kyk1DtiPOa5swQu6rxQzzfbdUq5\_fxhk4LLO8L0}}$^{,}$\footnote{\href{https://megxijwlwqrophkngh3fycm3ifzhiujhw5epaxdbtqpf6ntcbmhq.arweave.net/YQ10Jsu0IuedTTH2XAmbQXJ0USe3SPBcYZweXzZiCw8}{arweave.net/YQ10Jsu0IuedTTH2XAmbQXJ0USe3SPBcYZweXzZiCw8}}$^{,}$\footnote{\href{https://4shvdhor3phzl5ohx44y2doipfls6lxaisnjfavqsgnpj24a.arweave.net/5I9RndHbz5X1x785-jQ3IeVcv-LuB-EmpKCsJGa9OuA}{arweave.net/5I9RndHbz5X1x785-jQ3IeVcv-LuB-EmpKCsJGa9OuA}} The open source nature of Beanstalk means that others can take advantage of any bugs, flaws or deficiencies in Beanstalk and launch identical or very similar stablecoin implementations.
+The Beanstalk code base and peg maintenance mechanism are novel. Neither had been tested in the “real world” prior to the initial Beanstalk deployment. Portions of the Beanstalk code base are unaudited.\footnote{\href{https://bean.money/07-13-22-halborn-report}{bean.money/07-13-22-halborn-report}}$^{,}$\footnote{\href{https://bean.money/07-22-22-tob-report}{bean.money/07-22-22-tob-report}}$^{,}$\footnote{\href{https://bean.money/07-22-22-tob-fix-review}{bean.money/07-22-22-tob-fix-review}} The open source nature of Beanstalk means that others can take advantage of any bugs, flaws or deficiencies in Beanstalk and launch identical or very similar stablecoin implementations.
 
 A decentralized implementation of Beanstalk has three external dependencies: (1) a trustless computer network that supports composability and fungible token standards, (2) a DEX protocol that runs on (1), and (3) a non-network-native exogenous value convertible stablecoin protocol native to (1) that offers convertibility to the non-network-native exogenous value and trades on (2). 
 
