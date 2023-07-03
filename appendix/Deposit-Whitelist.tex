@@ -20,40 +20,34 @@ $$f^{\bean}(z^{\bean}) = z^{\bean}$$
     \end{enumerate}
 \subsubsection{$\Phi$}
     \begin{enumerate}
-        \item \textbf{Token Address:} The $\Phi$ token address is 0xc9C32cd16Bf7eFB85Ff14e0c8603cc90F6F2eE49.
-        \item \textbf{BDV Function:} The BDV of $\Phi$ is calculated using the number of Beans ($\Phi_{\Xi-1}^{\bean}$), such that $\Phi_{\Xi-1}^{\bean} \in \{j \times 10^{-6} \mid j \in \mathbb{Z}^{+} \}$, and number of 3CRV ($\Phi_{\Xi-1}^{\text{3CRV}}$) in the BEAN:3CRV Curve pool at the end of the last block, the 3CRV virtual price ($P^{\text{3CRV}}$), the A parameter of the pool ($\Phi^{A}$), such that $\Phi^{A} \in \{j \times 10^{-2} \mid j \in \mathbb{Z}^{+} \}$, and the $\Phi$ virtual price ($P^{\Phi}$), such that $\Phi_{\Xi-1}^{\text{3CRV}},\  P^{\text{3CRV}},\ P^{\Phi}\in \{j \times 10^{-18} \mid j \in \mathbb{Z}^{+} \}$. 
+        \item \textbf{Token Address:} The \hyperlink{ht187}{$\Phi$} token address is 0xc9C32cd16Bf7eFB85Ff14e0c8603cc90F6F2eE49.
+        \item \textbf{BDV Function:} The BDV of \hyperlink{ht187}{$\Phi$} is calculated using \hyperlink{ht193}{$\Phi_{\Xi-1}^{\bean}$}, the BDV of 3CRV $f^{\text{3CRV}}(z^{\text{3CRV}})$, \hyperlink{ht194}{$\Phi_{\Xi-1}^{\text{3CRV}}$} and \hyperlink{ht192}{$\Phi_{\Xi-1}$}.
 
-Beanstalk calculates a flash-loan-resistant price invariant for the BEAN:3CRV Curve pool ($\zeta^{\Phi}_{\Xi-1}$), such that $\zeta^{\Phi}_{\Xi-1}\in \{j \times 10^{-18} \mid j \in \mathbb{Z}^{+} \}$, by calling the Curve\fref{etherscan.io/address/0xc9C32cd16Bf7eFB85Ff14e0c8603cc90F6F2eE49\#code} \code{get\_D} function on $\Phi_{\Xi-1}^{\bean}$, $\Phi_{\Xi-1}^{\text{3CRV}}$, $P^{\text{3CRV}}$ and $\Phi^{A}$ as:
-$$\zeta^{\Phi}_{\Xi-1} = \code{get\_D(}[\Phi_{\Xi-1}^{\bean},\ \Phi_{\Xi-1}^{\text{3CRV}} \times P^{\text{3CRV}}],\ \Phi^{A}\code{)}$$
-Beanstalk calculates a flash-loan-resistant total number of $\Phi$ ($\Phi_{\Xi-1}$), such that $\Phi_{\Xi-1}\in \{j \times 10^{-18} \mid j \in \mathbb{Z}^{+} \}$, from $\zeta^{\Phi}_{\Xi-1}$ and $P^{\Phi}$ as:
-$$\Phi_{\Xi-1} = \frac{\zeta^{\Phi}_{\Xi-1}}{P^{\Phi}}$$
-Beanstalk calculates the flash-loan-resistant USD price of \Bean1 from the BEAN:3CRV Curve pool ($\$^{\bean(\Phi)}_{\Xi-1}$), such that $\$^{\bean(\Phi)}_{\Xi-1}\in \{j \times 10^{-6} \mid j \in \mathbb{Z}^{+} \}$, by calling the Curve \code{get\_y} function on $\Phi_{\Xi-1}^{\bean}$, $\Phi_{\Xi-1}^{\text{3CRV}}$ and $P^{\text{3CRV}}$ as:
-$$\$^{\bean(\Phi)}_{\Xi-1} =  \Phi_{\Xi-1}^{\bean} - \code{get\_y(}0, 1, \Phi_{\Xi-1}^{\bean} + 1, [\Phi_{\Xi-1}^{\bean},\ \Phi_{\Xi-1}^{\text{3CRV}} \times P^{\text{3CRV}}]\code{)} - 10^{-6}$$
-Beanstalk calculates the BDV of 3CRV $f^{\text{3CRV}}(z^{\text{3CRV}})$ from $\$^{\bean(\Phi)}_{\Xi-1}$ and $P^{\text{3CRV}}$ as:
-$$f^{\text{3CRV}}(z^{\text{3CRV}}) = \frac{z^{\text{3CRV}} \times P^{\text{3CRV}}}{\$^{\bean(\Phi)}_{\Xi-1}}$$
-We define $f^{\Phi}(z^{\Phi})$ for a given $\Phi_{\Xi-1}^{\bean}$, $f^{\text{3CRV}}(z^{\text{3CRV}})$, $\Phi_{\Xi-1}^{\text{3CRV}}$ and $\Phi_{\Xi-1}$ as:
-$$f^{\Phi}(z^{\Phi}) = \frac{z^{\Phi} \times ( \Phi_{\Xi-1}^{\bean} + f^{\text{3CRV}}(\Phi_{\Xi-1}^{\text{3CRV}}))}{\Phi_{\Xi-1}}$$
-        \item \textbf{Stalk per BDV:} $\Phi$ \term{Deposits} receive 1 Stalk per BDV upon \term{Deposit} (\term{i.e.}, $k^{\Phi} = 1$).
-        \item \textbf{Seed per BDV:} $\Phi$ \term{Deposits} receive 4 Seeds per BDV upon \term{Deposit} (\term{i.e.}, $c^{\Phi} = 4$).
+Beanstalk calculates the BDV of 3CRV $f^{\text{3CRV}}(z^{\text{3CRV}})$ from \hyperlink{ht3}{$\$^{\bean(\Phi)}_{\Xi-1}$} and \hyperlink{ht136}{$P^{\text{3CRV}}$} as:
+$$f^{\text{3CRV}}(z^{\text{3CRV}}) = \frac{z^{\text{3CRV}} \times \hyperlink{ht136}{P^{\text{3CRV}}}}{\hyperlink{ht3}{\$^{\bean(\Phi)}_{\Xi-1}}}$$
+We define $f^{\hyperlink{ht187}{\Phi}}(z^{\hyperlink{ht187}{\Phi}})$ for a given \hyperlink{ht193}{$\Phi_{\Xi-1}^{\bean}$}, $f^{\text{3CRV}}(z^{\text{3CRV}})$, \hyperlink{ht194}{$\Phi_{\Xi-1}^{\text{3CRV}}$} and \hyperlink{ht192}{$\Phi_{\Xi-1}$} as:
+$$f^{\hyperlink{ht187}{\Phi}}(z^{\hyperlink{ht187}{\Phi}}) = \frac{z^{\hyperlink{ht187}{\Phi}} \times ( \hyperlink{ht193}{\Phi_{\Xi-1}^{\bean}} + f^{\text{3CRV}}(\hyperlink{ht194}{\Phi_{\Xi-1}^{\text{3CRV}}}))}{\hyperlink{ht192}{\Phi_{\Xi-1}}}$$
+        \item \textbf{Stalk per BDV:} \hyperlink{ht187}{$\Phi$} \term{Deposits} receive 1 Stalk per BDV upon \term{Deposit} (\term{i.e.}, $k^{\hyperlink{ht187}{\Phi}} = 1$).
+        \item \textbf{Seed per BDV:} \hyperlink{ht187}{$\Phi$} \term{Deposits} receive 4 Seeds per BDV upon \term{Deposit} (\term{i.e.}, $c^{\hyperlink{ht187}{\Phi}} = 4$).
     \end{enumerate}
 \subsubsection{$\mathfrak{z}^{\bean}$}
     \begin{enumerate}
-        \item \textbf{Token Address:} The $\mathfrak{z}^{\bean}$ token address is 0x1BEA0050E63e05FBb5D8BA2f10cf5800B6224449.
-        \item \textbf{BDV Function:} The BDV of $\mathfrak{z}^{\bean}$ is calculated using $f^{\bean}(z^{\bean})$, $\mathfrak{L}^{\bean}$ and $\mathfrak{Z}^{\bean}$. 
+        \item \textbf{Token Address:} The \hyperlink{ht233}{$\mathfrak{z}^{\bean}$} token address is 0x1BEA0050E63e05FBb5D8BA2f10cf5800B6224449.
+        \item \textbf{BDV Function:} The BDV of \hyperlink{ht233}{$\mathfrak{z}^{\bean}$} is calculated using $f^{\bean}(z^{\bean})$, $\mathfrak{L}^{\bean}$ and \hyperlink{ht229}{$\mathfrak{Z}^{\bean}$}. 
         
 We define $f^{\mathfrak{z}^{\tinybean}}(z^{\mathfrak{z}^{\tinybean}})$ as:
-            $$f^{\mathfrak{z}^{\tinybean}}(z^{\mathfrak{z}^{\tinybean}}) = f^{\bean}\left(\frac{z^{\mathfrak{z}^{\tinybean}} \times \mathfrak{L}^{\bean}}{\mathfrak{Z}^{\bean}}\right)$$
-        \item \textbf{Stalk per BDV:} \Bean\ \term{Deposits} receive 1 Stalk per BDV upon \term{Deposit} (\term{i.e.}, $k^{\mathfrak{z}^{\bean}} = 1$).
-        \item \textbf{Seed per BDV:} \Bean\ \term{Deposits} receive 2 Seeds per BDV upon \term{Deposit} (\term{i.e.}, $c^{\mathfrak{z}^{\bean}} = 2$).
+            $$f^{\mathfrak{z}^{\tinybean}}(z^{\mathfrak{z}^{\tinybean}}) = f^{\bean}\left(\frac{z^{\mathfrak{z}^{\tinybean}} \times \mathfrak{L}^{\bean}}{\hyperlink{ht229}{\mathfrak{Z}^{\bean}}}\right)$$
+        \item \textbf{Stalk per BDV:} \Bean\ \term{Deposits} receive 1 Stalk per BDV upon \term{Deposit} (\term{i.e.}, $k^{\hyperlink{ht233}{\mathfrak{z}^{\bean}}} = 1$).
+        \item \textbf{Seed per BDV:} \Bean\ \term{Deposits} receive 2 Seeds per BDV upon \term{Deposit} (\term{i.e.}, $c^{\hyperlink{ht233}{\mathfrak{z}^{\bean}}} = 2$).
     \end{enumerate}
 \subsubsection{$\mathfrak{z}^{\Phi}$}
     \begin{enumerate}
-        \item \textbf{Token Address:} The $\mathfrak{z}^{\Phi}$ token address is 0x1BEA3CcD22F4EBd3d37d731BA31Eeca95713716D.
-        \item \textbf{BDV Function:} The BDV of $\mathfrak{z}^{\Phi}$ is calculated using $f^{\Phi}(z^{\Phi})$, $\mathfrak{L}^{\Phi}$ and $\mathfrak{Z}^{\Phi}$. 
+        \item \textbf{Token Address:} The \hyperlink{ht235}{$\mathfrak{z}^{\Phi}$} token address is 0x1BEA3CcD22F4EBd3d37d731BA31Eeca95713716D.
+        \item \textbf{BDV Function:} The BDV of \hyperlink{ht235}{$\mathfrak{z}^{\Phi}$} is calculated using $f^{\hyperlink{ht187}{\Phi}}(z^{\hyperlink{ht187}{\Phi}})$, $\mathfrak{L}^{\Phi}$ and $\hyperlink{ht230}{\mathfrak{Z}^{\Phi}}$. 
         
-We define $f^{\mathfrak{z}^{\Phi}}(z^{\mathfrak{z}^{\Phi}})$ as:
-            $$f^{\mathfrak{z}^{\Phi}}(z^{\mathfrak{z}^{\Phi}}) = f^{\Phi}\left(\frac{z^{\mathfrak{z}^{\Phi}} \times \mathfrak{L}^{\Phi}}{\mathfrak{Z}^{\Phi}}\right)$$
-        \item \textbf{Stalk per BDV:} $\mathfrak{z}^{\Phi}$ \term{Deposits} receive 1 Stalk per BDV upon \term{Deposit} (\term{i.e.}, $k^{\mathfrak{z}^{\Phi}} = 1$).
-        \item \textbf{Seed per BDV:} $\mathfrak{z}^{\Phi}$ \term{Deposits} receive 4 Seeds per BDV upon \term{Deposit} (\term{i.e.}, $c^{\mathfrak{z}^{\Phi}} = 4$).
+We define $f^{\hyperlink{ht235}{\mathfrak{z}^{\Phi}}}(z^{\hyperlink{ht235}{\mathfrak{z}^{\Phi}}})$ as:
+            $$f^{\hyperlink{ht235}{\mathfrak{z}^{\Phi}}}(z^{\hyperlink{ht235}{\mathfrak{z}^{\Phi}}}) = f^{\hyperlink{ht187}{\Phi}}\left(\frac{z^{\hyperlink{ht235}{\mathfrak{z}^{\Phi}}} \times \mathfrak{L}^{\Phi}}{\hyperlink{ht230}{\mathfrak{Z}^{\Phi}}}\right)$$
+        \item \textbf{Stalk per BDV:} $\hyperlink{ht235}{\mathfrak{z}^{\Phi}}$ \term{Deposits} receive 1 Stalk per BDV upon \term{Deposit} (\term{i.e.}, $k^{\hyperlink{ht235}{\mathfrak{z}^{\Phi}}} = 1$).
+        \item \textbf{Seed per BDV:} $\hyperlink{ht235}{\mathfrak{z}^{\Phi}}$ \term{Deposits} receive 4 Seeds per BDV upon \term{Deposit} (\term{i.e.}, $c^{\hyperlink{ht235}{\mathfrak{z}^{\Phi}}} = 4$).
     \end{enumerate}
 \end{document}

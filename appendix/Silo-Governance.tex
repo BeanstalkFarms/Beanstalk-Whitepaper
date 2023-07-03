@@ -9,12 +9,12 @@
 \subsection{Former Governance}
 The following has been removed from \hyperlink{subsection.5.5}{Section 5.5 Governance} as part of the updates to reflect Beanstalk's current permissioned governance system and is left here to contribute to the discussion around a future permissionless governance system. 
 
-The submitter of a \term{BIP} automatically votes in favor of the \term{BIP}, cannot rescind their vote, and cannot have less than $K^{\text{min}}$ of total outstanding \term{Stalk} after an interaction with the \term{Silo}, until the end of the \term{Voting Period}.
+The submitter of a \term{BIP} automatically votes in favor of the \term{BIP}, cannot rescind their vote, and cannot have less than \hyperlink{ht119}{$K^{\text{min}}$} of total outstanding \term{Stalk} after an interaction with the \term{Silo}, until the end of the \term{Voting Period}.
 
-When a \term{BIP} passes or has a two-thirds majority, it must be manually committed to the Ethereum blockchain. To encourage prompt commitment of \term{BIPs} even during periods of congestion on the Ethereum network while minimizing cost, the award for successful commitment starts at 100 Beans and compounds 1\% every additional six seconds that elapse past the end of its \term{Voting Period} ($E_{\text{BIP}}$) for 1,800 seconds.
+When a \term{BIP} passes or has a two-thirds majority, it must be manually committed to the Ethereum blockchain. To encourage prompt commitment of \term{BIPs} even during periods of congestion on the Ethereum network while minimizing cost, the award for successful commitment starts at 100 Beans and compounds 1\% every additional six seconds that elapse past the end of its \term{Voting Period} (\hyperlink{ht71}{$E_{\text{BIP}}$}) for 1,800 seconds.
 
-The award for successfully committing an approved \term{BIP} ($a^q$), such that $a^q \in \{j \times 10^{-6} \mid j \in \mathbb{Z}^{+} \}$, with a given timestamp of commitment ($E_q$) and $E_{\text{BIP}}$ is:
-$$a^q = 100 \times 1.01^{\text{min}\left\{\left\lfloor\frac{E_q - E_{\text{BIP}}}{6}\right\rfloor,\ 300\right\}}$$
-To minimize the cost of calculating $a^q$, Beanstalk uses a binomial estimation with a margin of error of less than 0.05\%. When a \term{BIP} is committed with a two-thirds supermajority before the end of its \term{Voting Period}, $a^q = 100$.
+The award for successfully committing an approved \term{BIP} (\hyperlink{ht10}{$a^q$}), such that $\hyperlink{ht10}{a^q} \in \{j \times 10^{-6} \mid j \in \mathbb{Z}^{+} \}$, with a given timestamp of commitment (\hyperlink{ht77}{$E_q$}) and \hyperlink{ht71}{$E_{\text{BIP}}$} is:
+$$\hyperlink{ht10}{a^q} = 100 \times 1.01^{\text{min}\left\{\left\lfloor\frac{\hyperlink{ht77}{E_q} - \hyperlink{ht71}{E_{\text{BIP}}}}{6}\right\rfloor,\ 300\right\}}$$
+To minimize the cost of calculating \hyperlink{ht10}{$a^q$}, Beanstalk uses a binomial estimation with a margin of error of less than 0.05\%. When a \term{BIP} is committed with a two-thirds supermajority before the end of its \term{Voting Period}, $\hyperlink{ht10}{a^q} = 100$.
 
 \end{document}

@@ -189,7 +189,7 @@ The following is a complete version history of this whitepaper. Unless otherwise
         \item \href{https://github.com/BeanstalkFarms/Beanstalk-Whitepaper/blob/master/version-history/beanstalk2_0_1.pdf}{2.0.1} (September 15, 2022)
     \begin{itemize}
         \item Changed \hyperlink{subsection.14.6}{Section 14.6} to reflect the update to the the calculation of $\Delta b_{\overline{t-1}}^{\Phi}$, as amended by \href{https://bean.money/ebip-2}{EBIP-2}.\footnote{\href{https://bean.money/ebip-2}{bean.money/ebip-2}}
-        \item Updated BIP links throughout the whitepaper to the Beanstalk Governance Proposals Github Repository.\fref{github.com/BeanstalkFarms/Beanstalk-Governance-Proposals}
+        \item Updated BIP links throughout the whitepaper to the Beanstalk Governance Proposals GitHub Repository.\fref{github.com/BeanstalkFarms/Beanstalk-Governance-Proposals}
         \item Corrected eight instances of improper punctuation in the Whitepaper Version History.
     \end{itemize}  
         \item \href{https://github.com/BeanstalkFarms/Beanstalk-Whitepaper/blob/master/version-history/beanstalk2_1_0.pdf}{2.1.0} (October 5, 2022)
@@ -218,7 +218,7 @@ The following is a complete version history of this whitepaper. Unless otherwise
         \item Removed duplicate definitions of \term{Rinsable} and \term{Unfertilized Sprouts} from the \hyperlink{subsection.14.11}{Glossary}.
         \item Corrected a typo in the \hyperlink{subsection.14.12}{Whitepaper Version History} intro.
     \end{itemize}  
-            \item \href{https://github.com/BeanstalkFarms/Beanstalk-Whitepaper/blob/master/beanstalk.pdf}{2.3.0} (December 8, 2022)
+            \item \href{https://github.com/BeanstalkFarms/Beanstalk-Whitepaper/blob/master/version-history/beanstalk2_3_0.pdf}{2.3.0} (December 8, 2022)
     \begin{itemize}
         \item Updated the award for successfully calling the \code{sunrise} in \hyperlink{section.4}{Section 4}, as amended by \href{https://bean.money/bip-30}{BIP-30}.\footnote{\href{https://bean.money/bip-30}{bean.money/bip-30}}
         \item Changed Gnosis to Safe in \hyperlink{subsubsection.5.5.5}{Section 5.5.5}.
@@ -231,6 +231,36 @@ The following is a complete version history of this whitepaper. Unless otherwise
         \item Added citations for \href{https://bean.money/ebip-3}{EBIP-3} and \href{https://bean.money/bip-29}{BIP-29} in the \hyperlink{subsection.14.12}{Whitepaper Version History}.
         \item Corrected a citation formatting error under Version 2.0.1 in the \hyperlink{subsection.14.12}{Whitepaper Version History}.
         \item Corrected a typo under Version 1.16.0 in the \hyperlink{subsection.14.12}{Whitepaper Version History}.
+    \end{itemize}  
+    \newpage
+        \item \href{https://github.com/BeanstalkFarms/Beanstalk-Whitepaper/blob/master/version-history/beanstalk2_4_0.pdf}{2.4.0} (July 3, 2023)
+    \begin{itemize}
+        \item Changed the \code{sunrise} function to the \code{gm} function throughout the whitepaper, as amended by \href{https://bean.money/bip-34}{BIP-34}.\footnote{\href{https://bean.money/bip-34}{bean.money/bip-34}}
+        \item Updated the second paragraph of \hyperlink{section.4}{Section 4} to reflect that blocks on Ethereum are no longer mined after the Merge.
+        \item Updated \hyperlink{section.4}{Section 4} to reflect the changes to the award for successfully calling the \code{gm} function, as amended by \href{https://bean.money/bip-34}{BIP-34}.
+        \item Changed $E_t$ to $E_\Xi$ throughout the whitepaper for clarity.
+        \item Corrected a typo in the second paragraph of \hyperlink{subsubsection.5.5.1}{Section 5.5.1}.
+        \item Updated \hyperlink{subsubsection.5.5.1}{Section 5.5.1} to reflect that (1) a \term{Stalkholder's} vote is a function of their \term{Stalk} at the beginning of the \term{Voting Period} that still exists, (2) \term{Stalkholders} have the ability to delegate their vote to any other user, and (3) the submitter of a \term{BIP} must own more than $K_{\text{end}}^{\text{min}}$ percent of total \term{Stalk} at the end of the \term{Voting Period} in  order for the \term{BIP} to be able to pass, as amended by \href{https://bean.money/bip-35}{BIP-35}.\footnote{\href{https://bean.money/bip-35}{bean.money/bip-35}}
+        \item Updated \hyperlink{subsubsection.5.5.2}{Section 5.5.2} to (1) improve clarity around when the \term{Voting Period} begins, (2) account for the \term{BIP} passing or failing based on the total outstanding \term{Stalk} at the beginning of the \term{Voting Period} that still exists, and (3) reintroduce the 24 hour period after the beginning and before the end of the \term{Voting Period} where a \term{BIP} cannot be passed via supermajority, as amended by \href{https://bean.money/bip-35}{BIP-35}.
+        \item Updated the \term{BIP} inputs in the second paragraph of \hyperlink{subsubsection.5.5.4}{Section 5.5.4} to reflect the current state of off-chain governance.
+        \item Updated \hyperlink{section.6}{Sections 6}, \hyperlink{subsection.6.1}{6.1} and \hyperlink{subsection.6.3}{6.3} to reflect the changes to the \term{Soil} supply and \term{Temperature} introduced by the \term{Morning}, as amended by \href{https://bean.money/bip-34}{BIP-34}.
+        \item Updated \hyperlink{subsection.8.7}{Section 8.7} to reflect that (1) demand for \term{Soil} is now based on the number of \term{Sown} \Bean\ each \term{Season} rather than the change in \term{Soil} at the beginning and end of each \term{Season} and (2) Beanstalk considers demand for \term{Soil} increasing if $\Delta E_{t-1}^{u^{\text{first}}} < 600$, as amended by \href{https://bean.money/bip-34}{BIP-34}.
+        \item Updated \hyperlink{subsection.8.11}{Sections 8.11} and \hyperlink{subsection.8.12}{8.12} and added \hyperlink{subsubsection.8.12.2}{Sections 8.12.1} and \hyperlink{subsubsection.8.12.2}{8.12.2} to reflect the changes in the \term{Soil} supply and \term{Temperature} introduced by the \term{Morning}, as amended by \href{https://bean.money/bip-34}{BIP-34}.
+        \item Updated the \hyperlink{section.12}{Risk} section to include a citation for the Beanstalk DAO Disclosures.\fref{bean.money/disclosures}
+        \item Replaced the Beanstalk audit report citation links in the \hyperlink{section.12}{Risk} section with the link to the Beanstalk Audits GitHub Repository.\fref{github.com/BeanstalkFarms/Beanstalk-Audits}
+        \item Changed $\frac{\partial \Delta S}{\partial t}$ to $\frac{\partial u_t}{\partial t}$ in \hyperlink{section.13}{Future Work} for consistency.
+        \item Updated the notation of percentage values in the \hyperlink{subsection.14.1}{Current Parameters} for clarity.
+        \item Corrected $w_1$ to $h_1$ in \hyperlink{subsection.14.1}{Current Parameters}.
+        \item Changed $\frac{\partial \Delta S}{\partial t}^{\text{lower}}$ and $\frac{\partial \Delta S}{\partial t}^{\text{upper}}$ to $\frac{\partial u_t}{\partial t}^{\text{lower}}$ and $\frac{\partial u_t}{\partial t}^{\text{upper}}$, respectively, in \hyperlink{subsection.14.1}{Current Parameters} for consistency.
+        \item Added $K_{\text{end}}^{\text{min}}$, $Q$ and $\sigma$ to \hyperlink{subsection.14.1}{Current Parameters}.
+        \item Removed $R^{S^{\text{min}}}$, $R^{S^{\text{max}}}$, and $\frac{\partial R^S}{\partial t}^{\text{upper}}$ from \hyperlink{subsection.14.1}{Current Parameters}.
+        \item Updated \hyperlink{subsubsection.14.2.2}{Section 14.2.2} to reflect that the definitions of \hyperlink{ht3}{$\$^{\bean(\Phi)}_{\Xi-1}$}, \hyperlink{ht193}{$\Phi_{\Xi-1}^{\bean}$}, \hyperlink{ht194}{$\Phi_{\Xi-1}^{\text{3CRV}}$}, \hyperlink{ht136}{$P^{\text{3CRV}}$}, \hyperlink{ht190}{$\Phi^{A}$}, \hyperlink{ht140}{$P^{\Phi}$}, \hyperlink{ht96}{$\zeta^{\Phi}_{\Xi-1}$}, and \hyperlink{ht192}{$\Phi_{\Xi-1}$} were moved to \hyperlink{section.4}{Section 4}.
+        \item Updated the intro of the \hyperlink{subsection.14.11}{Glossary} to include that the $q$ subscript is the current block of $t$.
+        \item Added $h_t^{\text{max}}$, $h_{t_q}$, $K_{\text{end}}^{\text{min}}$, \term{Maximum Soil}, \term{Minimum Soil}, \term{Maximum Temperature}, $\varpi_\Xi$, $Q$, $q$, $\varrho$, $S_{t_q}^{\text{max}}$, $S_{t_q}^{\text{min}}$, $\sun_{\Xi}$, $\sigma$, $\varsigma$, $\vartheta$, $u_t$,  and $\frac{\partial u_t}{\partial t}$ to the \hyperlink{subsection.14.11}{Glossary}.
+        \item Updated the definitions of $E_\Xi$, $S_t^{\text{end}}$ and $S_t^{\text{start}}$ in the \hyperlink{subsection.14.11}{Glossary}.
+        \item Removed $E_{\Xi}^*$ and $S_t^{\text{min}}$ from the \hyperlink{subsection.14.11}{Glossary}.
+        \item Added language to $a^q$, $E_q$ and $E_{\text{BIP}}$ in the \hyperlink{subsection.14.11}{Glossary} to clarify that they refer to \hyperlink{subsection.14.3}{Former Governance}.
+        \item Corrected a typo under Version 2.0.1 in the \hyperlink{subsection.14.3}{Whitepaper Version History}. 
     \end{itemize}  
 \end{itemize}
 \end{document}
