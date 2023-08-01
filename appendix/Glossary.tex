@@ -58,13 +58,14 @@ The following variables and terms are used throughout this paper:
     \item[] \term{Convert} - \hypertarget{ht36}{Exchange one \term{Deposited} $\lambda$ for another, within the \term{Silo}};
     \item[] \term{Convert Whitelist} - \hypertarget{ht37}{The whitelist that permissions \term{Conversions} within the \term{Silo}};
     \item[] $D$ - \hypertarget{ht38}{The total number of \term{Unharvestable Pods}};
-    \item[] $D_{\gamma}$ - \hypertarget{ht39}{The number of \term{Unharvestable Pods} that grew prior to the the \term{Farm} becoming \term{Oversaturated}};
+    \item[] $D_{\gamma}$ - \hypertarget{ht39}{The number of \term{Unharvestable Pods} that grew prior to the \term{Flood}};
     \item[] $d$ - \hypertarget{ht40}{The number of \term{Pods} that \term{Yield} from a given number of \term{Sown} \Bean};
     \item[] $\mathfrak{D}$ - \hypertarget{ht41}{The total \term{Unfertilized Sprouts}};
     \item[] $\mathfrak{d}$ - \hypertarget{ht42}{The number of \term{Sprouts} ultimately \term{Fertilized} by \term{Available Fertilizer} purchased with \term{Humidity} $\mathfrak{H}$};
     \item[] DAO - \hypertarget{ht43}{Decentralized autonomous organization};
     \item[] DeFi - \hypertarget{ht44}{Decentralized finance};
     \item[] \term{Deposit} - \hypertarget{ht45}{An asset in the \term{Silo}};
+    \item[] \term{Deposit ID} - The concatenation of the \hyperlink{ht126}{$\lambda$} token address and the maximum \term{Grown} \term{Stalk} per BDV of \hyperlink{ht126}{$\lambda$} at the time of \term{Deposit};
     \item[] \term{Deposit Whitelist} - \hypertarget{ht46}{The whitelist that permissions \term{Deposits} into the \term{Silo}};
     \item[] \term{Depositors} - \hypertarget{ht47}{A wallet that has \term{Deposited} assets into the \term{Silo}};
     \item[] \term{Depot} - \hypertarget{ht48}{Portion of the \term{Farm} that facilitates interactions with other Ethereum-native protocols through Beanstalk in a single transaction};
@@ -113,7 +114,6 @@ The following variables and terms are used throughout this paper:
     \item[] FIFO - \hypertarget{ht89}{First in, first out};
     \item[] \term{Fill} - \hypertarget{ht90}{Match an outstanding offer to buy or sell};
     \item[] \term{Flood} - \hypertarget{ht91}{When Beanstalk mints extra Beans and sells them directly in liquidity pools on the \term{Oracle Whitelist}};
-    \item[] \term{Frozen} - \hypertarget{ht92}{Unable to be \term{Claimed}};
     \item[] \term{Fundraisers} - \hypertarget{ht93}{Allow Beanstalk to issue \term{Pods} in exchange for assets pegged to $V$ other than Beans, independent of the \term{Soil} minting schedule};
     \item[] $\zeta^{\daleth}$ - \hypertarget{ht94}{The flash-loan-resistant price invariant for the BEAN:3CRV Curve pool};
     \item[] $\zeta^{\Phi}$ - \hypertarget{ht95}{The price invariant for the BEAN:3CRV Curve pool};
@@ -122,7 +122,7 @@ The following variables and terms are used throughout this paper:
     \item[] $\zeta^{\Phi}_{\overline{t-1}}$ - \hypertarget{ht98}{The liquidity and time weighted average price invariant for $\Phi$ over the previous \term{Season}};
     \item[] $\zeta^{\Omega}$ - \hypertarget{ht99}{The flash-loan-resistant price invariant for the LUSD:3CRV Curve pool};
     \item[] $G_t$ - \hypertarget{ht100}{A \term{Stalkholder's} total \term{Grown Stalk} that can be \term{Mown} during $t$};
-    \item[] $g_{t}^{\lambda}$ - \hypertarget{ht101}{The \term{Grown Stalk} from \term{Seeds} that can be \term{Mown} during $t$ to start earning Bean seigniorage for a given \term{Deposit} of a \term{Stalkholder} that last \term{Mowed} their \term{Grown Stalk} in $\varkappa$};
+    \item[] $g_{t}^{\lambda}$ - \hypertarget{ht101}{The \term{Grown Stalk} from \term{Seeds} from \hyperlink{ht126}{$\lambda$} \term{Deposits} that can be \term{Mown} during $t$ to start earning Bean seigniorage for a given \term{Deposit} of a \term{Stalkholder} that last \term{Mowed} their \term{Grown Stalk} from \hyperlink{ht126}{$\lambda$} \term{Deposits} in $\varkappa^{\lambda}$};
     \item[] \term{Grow} - \hypertarget{ht102}{\term{Stalk} being created by \term{Seeds}};
     \item[] \term{Grown Stalk} - \hypertarget{ht103}{\term{Stalk} that has been created by \term{Seeds} and not yet \term{Mown}};
     \item[] $\eta$ - \hypertarget{ht104}{The last \term{Season} a \term{Stalkholder} called the \code{plant} function};
@@ -144,9 +144,9 @@ The following variables and terms are used throughout this paper:
     \item[] $K^{\text{min}}$ - \hypertarget{ht119}{The percentage of \term{Stalk} ownership necessary to submit a \term{BIP}};
     \item[] $K_{end}^{\text{min}}$ - The percentage of \term{Stalk} ownership necessary for a submitter's \term{BIP} to pass at the end of the \term{Voting Period};
     \item[] $k^{\lambda}$ - \hypertarget{ht120}{The number of \term{Stalk} per BDV of $\lambda$ \term{Deposited}};
-    \item[] $k_{t}^{\lambda}$ - \hypertarget{ht121}{The \term{Stalk} during $t$ for a given \term{Deposit} of a \term{Stalkholder} that last \term{Mowed} their \term{Grown Stalk} in $\varkappa$};
+    \item[] $k_{t}^{\lambda}$ - \hypertarget{ht121}{The \term{Stalk} during $t$ for a given \term{Deposit} of a \term{Stalkholder} that last \term{Mowed} their \term{Grown Stalk} from \hyperlink{ht126}{$\lambda$} \term{Deposits} in $\varkappa^{\lambda}$};
     \item[] $\kappa$ - The flash-loan-resistant price of ETH in USDC from the USDC:ETH Uniswap V3 pool;
-    \item[] $\varkappa$ - \hypertarget{ht122}{The last \term{Season} a \term{Stalkholder} \term{Mowed} their \term{Grown Stalk}};
+    \item[] $\varkappa^{\lambda}$ - \hypertarget{ht122}{The last \term{Season} a \term{Stalkholder} \term{Mowed} their \term{Grown Stalk} from \hyperlink{ht126}{$\lambda$} \term{Deposits}};
     \item[] $L_i^{\lambda}$ - \hypertarget{ht123}{The total BDV of $Z_i^{\lambda}$ when \term{Deposited}};
     \item[] \term{List} - \hypertarget{ht124}{Create an offer to sell};
     \item[] LP tokens - \hypertarget{ht125}{Liquidity pool tokens};
@@ -157,13 +157,12 @@ The following variables and terms are used throughout this paper:
     \item[] \term{Market} - \hypertarget{ht130}{The Beanstalk-native DEX.};
     \item[] \term{Maximum Soil} - The maximum \term{Soil} supply at a given block during a \term{Season};
     \item[] \term{Maximum Temperature} - The maximum \term{Temperature} Beanstalk is willing to offer during a \term{Season};
-    \item[] \term{Minimum Soil} — The minimum \term{Soil} supply at a given block during a \term{Season};
+    \item[] \term{Minimum Soil} - The minimum \term{Soil} supply at a given block during a \term{Season};
     \item[] \term{Morning} - The first $Q$ blocks of each \term{Season};
     \item[] \term{Mow} - \hypertarget{ht131}{Turn \term{Grown Stalk} into \term{Stalk}};
     \item[] $N^{\bean}$ - \hypertarget{ht132}{The total \term{Burnt} \Bean\ over all \term{Seasons}};
     \item[] \term{Oracle Whitelist} - \hypertarget{ht133}{The whitelist of pools included in the calculation of $\Delta B_{\overline{t-1}}$};
     \item[] \term{Order} - \hypertarget{ht134}{Create an offer to buy};
-    \item[] \term{Oversaturated} - \hypertarget{ht135}{It is \term{Raining} and $R^D_{t-1} < R^{D^{\text{lower}}}$};
     \item[] $P^{\text{3CRV}}$ - \hypertarget{ht136}{The 3CRV virtual price};
     \item[] $P^{\daleth}$ - \hypertarget{ht137}{The $\daleth$ virtual price};
     \item[] $P^{\gimel}$ - \hypertarget{ht138}{The $\gimel$ virtual price};
@@ -206,7 +205,7 @@ The following variables and terms are used throughout this paper:
     \item[] $S_t^{\text{end}}$ - \hypertarget{ht171}{The \term{Soil} supply at the end of the \term{Season}};
     \item[] $S_t^{\text{start}}$ - \hypertarget{ht173}{The \term{Soil} supply at the beginning of the \term{Season}};
     \item[] $S_{t_q}^{\text{max}}$ - The \term{Maximum Soil} in block $q$ of $t$;
-    \item[] $S_{t_q}^{\text{min}}$ - The minimum \term{Soil} in block $q$ of $t$;
+    \item[] $S_{t_q}^{\text{min}}$ - The \term{Minimum Soil} in block $q$ of $t$;
     \item[] $\mathfrak{S}$ - \hypertarget{ht174}{The total \term{Fertilizer} sold};
     \item[] $\mathfrak{S}_{<\Game}$ - \hypertarget{ht175}{The \term{Fertilizer} sold prior to a purchase of \term{Fertilizer}};
     \item[] \term{Season} - \hypertarget{ht176}{Beanstalk-native discrete time};
@@ -262,8 +261,6 @@ The following variables and terms are used throughout this paper:
     \item[] $\mathfrak{V}_\mathfrak{H}$ - \hypertarget{ht218}{\term{Available Fertilizer} purchased with \term{Humidity} $\mathfrak{H}$};
     \item[] \term{Voting Period} - \hypertarget{ht219}{The period of time \term{Stalkholders} can vote on a \term{BIP}};
     \item[] \term{Withdraw} - \hypertarget{ht220}{Remove from the \term{Silo}};
-    \item[] \term{Withdrawal Freeze} - \hypertarget{ht221}{The amount of time assets that have been removed from the \term{Silo} are \term{Frozen}};
-    \item[] \term{Withdrawn} assets - \hypertarget{ht222}{Assets that have been removed from the \term{Silo} and are still \term{Frozen}};
     \item[] $x$ - \hypertarget{ht223}{An existing ERC-20 Standard convertible stablecoin that (1) offers low-friction convertibility to $V$ and (2) trades on an AMM against $y$};
     \item[] $x$:$y$ - \hypertarget{ht224}{An existing liquidity pool that consists of $x$ and $y$};
     \item[] $\mathfrak{X}$ - \hypertarget{ht225}{The percentage of \term{Fertilizer} sold};

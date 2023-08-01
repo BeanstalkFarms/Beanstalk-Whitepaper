@@ -170,10 +170,10 @@
         \BeanCover
         \end{center}
         \vspace{0.4cm}
-        \large{Publius}
+        \large{Publius, Beanstalk Farms}
             
         \vspace{-0.25cm}
-        \normalsize{beanstalk.publius@protonmail.com}
+        \normalsize{beanstalk.publius@protonmail.com, operations@bean.farm}
         
         \vspace{-0.25cm}
         \normalsize{\href{https://bean.money/}{bean.money}}
@@ -182,13 +182,13 @@
         \footnotesize{Published:} \normalsize{August 6, 2021}
         
         \vspace{-0.25cm}
-        \footnotesize{Modified:} \normalsize{July 3, 2023}
+        \footnotesize{Modified:} \normalsize{July 31, 2023}
         
         \vspace{-0.25cm}
-        \footnotesize{Whitepaper Version:} {\normalsize{2.4.0}}
+        \footnotesize{Whitepaper Version:} {\normalsize{2.5.0}}
         
         \vspace{-0.25cm}
-        \footnotesize{Code Version:} \href{https://github.com/BeanstalkFarms/Beanstalk}{\normalsize{2.4.1}}\footnote{\href{https://github.com/BeanstalkFarms/Beanstalk}{github.com/BeanstalkFarms/Beanstalk}}
+        \footnotesize{Code Version:} \href{https://github.com/BeanstalkFarms/Beanstalk}{\normalsize{2.5.0}}\footnote{\href{https://github.com/BeanstalkFarms/Beanstalk}{github.com/BeanstalkFarms/Beanstalk}}
         
 
         \vspace{0.1cm}
@@ -361,7 +361,7 @@ Beanstalk requires the ability to coordinate protocol upgrades. The \term{Silo} 
 \vspace*{-1mm}
 The \term{Stalk System} decentralizes ownership over time and creates Beanstalk-native financial incentives to (1) align DAO voters' interests with the health of Beanstalk, (2) leave assets \term{Deposited} in the \term{Silo}, and (3) allocate liquidity in ways that benefit Beanstalk.
 
-Anyone can become a \term{Stalkholder} by \term{Depositing} assets on the \term{Deposit} \term{Whitelist} into the \term{Silo} to earn \term{Stalk} and \term{Seeds}. \term{Stalk} and \term{Seeds} are not liquid. Every \term{Season}, $1 \times 10^{-4}$ additional \term{Stalk} \term{Grows} from each \term{Seed}. \term{Grown} \term{Stalk} become \term{Stalk} when \term{Mown}. \term{Grown} \term{Stalk} are automatically \term{Mown} each time a \term{Stalkholder} interacts with the Silo (\term{i.e.}, \term{Deposit}, \term{Withdraw}, \term{Convert}, \term{Transfer}, \term{Plant} and \term{Enroot}), or when they call the \code{mow} function.
+Anyone can become a \term{Stalkholder} by \term{Depositing} assets on the \term{Deposit} \term{Whitelist} into the \term{Silo} to earn \term{Stalk} and \term{Seeds}. \term{Stalk} and \term{Seeds} are not liquid. Every \term{Season}, $1 \times 10^{-4}$ additional \term{Stalk} \term{Grows} from each \term{Seed}. \term{Grown} \term{Stalk} become \term{Stalk} when \term{Mown}. \term{Grown} \term{Stalk} from \hyperlink{ht126}{$\lambda$} \term{Deposits} are automatically \term{Mown} each time a \term{Stalkholder} interacts with \hyperlink{ht126}{$\lambda$} in the Silo (\term{i.e.}, \term{Deposit}, \term{Withdraw}, \term{Convert}, \term{Transfer}, \term{Plant} and \term{Enroot}), or when they call the \code{mow} or \code{mowMultiple} function with \hyperlink{ht126}{$\lambda$}.
 
 \term{Stalkholders} are entitled to participate in Beanstalk governance and a portion of Bean mints. The influence in governance of, and distribution of Beans paid to, a \term{Stalkholder} are proportional to their \term{Stalk} holdings relative to total outstanding \term{Stalk}. \term{Stalk} holdings become less concentrated over time.
 
@@ -375,11 +375,13 @@ In order for a given \hyperlink{ht126}{$\lambda$} to be added to \hyperlink{ht12
 \vspace*{-1mm}
 \subsection{Deposits, Withdrawals, Transfers and Conversions}
 \vspace*{-1mm}
-\hyperlink{ht126}{$\lambda$} can be \term{Deposited} into, \term{Withdrawn} from and \term{Converted} within, the \term{Silo} at any time. Upon \term{Withdrawal}, assets are \term{Frozen} until the end of the current \term{Season} and for \hyperlink{ht1}{$\xi$}, such that $\hyperlink{ht1}{\xi} \in \mathbb{N}$, additional \term{Seasons}.\footnote{\href{https://bean.money/bip-9}{bean.money/bip-9}}
+\hyperlink{ht126}{$\lambda$} can be \term{Deposited} into, \term{Withdrawn} from and \term{Converted} within, the \term{Silo} at any time.
 
-Beanstalk rewards \term{Stalk} and \term{Seeds} to \term{Depositors} immediately upon \term{Depositing} \hyperlink{ht126}{$\lambda$} into the \term{Silo} based on its BDV when \term{Deposited}, \hyperlink{ht120}{$k^{\lambda}$} and \hyperlink{ht32}{$c^{\lambda}$}.
+Beanstalk rewards \term{Stalk} and \term{Seeds} to \term{Depositors} immediately upon \term{Depositing} \hyperlink{ht126}{$\lambda$} into the \term{Silo} based on its BDV when \term{Deposited}, \hyperlink{ht120}{$k^{\lambda}$} and \hyperlink{ht32}{$c^{\lambda}$}. \term{Deposits} implement the ERC-1155 Standard.\fref{ethereum.org/en/developers/docs/standards/tokens/erc-1155}
 
-The number of \term{Stalk}, \term{Seeds}, and \term{Stalk} from \term{Seeds} rewarded for a \term{Deposited} asset must be forfeited upon its \term{Withdrawal} from the \term{Silo}, or included in its \term{Transfer} to another address. 
+Upon a \term{Deposited} asset's \term{Withdrawal} from the \term{Silo}, the \term{Deposit} itself is burned and the number of \term{Stalk}, \term{Seeds}, and \term{Stalk} from \term{Seeds} rewarded to it must also be forfeited. 
+
+The number of \term{Stalk}, \term{Seeds}, and \term{Stalk} from \term{Seeds} rewarded to a \term{Deposit} are included in its \term{Transfer} to another address.
 
 \term{Conversions} of \term{Deposited} \hyperlink{ht126}{$\lambda$} to \term{Deposited} $\lambda'$ are permissioned by a \term{Convert} \term{Whitelist}. \term{Conversions} can be added or removed from the \term{Convert} \term{Whitelist} via Beanstalk governance. In order for a given \term{Convert} to be added to the \term{Convert} \term{Whitelist}, Beanstalk requires (1) the from token address, (2) the to token address, (3) a list of conditions under which the \term{Conversion} is and is not permitted, and (4) a function to determine the number of $\lambda'$ received for \term{Converting} a given number of \hyperlink{ht126}{$\lambda$} ($f^{\lambda \rightarrow \lambda'}(z^{\lambda})$), such that $f^{\lambda \rightarrow \lambda'}\colon \{j \times 10^{-\lambda} \mid j \in \mathbb{Z}^{+} \} \rightarrow \{j \times 10^{-\lambda'} \mid j \in \mathbb{Z}^{+} \}$, where $z^{\lambda}$ is the number of \hyperlink{ht126}{\hyperlink{ht126}{$\lambda$}} \term{Converted}. 
 
@@ -395,20 +397,20 @@ The number of \term{Stalk}, \term{Seeds}, and \term{Stalk} from \term{Seeds} rew
 \subsection{Calculating Stalk and Seeds}
 \vspace*{-1mm}
 A \term{Stalkholder's} total \term{Stalk} is the sum of the \term{Stalk} for each of their \term{Deposits} and \term{Earned} \Bean\ (\hyperlink{ht105}{$\eta^{\bean}$}), such that $\hyperlink{ht105}{\eta^{\bean}} \in \{j \times 10^{-6} \mid j \in \mathbb{N} \}$. 
-\term{Earned} \Bean\ are Beans paid to a \term{Stalkholder} after the last \term{Season} the \term{Stalkholder} called the \code{plant} function (\hyperlink{ht104}{$\eta$}).\footnote{\href{https://bean.money/bip-0}{bean.money/bip-0}}$^{,}$\footnote{\href{https://bean.money/bpp-0}{bean.money/bpp-0}}$^{,}$\footnote{\href{https://bean.money/bip-21}{bean.money/bip-21}} \term{Earned} \Bean\ automatically earn \term{Stalk}. The next time the \term{Stalkholder} calls the \code{plant} function, \term{Earned} \Bean\ are \term{Deposited} in the current \term{Season} and the associated \term{Seeds} are \term{Planted} to start \term{Growing} \term{Stalk}.
+\term{Earned} \Bean\ are Beans paid to a \term{Stalkholder} after the last time the \term{Stalkholder} called the \code{plant} function (\hyperlink{ht104}{$\eta$}).\footnote{\href{https://bean.money/bip-0}{bean.money/bip-0}}$^{,}$\footnote{\href{https://bean.money/bpp-0}{bean.money/bpp-0}}$^{,}$\footnote{\href{https://bean.money/bip-21}{bean.money/bip-21}} Beans minted to the \term{Silo} are distributed to \term{Stalkholders} and become \term{Earned} \Bean\ 10 blocks past the beginning of the \term{Season} in which they were minted. \term{Earned} \Bean\ automatically earn \term{Stalk}. The next time the \term{Stalkholder} calls the \code{plant} function, \term{Earned} \Bean\ are \term{Deposited} and the associated \term{Seeds} are \term{Planted} to start \term{Growing} \term{Stalk}.
 
-When a \term{Stalkholder} \term{Deposits} \hyperlink{ht126}{$\lambda$}, they update the total number of \hyperlink{ht126}{$\lambda$} \term{Deposited} during \term{Season} $i$ (\hyperlink{ht231}{$Z_i^{\lambda}$}) and its total BDV when \term{Deposited} (\hyperlink{ht123}{$L_i^{\lambda}$}), such that $\hyperlink{ht231}{Z_i^{\lambda}},\ \hyperlink{ht123}{L_i^{\lambda}} \in \{j \times 10^{-6} \mid j \in \mathbb{Z}^{+} \}$, as $\hyperlink{ht231}{Z_i^{\lambda}} \mathrel{+}= z^{\lambda}$ and $\hyperlink{ht123}{L_i^{\lambda}} \mathrel{+}= \hyperlink{ht84}{f^{\lambda}(z^{\lambda})}$. Beanstalk stores a map of each \term{Stalkholder's} \term{Deposits} that are still in the \term{Silo}, from \term{Stalkholder} to token address to \term{Season} to \term{Deposit} totals (\term{i.e.}, ($\hyperlink{ht231}{Z_i^{\lambda}},\ \hyperlink{ht123}{L_i^{\lambda}}$)).
+When a \term{Stalkholder} \term{Deposits} \hyperlink{ht126}{$\lambda$}, they update the total number of \hyperlink{ht126}{$\lambda$} \term{Deposited} during \term{Season} $i$ (\hyperlink{ht231}{$Z_i^{\lambda}$}) and its total BDV when \term{Deposited} (\hyperlink{ht123}{$L_i^{\lambda}$}), such that $\hyperlink{ht231}{Z_i^{\lambda}},\ \hyperlink{ht123}{L_i^{\lambda}} \in \{j \times 10^{-6} \mid j \in \mathbb{Z}^{+} \}$, as $\hyperlink{ht231}{Z_i^{\lambda}} \mathrel{+}= z^{\lambda}$ and $\hyperlink{ht123}{L_i^{\lambda}} \mathrel{+}= \hyperlink{ht84}{f^{\lambda}(z^{\lambda})}$. Beanstalk stores a map of each \term{Stalkholder's} \term{Deposits} that are still in the \term{Silo}, from \term{Stalkholder} to \term{Deposit ID} to \term{Deposit} totals (\term{i.e.}, ($\hyperlink{ht231}{Z_i^{\lambda}},\ \hyperlink{ht123}{L_i^{\lambda}}$)). \term{Deposit ID} is the concatenation of the \hyperlink{ht126}{$\lambda$} token address and the maximum \term{Grown} \term{Stalk} per BDV of \hyperlink{ht126}{$\lambda$} at the time of \term{Deposit}.
 
-The \term{Stalk} for a given \term{Deposit} are determined by its duration of \term{Deposit}, BDV when \term{Deposited}, \hyperlink{ht120}{$k^{\lambda}$}, \hyperlink{ht32}{$c^{\lambda}$} and the last \term{Season} the \term{Stalkholder} \term{Mowed} their \term{Grown} \term{Stalk} (\hyperlink{ht122}{$\varkappa$}).
+The \term{Stalk} for a given \term{Deposit} are determined by its duration of \term{Deposit}, BDV when \term{Deposited}, \hyperlink{ht120}{$k^{\lambda}$}, \hyperlink{ht32}{$c^{\lambda}$} and the last \term{Season} the \term{Stalkholder} \term{Mowed} their \term{Grown} \term{Stalk} from \hyperlink{ht126}{$\lambda$} \term{Deposits} (\hyperlink{ht122}{$\varkappa^{\lambda}$}).
 
-The \term{Stalk} during \hyperlink{ht204}{$t$} for a given \term{Deposit} of a \term{Stalkholder} that last \term{Mowed} their \term{Grown} \term{Stalk} in \hyperlink{ht122}{$\varkappa$} (\hyperlink{ht121}{$k_{t}^{\lambda}$}), such that $\hyperlink{ht121}{k_{t}^{\lambda}} \in \{j \times 10^{-10} \mid j \in \mathbb{Z}^{+} \}$, is:
-$$\hyperlink{ht121}{k_{t}^{\lambda}} = \hyperlink{ht123}{L_i^{\lambda}}\left(\hyperlink{ht120}{k^{\lambda}} + \frac{\hyperlink{ht32}{c^{\lambda}}(\hyperlink{ht122}{\varkappa} - i)}{10000}\right)$$
+The \term{Stalk} during \hyperlink{ht204}{$t$} for a given \term{Deposit} of a \term{Stalkholder} that last \term{Mowed} their \term{Grown} \term{Stalk} from \hyperlink{ht126}{$\lambda$} \term{Deposits} in \hyperlink{ht122}{$\varkappa^{\lambda}$} (\hyperlink{ht121}{$k_{t}^{\lambda}$}), such that $\hyperlink{ht121}{k_{t}^{\lambda}} \in \{j \times 10^{-10} \mid j \in \mathbb{Z}^{+} \}$, is:
+$$\hyperlink{ht121}{k_{t}^{\lambda}} = \hyperlink{ht123}{L_i^{\lambda}}\left(\hyperlink{ht120}{k^{\lambda}} + \frac{\hyperlink{ht32}{c^{\lambda}}(\hyperlink{ht122}{\varkappa^{\lambda}} - i)}{10000}\right)$$
 A \term{Stalkholder's} total \term{Stalk} during \hyperlink{ht204}{$t$} (\hyperlink{ht118}{$K_t$}), such that $\hyperlink{ht118}{K_t} \in \{j \times 10^{-10} \mid j \in \mathbb{N} \}$, is:
-$$\hyperlink{ht118}{K_t} = \sum_{\hyperlink{ht126}{\lambda} \in \hyperlink{ht127}{\Lambda}} \sum_{i=1}^{\hyperlink{ht122}{\varkappa}} \hyperlink{ht121}{k_{t}^{\lambda}} + \eta^{\bean}$$
-The \term{Grown} \term{Stalk} from \term{Seeds} that can be \term{Mown} during \hyperlink{ht204}{$t$} to start earning Bean seigniorage for a given \term{Deposit} of a \term{Stalkholder} that last \term{Mowed} their \term{Grown} \term{Stalk} in \hyperlink{ht122}{$\varkappa$} (\hyperlink{ht101}{$g_{t}^{\lambda}$}), such that $\hyperlink{ht101}{g_{t}^{\lambda}} \in \{j \times 10^{-10} \mid j \in \mathbb{N} \}$, is:
-$$\hyperlink{ht101}{g_{t}^{\lambda}} = \hyperlink{ht123}{L_i^{\lambda}}\left(\frac{\hyperlink{ht32}{c^{\lambda}}(t - \hyperlink{ht122}{\varkappa})}{10000}\right)$$
+$$\hyperlink{ht118}{K_t} = \sum_{\hyperlink{ht126}{\lambda} \in \hyperlink{ht127}{\Lambda}} \sum_{i=1}^{\hyperlink{ht122}{\varkappa^{\lambda}}} \hyperlink{ht121}{k_{t}^{\lambda}} + \eta^{\bean}$$
+The \term{Grown} \term{Stalk} from \term{Seeds} from \hyperlink{ht126}{$\lambda$} \term{Deposits} that can be \term{Mown} during \hyperlink{ht204}{$t$} to start earning Bean seigniorage for a given \term{Deposit} of a \term{Stalkholder} that last \term{Mowed} their \term{Grown} \term{Stalk} from \hyperlink{ht126}{$\lambda$} \term{Deposits} in \hyperlink{ht122}{$\varkappa^{\lambda}$} (\hyperlink{ht101}{$g_{t}^{\lambda}$}), such that $\hyperlink{ht101}{g_{t}^{\lambda}} \in \{j \times 10^{-10} \mid j \in \mathbb{N} \}$, is:
+$$\hyperlink{ht101}{g_{t}^{\lambda}} = \hyperlink{ht123}{L_i^{\lambda}}\left(\frac{\hyperlink{ht32}{c^{\lambda}}(t - \hyperlink{ht122}{\varkappa^{\lambda}})}{10000}\right)$$
 A \term{Stalkholder's} total \term{Grown} \term{Stalk} that can be \term{Mown} during \hyperlink{ht204}{$t$} (\hyperlink{ht100}{$G_t$}), such that $\hyperlink{ht100}{G_t} \in \{j \times 10^{-10} \mid j \in \mathbb{N} \}$, is:
-$$\hyperlink{ht100}{G_t} = \sum_{\hyperlink{ht126}{\lambda} \in \hyperlink{ht127}{\Lambda}} \sum_{i=1}^{\hyperlink{ht122}{\varkappa}} \hyperlink{ht101}{g_{t}^{\lambda}}$$
+$$\hyperlink{ht100}{G_t} = \sum_{\hyperlink{ht126}{\lambda} \in \hyperlink{ht127}{\Lambda}} \sum_{i=1}^{\hyperlink{ht122}{\varkappa^{\lambda}}} \hyperlink{ht101}{g_{t}^{\lambda}}$$
 The \term{Seeds} for a given \term{Deposit} are determined by its BDV when \term{Deposited} and \hyperlink{ht32}{$c^{\lambda}$}.
 
 The \term{Seeds} during \hyperlink{ht204}{$t$} for a given \term{Deposit} (\hyperlink{ht33}{$c_{t}^{\lambda}$}), such that $\hyperlink{ht33}{c_{t}^{\lambda}} \in \{j \times 10^{-6} \mid j \in \mathbb{Z}^{+} \}$, is:
@@ -421,7 +423,7 @@ When a \term{Stalkholder} \term{Withdraws} \hyperlink{ht126}{$\lambda$}, they mu
 
 When a \term{Stalkholder} \term{Transfers} \hyperlink{ht126}{$\lambda$}, they must include the number of \term{Stalk}, \term{Seeds}, and \term{Stalk} from \term{Seeds} rewarded to the assets being \term{Transferred} and update their maps accordingly.
 
-When a \term{Stalkholder} \term{Converts} a \term{Deposit}, they update its \term{Season} of \term{Deposit} to retain its \term{Grown} \term{Stalk} from \term{Seeds}, and BDV if it is higher. A maximum of $0.0c^\lambda\%$ of \term{Stalk} for a \term{Converted} \term{Deposit} is forfeited due to rounding. When \term{Converting} a \hyperlink{ht126}{$\lambda$} \term{Deposit} \term{Deposited} before $\left\lceil t \left(1 - \frac{c^{\lambda'}}{\hyperlink{ht32}{c^{\lambda}}}\right) \right\rceil$ to a \Bean\ \term{Deposit}, some \term{Stalk} from \term{Seeds} may be forfeited due to rounding. When \term{Converting} multiple \hyperlink{ht126}{$\lambda$} \term{Deposits}, their \term{Seasons} of \term{Deposit} are averaged together, weighted by their \term{BDVs}, and rounded up.
+When a \term{Stalkholder} \term{Converts} a \term{Deposit}, they update its \term{Grown} \term{Stalk} per BDV to retain its \term{Grown} \term{Stalk} from \term{Seeds}, and BDV if it is higher. When \term{Converting} multiple \hyperlink{ht126}{$\lambda$} \term{Deposits}, their \term{Grown} \term{Stalk} per BDV amounts are averaged together, weighted by their BDVs, and rounded up.
 
 \subsection{Governance}
 \vspace*{-1mm}
@@ -443,6 +445,7 @@ Beanstalk only accepts votes in favor of \term{BIPs}. A \term{Stalkholder's} vot
 \vspace*{-1mm}
 A \term{Voting Period} opens when the Snapshot\fref{snapshot.org/\#/beanstalkdao.eth} proposal for a \term{BIP} can be voted on and ends approximately 168 \term{Seasons} later, or when it is committed with a supermajority.
 
+\vspace*{2mm}
 If at the end of the \term{Voting Period}:
 \begin{itemize}[midsep]
     \item Less than or equal to half of the total outstanding \term{Stalk} at the beginning of the \term{Voting Period} that still exists is voting in favor of the \term{BIP}, it fails; and
@@ -463,7 +466,7 @@ Beanstalk implements EIP-2535.\fref{eips.ethereum.org/EIPS/eip-2535} Beanstalk i
 A \term{BIP} has three inputs: (1) a list of facets and functions to add and remove upon commit, (2) a function to run upon commit and (3) the Ethereum address of the contract with (2).
 
 \subsubsection{Beanstalk Community Multisig}
-The \term{BCM} address has the exclusive and unilateral ability to \term{Pause} and \term{Unpause} Beanstalk, and submit and commit \term{BIPs}. The \term{BCM} is a 5-of-9 Safe\fref{app.safe.global/eth:0xa9bA2C40b263843C04d344727b954A545c81D043} multisig wallet with anonymous signers consisting of community members and contributors to Beanstalk. The \term{BCM} will provide sufficient notice of the submission, its contents and the submission time before submitting a \term{BIP} to Snapshot. In the future, we expect \term{BIPs} will reimplement permissionless governance and revoke these abilities from the \term{BCM}.
+The \term{BCM} address has the exclusive and unilateral ability to \term{Pause} and \term{Unpause} Beanstalk, and submit and commit \term{BIPs}. The \term{BCM} is a 5-of-9 Safe\fref{app.safe.global/eth:0xa9bA2C40b263843C04d344727b954A545c81D043} multisig wallet with anonymous signers consisting of community members and contributors to Beanstalk. The \term{BCM} will provide sufficient notice of the submission, its contents and the submission time before submitting a \term{BIP} to Snapshot. In the future, we expect \term{BIPs} will remove governance entirely, revoking these abilities from the \term{BCM}.
 
 Thus, Beanstalk creates a robust decentralized governance mechanism and consistently improves security, stability and liquidity.
 
@@ -960,11 +963,11 @@ Thus, Beanstalk changes the \term{Temperature} to regularly cross the price of \
 \subsection{Flood}
 Beanstalk sells newly minted Beans on the open market during long run increases in demand for Beans when increasing the Bean supply and lowering the \term{Temperature} has not crossed the average nor current prices of \Bean1 over its value peg at the end of a \term{Season}.
 
-If $\hyperlink{ht216}{V} < \hyperlink{ht139}{P_{\overline{t-1}}}$, it is \term{Raining}. If it is \term{Raining} and $\hyperlink{ht157}{R^D_{t-1}} < R^{D^{\text{lower}}}$, the \term{Farm} is \term{Oversaturated}. If the \term{Farm} is \term{Oversaturated} for \hyperlink{ht1}{$\xi$} consecutive \term{Seasons} or more, each \term{Season} in which it continues to be \term{Oversaturated} there is a \term{Flood}. At the beginning of each \term{Season} during a \term{Flood}, Beanstalk returns the price of \Bean1 in each liquidity pool on the \term{Oracle} \term{Whitelist} to its value peg by minting additional Beans and selling them directly in the pools. Proceeds from the sale are distributed to \term{Stalkholders} at the beginning of \hyperlink{ht204}{$t$} in proportion to their \term{Stalk} holdings when the \term{Farm} became \term{Oversaturated}. At the beginning of a \term{Flood}, all \term{Pods} that grew from Beans \term{Sown} before the \term{Farm} became \term{Oversaturated} \term{Ripen} and become \term{Harvestable}.
+If $\hyperlink{ht216}{V} < \hyperlink{ht139}{P_{\overline{t-1}}}$, it is \term{Raining}. If it is \term{Raining} and $\hyperlink{ht157}{R^D_{t-1}} < R^{D^{\text{lower}}}$, it \term{Floods} at the beginning of the next \term{Season}. At the beginning of each \term{Season} during a \term{Flood}, Beanstalk returns the price of \Bean1 in each liquidity pool on the \term{Oracle} \term{Whitelist} to its value peg by minting additional Beans and selling them directly in the pools. Proceeds from the sale are distributed to \term{Stalkholders} at the beginning of \hyperlink{ht204}{$t$} in proportion to their \term{Stalk} holdings when it began to \term{Flood}. At the beginning of the first \term{Season} after the \term{Flood} began, all \term{Pods} that grew from Beans \term{Sown} before the \term{Flood} \term{Ripen} and become \term{Harvestable}.
 
 The number of Beans that are minted and sold to return the price of \Bean1 to its value peg (\hyperlink{ht49}{$\Delta B_{t-1}$}), such that $\hyperlink{ht49}{\Delta B_{t-1}} \in \{j \times 10^{-6} \mid j \in \mathbb{N} \}$, is calculated from the sum of differences between the optimal number of Beans and the number of Beans in each \hyperlink{ht6}{\Bean:$y$} liquidity pool on the \term{Oracle} \term{Whitelist} at the end of the previous \term{Season}.
 
-In a \term{Flood}, $m_t$ for a given number of \term{Unharvestable} \term{Pods} that grew prior to the the \term{Farm} becoming \term{Oversaturated} (\hyperlink{ht39}{$D_{\gamma}$}), such that $\hyperlink{ht39}{D_{\gamma}} \in \{j \times 10^{-6} \mid j \in \mathbb{N} \}$, \hyperlink{ht11}{$a_t$}, $\hyperlink{ht50}{\Delta B_{\overline{t-1}}}$, and \hyperlink{ht49}{$\Delta B_{t-1}$} is:
+In a \term{Flood}, $m_t$ for a given number of \term{Unharvestable} \term{Pods} that grew prior to the \term{Flood} (\hyperlink{ht39}{$D_{\gamma}$}), such that $\hyperlink{ht39}{D_{\gamma}} \in \{j \times 10^{-6} \mid j \in \mathbb{N} \}$, \hyperlink{ht11}{$a_t$}, $\hyperlink{ht50}{\Delta B_{\overline{t-1}}}$, and \hyperlink{ht49}{$\Delta B_{t-1}$} is:
 $$m_t = \hyperlink{ht39}{D_{\gamma}} + \hyperlink{ht11}{a_t} + \hyperlink{ht50}{\Delta B_{\overline{t-1}}} + \hyperlink{ht49}{\Delta B_{t-1}}$$
 Thus, Beanstalk regularly crosses the price of \Bean1 over its value peg during both long run increases and decreases in demand for Beans.
 
@@ -1023,9 +1026,9 @@ The \term{Stalk System} incentivizes (1) leaving assets \term{Deposited} in the 
 
 Beanstalk is governed by \term{Stalkholders}. Anyone with \term{Stalk} stands to profit from future growth of Beanstalk, but are not owed anything by Beanstalk. 
 
-When $P_{\overline{t}} < \hyperlink{ht216}{V}$, there is an incentive to \term{Withdraw} assets from the \term{Silo}. The combination of the \term{Stalk System} and \term{Withdrawal} \term{Freeze} reduces this incentive significantly.
+When $P_{\overline{t}} < \hyperlink{ht216}{V}$, there is an incentive to \term{Withdraw} assets from the \term{Silo}. The \term{Stalk System} reduces this incentive significantly.
 
-When $\hyperlink{ht216}{V} < P_{\overline{t}}$, there is an incentive to buy Beans to earn a portion of the upcoming Bean seigniorage. This is exacerbated when \hyperlink{ht156}{$R^D$} is lower. The combination of the commitment to automatically return the price of \Bean1 to its value peg and distribute proceeds from the sale to current \term{Stalkholders} based on \term{Stalk} ownership when the \term{Farm} became \term{Oversaturated}, and the \term{Withdrawal} \term{Freeze}, removes this incentive entirely during \term{Seasons} where \hyperlink{ht157}{$R^D_{t-1}$} is excessively low, and reduces it significantly otherwise.
+When $\hyperlink{ht216}{V} < P_{\overline{t}}$, there is an incentive to buy Beans to earn a portion of the upcoming Bean seigniorage. This is exacerbated when \hyperlink{ht156}{$R^D$} is lower. The combination of the commitment to automatically return the price of \Bean1 to its value peg and distribute proceeds from the sale to current \term{Stalkholders} based on \term{Stalk} ownership when the \term{Flood} began removes this incentive entirely during \term{Seasons} where \hyperlink{ht157}{$R^D_{t-1}$} is excessively low, and reduces it significantly otherwise.
 
 Thus, Beanstalk consistently increases trustlessness, stability and liquidity over time.
 
@@ -1036,7 +1039,7 @@ The Beanstalk code base and peg maintenance mechanism are novel. Neither had bee
 
 A decentralized implementation of Beanstalk has three external dependencies: (1) a trustless computer network that supports composability and fungible token standards, (2) a DEX protocol that runs on (1), and (3) a non-network-native exogenous value convertible stablecoin protocol native to (1) that offers convertibility to the non-network-native exogenous value and trades on (2). 
 
-To date, the Ethereum blockchain is the most developed decentralized smart contract platform and has an active community. The ERC-20 Standard is the most widely used fungible token standard. Curve is one of the largest Ethereum-native DEX protocols by volume.\fref{defiprime.com/dex-volume} USDC and USDT are the largest non-network-native exogenous value USD stablecoin protocols, and DAI is the largest network-native exogenous value USD stablecoin protocol (by market capitalization). In general, open source protocols with large amounts of value on them (\term{e.g.}, Ethereum, Curve, USDC, USDT and DAI) are high value targets for exploits. Long track records indicate security. We assume the security of the Ethereum blockchain, ERC-20 Standard, Curve, USDC, USDT and DAI.
+To date, the Ethereum blockchain is the most developed decentralized smart contract platform and has an active community. The ERC-20 Standard is the most widely used fungible token standard. The ERC-1155 Standard is the most widely used semi-fungible token standard. Curve is one of the largest Ethereum-native DEX protocols by volume.\fref{defiprime.com/dex-volume} USDC and USDT are the largest non-network-native exogenous value USD stablecoin protocols, and DAI is the largest network-native exogenous value USD stablecoin protocol (by market capitalization). In general, open source protocols with large amounts of value on them (\term{e.g.}, Ethereum, Curve, USDC, USDT and DAI) are high value targets for exploits. Long track records indicate security. We assume the security of the Ethereum blockchain, ERC-20 Standard, ERC-1155 Standard, Curve, USDC, USDT and DAI.
 
 \newpage
 The Beanstalk price oracle contains exposure to risk related to the underlying collateral of \hyperlink{ht223}{$x$} (\term{e.g.}, USDC, USDT, DAI). There is no guarantee the centralized operators of USDC and USDT hold non-network-native exogenous value worth at least 100\% of all outstanding protocol liabilities or will not ban them from the 3CRV pool, although either would cause significant financial self-harm. The operators of USDC and USDT may alter their convertibility policies, which would negatively affect their respective stablecoins as price sources for USD, and thereby corrupt the accuracy of 3CRV as a price source for USD. However, in theory, if the price of \hyperlink{ht223}{$x$} falls below \hyperlink{ht216}{$V$}, it would cause some short run excess inflation of the Bean supply until \hyperlink{ht223}{$x$} is replaced in the price oracle, but would not otherwise directly affect Beanstalk.
@@ -1045,11 +1048,10 @@ The Beanstalk price oracle contains exposure to risk related to the underlying c
 Beanstalk is a work in progress. The following are potential improvements that can be incorporated into Beanstalk as one or more \term{BIPs}:
 
 \begin{itemize}
-    \item Permissionless governance can be reimplemented.
+    \item Governance can be removed entirely.
     \item \term{Stalk} can become liquid to further increase composability and decrease friction. 
     \item Beanstalk can distribute yield received from other protocols by \term{Deposited} assets to its \term{Depositor}.
     \item The \term{Silo} can support additional token standards.
-    \item The \term{Withdrawal} \term{Freeze} can be removed.
     \item The decentralized price oracle is unlikely to remain sufficiently manipulation resistant at scale, and can be significantly improved. 
     \item The calculation of \hyperlink{ht50}{$\Delta B_{\overline{t-1}}$} can account for inaccuracies in the calculation due to frictions (\term{e.g}, AMM trading fees).
     \item Additional \hyperlink{ht223}{$x$} and Ethereum-native DEXs can be incorporated into \hyperlink{ht139}{$P_{\overline{t-1}}$}.
