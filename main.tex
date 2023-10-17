@@ -169,11 +169,19 @@
         \begin{center}
         \BeanCover
         \end{center}
+        
         \vspace{0.4cm}
-        \large{Publius, Beanstalk Farms}
+        \begin{center}
+        \begin{tabular}{>{\centering\arraybackslash}p{6cm} >{\centering\arraybackslash}p{6cm}}
+                \large{Publius} & \large{Beanstalk Farms} \\
+                \href{mailto:beanstalk.publius@protonmail.com}{\normalsize{beanstalk.publius@protonmail.com}} & \href{mailto:beanstalkfarms@protonmail.com}{\normalsize{beanstalkfarms@protonmail.com}}
+            \end{tabular}
+        \end{center}
+        % \vspace{0.4cm}
+        % \large{Publius, Beanstalk Farms}
             
-        \vspace{-0.25cm}
-        \normalsize{beanstalk.publius@protonmail.com, operations@bean.farm}
+        % \vspace{-0.25cm}
+        % \normalsize{beanstalk.publius@protonmail.com, beanstalkfarms@protonmail.com}
         
         \vspace{-0.25cm}
         \normalsize{\href{https://bean.money/}{bean.money}}
@@ -182,13 +190,13 @@
         \footnotesize{Published:} \normalsize{August 6, 2021}
         
         \vspace{-0.25cm}
-        \footnotesize{Modified:} \normalsize{July 31, 2023}
+        \footnotesize{Modified:} \normalsize{October 16, 2023}
         
         \vspace{-0.25cm}
-        \footnotesize{Whitepaper Version:} {\normalsize{2.5.0}}
+        \footnotesize{Whitepaper Version:} {\normalsize{2.6.0}}
         
         \vspace{-0.25cm}
-        \footnotesize{Code Version:} \href{https://github.com/BeanstalkFarms/Beanstalk}{\normalsize{2.5.0}}\footnote{\href{https://github.com/BeanstalkFarms/Beanstalk}{github.com/BeanstalkFarms/Beanstalk}}
+        \footnotesize{Code Version:} \href{https://github.com/BeanstalkFarms/Beanstalk}{\normalsize{2.6.0}}\footnote{\href{https://github.com/BeanstalkFarms/Beanstalk}{github.com/BeanstalkFarms/Beanstalk}}
         
 
         \vspace{0.1cm}
@@ -302,7 +310,7 @@ $$\hyperlink{ht75}{E_{t}^{\text{min}}} = 3600{\left({\left\lfloor\frac{\hyperlin
 
 The cost to execute the \code{gm} function changes depending on the traffic on the Ethereum network and the state of Beanstalk. Beanstalk covers the transaction cost by awarding the sender of an accepted \code{gm} function call with newly minted Beans. 
 
-To encourage regular \code{gm} function calls even during periods of congestion on the Ethereum network while minimizing cost, the award for successfully calling the \code{gm} function for $t$ ($a_t$) is based on an approximation of the cost to call the \code{gm} function in Beans in the current block ($\sun_{\Xi}$), such that $a_t,\ \sun_{\Xi} \in \{j \times 10^{-6} \mid j \in \mathbb{Z}^{+} \}$, and compounds 1\% every additional second that elapses past $E_t^{\text{min}}$ for 300 seconds. 
+To encourage regular \code{gm} function calls even during periods of congestion on the Ethereum network while minimizing cost, the award for successfully calling the \code{gm} function for $t$ ($a_t$) is based on (1) an approximation of the cost to call the \code{gm} function in Beans in the current block ($\sun_{\Xi}$), (2) the inter-block maximum extractable value (MEV) manipulation resistant time weighted average (TWA) Bean reserves in the Multi Flow \term{Pump}\fref{basin.exchange/multi-flow-pump.pdf}$^{,}$\fref{etherscan.io/address/0xBA510f10E3095B83a0F33aa9ad2544E22570a87C} of the BEAN:ETH \term{Well}\fref{basin.exchange/basin.pdf}$^{,}$\footnote{Any italicized terms not defined herein are defined by Basin.} from the beginning of the \term{Season} to the current transaction ($\Theta^{\text{SMA}}_{\bean,t_0,\Game}$), and (3) the minimum number of Beans that must be in the BEAN:ETH \term{Well} in order for the oracle to be considered ($\Theta^{\text{min}(\bean)}$), such that $a_t,\ \sun_{\Xi},\ \Theta^{\text{SMA}}_{\bean,t_0,\Game},\ \Theta^{\text{min}(\bean)} \in \{j \times 10^{-6} \mid j \in \mathbb{Z}^{+} \}$, and compounds 1\% every additional second that elapses past $E_t^{\text{min}}$ for 300 seconds. 
 
 $\sun_{\Xi}$ is based on approximations of (1) the gas used to execute the \code{gm} function call ($\varrho$), (2) the gas fee of the current block denominated in Wei ($\varpi_\Xi$), such that $\varrho,\ \varpi_\Xi \in \mathbb{Z}^{+}$, and (3) the current price of ETH in Beans ($\vartheta$), such that $\vartheta \in \{j \times 10^{-6} \mid j \in \mathbb{Z}^{+} \}$, up to a maximum of 100 Beans.
 
@@ -314,37 +322,18 @@ We define $\varpi_\Xi$ as the result of \code{block.basefee}\fref{docs.solidityl
 
 $$\varpi_\Xi = \code{block.basefee} + 5$$
 
-$\vartheta$ is based on (1) the flash-loan-resistant price of ETH in USDC from the USDC:ETH Uniswap V3 pool ($\kappa$), such that $\kappa \in \{j \times 10^{-18} \mid j \in \mathbb{Z}^{+} \}$, and (2) the flash-loan-resistant USD price of \Bean1 from the BEAN:3CRV Curve pool (\hyperlink{ht3}{$\$^{\bean(\Phi)}_{\Xi-1}$}), such that $\hyperlink{ht3}{\$^{\bean(\Phi)}_{\Xi-1}}\in \{j \times 10^{-6} \mid j \in \mathbb{Z}^{+} \}$.
+$\vartheta$ is based on $\Theta^{\text{SMA}}_{\bean,t_0,\Game}$ and the inter-block MEV manipulation resistant TWA ETH reserves in the Multi Flow \term{Pump} of the BEAN:ETH \term{Well} from the beginning of the \term{Season} to the current transaction ($\Theta^{\text{SMA}}_{\text{ETH},t_0,\Game}$), such that $\Theta^{\text{SMA}}_{\text{ETH},t_0,\Game} \in \{j \times 10^{-18} \mid j \in \mathbb{Z}^{+} \}$:
+$$ \vartheta = \frac{\Theta^{\text{SMA}}_{\bean,t_0,\Game} \times 10^{18}}{\Theta^{\text{SMA}}_{\text{ETH},t_0,\Game}}$$
 
-Beanstalk calculates $\kappa$ by calling the Uniswap V3\fref{etherscan.io/address/0x68b3465833fb72a70ecdf485e0e4c7bd8665fc45\#code} \code{getQuoteAtTick} function using a tick read over the last 30 minutes. 
-
-\hyperlink{ht3}{$\$^{\bean(\Phi)}_{\Xi-1}$} is calculated using the number of Beans (\hyperlink{ht193}{$\Phi_{\Xi-1}^{\bean}$}), such that $\hyperlink{ht193}{\Phi_{\Xi-1}^{\bean}} \in \{j \times 10^{-6} \mid j \in \mathbb{Z}^{+} \}$, and number of 3CRV (\hyperlink{ht194}{$\Phi_{\Xi-1}^{\text{3CRV}}$}) in the BEAN:3CRV Curve pool at the end of the last block, the 3CRV virtual price (\hyperlink{ht136}{$P^{\text{3CRV}}$}), the A parameter of the pool (\hyperlink{ht190}{$\Phi^{A}$}), such that $\hyperlink{ht190}{\Phi^{A}} \in \{j \times 10^{-2} \mid j \in \mathbb{Z}^{+} \}$, and the \hyperlink{ht187}{$\Phi$} virtual price (\hyperlink{ht140}{$P^{\Phi}$}), such that $\hyperlink{ht194}{\Phi_{\Xi-1}^{\text{3CRV}}},\  \hyperlink{ht136}{P^{\text{3CRV}}},\ \hyperlink{ht140}{P^{\Phi}}\in \{j \times 10^{-18} \mid j \in \mathbb{Z}^{+} \}$.
-
-Beanstalk calculates a flash-loan-resistant price invariant for the BEAN:3CRV Curve pool (\hyperlink{ht96}{$\zeta^{\Phi}_{\Xi-1}$}), such that $\hyperlink{ht96}{\zeta^{\Phi}_{\Xi-1}}\in \{j \times 10^{-18} \mid j \in \mathbb{Z}^{+} \}$, by calling the Curve\fref{etherscan.io/address/0xc9C32cd16Bf7eFB85Ff14e0c8603cc90F6F2eE49\#code} \code{get\_D} function on \hyperlink{ht193}{$\Phi_{\Xi-1}^{\bean}$}, \hyperlink{ht194}{$\Phi_{\Xi-1}^{\text{3CRV}}$}, \hyperlink{ht136}{$P^{\text{3CRV}}$} and \hyperlink{ht190}{$\Phi^{A}$} as:
-
-$$\hyperlink{ht96}{\zeta^{\Phi}_{\Xi-1}} = \code{get\_D(}[\hyperlink{ht193}{\Phi_{\Xi-1}^{\bean}},\ \hyperlink{ht194}{\Phi_{\Xi-1}^{\text{3CRV}}} \times \hyperlink{ht136}{P^{\text{3CRV}}}],\ \hyperlink{ht190}{\Phi^{A}}\code{)}$$
-
-Beanstalk calculates a flash-loan-resistant total number of \hyperlink{ht187}{$\Phi$} (\hyperlink{ht192}{$\Phi_{\Xi-1}$}), such that $\hyperlink{ht192}{\Phi_{\Xi-1}}\in \{j \times 10^{-18} \mid j \in \mathbb{Z}^{+} \}$, from \hyperlink{ht96}{$\zeta^{\Phi}_{\Xi-1}$} and \hyperlink{ht140}{$P^{\Phi}$} as:
-
-$$\hyperlink{ht192}{\Phi_{\Xi-1}} = \frac{\hyperlink{ht96}{\zeta^{\Phi}_{\Xi-1}}}{\hyperlink{ht140}{P^{\Phi}}}$$
-
-Beanstalk calculates \hyperlink{ht3}{$\$^{\bean(\Phi)}_{\Xi-1}$} by calling the Curve \code{get\_y} function on \hyperlink{ht193}{$\Phi_{\Xi-1}^{\bean}$}, \hyperlink{ht194}{$\Phi_{\Xi-1}^{\text{3CRV}}$} and \hyperlink{ht136}{$P^{\text{3CRV}}$} as:
-
-$$\hyperlink{ht3}{\$^{\bean(\Phi)}_{\Xi-1}} =  \hyperlink{ht193}{\Phi_{\Xi-1}^{\bean}} - \code{get\_y(}0, 1, \hyperlink{ht193}{\Phi_{\Xi-1}^{\bean}} + 1, [\hyperlink{ht193}{\Phi_{\Xi-1}^{\bean}},\ \hyperlink{ht194}{\Phi_{\Xi-1}^{\text{3CRV}}} \times \hyperlink{ht136}{P^{\text{3CRV}}}]\code{)} - 10^{-6}$$
-
-Therefore, we define $\vartheta$ given $\kappa$ and $\hyperlink{ht3}{\$^{\bean(\Phi)}_{\Xi-1}}$ as:
-
-$$ \vartheta = \frac{\kappa \times 10^6}{\hyperlink{ht3}{\$^{\bean(\Phi)}_{\Xi-1}}}$$
-
-We define $\sun_{\Xi}$ for a given $\varrho$, $\varpi_\Xi$ and $\vartheta$ as:
+Therefore, we define $\sun_{\Xi}$ for a given $\varrho$, $\varpi_\Xi$ and $\vartheta$ as:
 
 $$\sun_{\Xi} = \text{min}(\varrho \times \varpi_\Xi \times \vartheta + 3,\ 100)$$
 
-Therefore, we define $a_t$ for a given $\sun_{\Xi}$, the timestamp of the current block ($E_\Xi$), and $\hyperlink{ht75}{E_{t}^{\text{min}}}$ as:
+Therefore, we define $a_t$ for a given $\sun_{\Xi}$, $\Theta^{\text{SMA}}_{\bean,t_0,\Game}$, $\Theta^{\text{min}(\bean)}$, the timestamp of the current block ($E_\Xi$), and $\hyperlink{ht75}{E_{t}^{\text{min}}}$ as:
 
 $$ a_t =
 \begin{cases}
-{100} & \text{if} \; t = 1 \\
+{100} & \text{if} \; t = 1 \mkern3mu | \mkern3mu \Theta^{\text{SMA}}_{\bean,t_0,\Game} < \Theta^{\text{min}(\bean)}  \\
 {\sun_{\Xi} \times 1.01^{\text{min}\{{\hyperlink{ht74}{E_\Xi} - \hyperlink{ht75}{E_{t}^{\text{min}}}},\ 300\}}} & \text{else}
 \end{cases} 
 $$
@@ -356,18 +345,18 @@ To minimize the cost of calculating \hyperlink{ht11}{$a_t$}, the \term{Sun} uses
 \vspace*{-1mm}
 Beanstalk requires the ability to coordinate protocol upgrades. The \term{Silo} \textbf{--} the Beanstalk DAO \textbf{--} uses the \term{Stalk System} to create protocol-native financial incentives that coordinate Beanstalk upgrades and consistently improve security, stability and liquidity. \term{Stalkholders} earn passive yield from participation in governance of Beanstalk upgrades and passive contributions to security, stability and liquidity. Active contributions to peg maintenance within the \term{Silo} earn additional \term{Stalk}.
 
-\vspace*{-1mm}
+\vspace*{-1.3mm}
 \subsection{The Stalk System}
-\vspace*{-1mm}
+\vspace*{-1.3mm}
 The \term{Stalk System} decentralizes ownership over time and creates Beanstalk-native financial incentives to (1) align DAO voters' interests with the health of Beanstalk, (2) leave assets \term{Deposited} in the \term{Silo}, and (3) allocate liquidity in ways that benefit Beanstalk.
 
 Anyone can become a \term{Stalkholder} by \term{Depositing} assets on the \term{Deposit} \term{Whitelist} into the \term{Silo} to earn \term{Stalk} and \term{Seeds}. \term{Stalk} and \term{Seeds} are not liquid. Every \term{Season}, $1 \times 10^{-4}$ additional \term{Stalk} \term{Grows} from each \term{Seed}. \term{Grown} \term{Stalk} become \term{Stalk} when \term{Mown}. \term{Grown} \term{Stalk} from \hyperlink{ht126}{$\lambda$} \term{Deposits} are automatically \term{Mown} each time a \term{Stalkholder} interacts with \hyperlink{ht126}{$\lambda$} in the Silo (\term{i.e.}, \term{Deposit}, \term{Withdraw}, \term{Convert}, \term{Transfer}, \term{Plant} and \term{Enroot}), or when they call the \code{mow} or \code{mowMultiple} function with \hyperlink{ht126}{$\lambda$}.
 
 \term{Stalkholders} are entitled to participate in Beanstalk governance and a portion of Bean mints. The influence in governance of, and distribution of Beans paid to, a \term{Stalkholder} are proportional to their \term{Stalk} holdings relative to total outstanding \term{Stalk}. \term{Stalk} holdings become less concentrated over time.
 
-\vspace*{-1mm}
+\vspace*{-1.3mm}
 \subsection{Deposit Whitelist}
-\vspace*{-1mm}
+\vspace*{-1.3mm}
 Any ERC-20 Standard token can be added to and removed from \hyperlink{ht127}{$\Lambda$} via Beanstalk governance. \Bean\ is always on the \term{Deposit} \term{Whitelist}.
 
 In order for a given \hyperlink{ht126}{$\lambda$} to be added to \hyperlink{ht127}{$\Lambda$} Beanstalk requires (1) its token address, (2) a function to calculate the flash-loan-resistant Bean-denominated-value (BDV) for a given number of \hyperlink{ht126}{$\lambda$} \term{Deposited}, (\hyperlink{ht84}{$f^{\lambda}(z^{\lambda})$}), such that $z^{\lambda} \in \{j \times 10^{-6} \mid j \in \mathbb{Z}^{+} \}$, $f^{\lambda}\colon \{j \times 10^{-\lambda} \mid j \in \mathbb{Z}^{+} \} \rightarrow \{j \times 10^{-6} \mid j \in \mathbb{Z}^{+} \}$, where $z^{\lambda}$ is the number of \hyperlink{ht126}{$\lambda$} \term{Deposited}, (3) the number of \term{Stalk} per BDV of \hyperlink{ht126}{$\lambda$} \term{Deposited} (\hyperlink{ht120}{$k^{\lambda}$}), such that $\hyperlink{ht120}{k^{\lambda}} \in \{j \times 10^{-4} \mid j \in \mathbb{Z}^{+} \}$, and (4) the number of \term{Seeds} per BDV of \hyperlink{ht126}{$\lambda$} \term{Deposited} (\hyperlink{ht32}{$c^{\lambda}$}), such that $\hyperlink{ht32}{c^{\lambda}} \in \mathbb{Z}^{+}$, to be stored.
@@ -376,6 +365,8 @@ In order for a given \hyperlink{ht126}{$\lambda$} to be added to \hyperlink{ht12
 \subsection{Deposits, Withdrawals, Transfers and Conversions}
 \vspace*{-1mm}
 \hyperlink{ht126}{$\lambda$} can be \term{Deposited} into, \term{Withdrawn} from and \term{Converted} within, the \term{Silo} at any time.
+
+\vspace*{-1mm}
 
 Beanstalk rewards \term{Stalk} and \term{Seeds} to \term{Depositors} immediately upon \term{Depositing} \hyperlink{ht126}{$\lambda$} into the \term{Silo} based on its BDV when \term{Deposited}, \hyperlink{ht120}{$k^{\lambda}$} and \hyperlink{ht32}{$c^{\lambda}$}. \term{Deposits} implement the ERC-1155 Standard.\fref{ethereum.org/en/developers/docs/standards/tokens/erc-1155}
 
@@ -486,6 +477,8 @@ When Beanstalk is willing to borrow more Beans to remove them from the Bean supp
 \vspace*{-1mm}
 \term{Pods} are the primary debt asset of Beanstalk. Beanstalk never defaults on debt: \term{Pods} automatically \term{Yield} from \term{Sown} \Bean\ and never expire.
 
+\newpage
+
 In the future, when the average price of \Bean1 is above its value peg over a \term{Season}, \term{Pods} \term{Ripen} and become \term{Harvestable} (redeemable) for \Bean1 at anytime. \term{Pods} \term{Ripen} on a first in, first out (FIFO) basis: \term{Pods} \term{Yielded} from Beans that are \term{Sown} first \term{Ripen} into \term{Harvestable} \term{Pods} first. \term{Pod} holders can \term{Harvest} their \term{Harvestable} \term{Pods} anytime by calling the \code{harvest} function. There is no penalty for waiting to \term{Harvest} \term{Pods}.
 
 \term{Pods} are transferable. In practice, \term{Pods} are non-callable zero-coupon bonds with priority for maturity represented as a place in line. The number of \term{Pods} that \term{Yield} from \term{Sown} \Bean\ is determined by the \term{Temperature}.
@@ -497,9 +490,8 @@ We define the \term{Temperature} (\hyperlink{ht110}{$h$}), such that $\hyperlink
 The number of \term{Pods} (\hyperlink{ht40}{$d$}) that \term{Yield} from a given number of \term{Sown} \Bean\ (\hyperlink{ht208}{$u$}), such that $\hyperlink{ht40}{d},\ \hyperlink{ht208}{u} \in \{j \times 10^{-6} \mid j \in \mathbb{Z}^{+} \}$, \term{Sown} with a given \hyperlink{ht110}{$h$} is:
 $$\hyperlink{ht40}{d} = \hyperlink{ht208}{u} \times \left(1 + \frac{\hyperlink{ht110}{h}}{100}\right)$$
 
-Beanstalk changes the \term{Maximum Temperature} it is willing to offer each Season ($h_t^{\text{max}}$), such that $h_t^{\text{max}} \in \mathbb{Z}^{+}$, at the beginning of each \term{Season} according to the peg maintenance mechanism. During the \term{Morning} of each \term{Season}, the \term{Temperature} is the result of a Dutch auction.\fref{en.wikipedia.org/wiki/Dutch_auction} 
+Beanstalk changes the \term{Maximum Temperature} it is willing to offer each Season ($h_t^{\text{max}}$), such that $h_t^{\text{max}} \in \mathbb{Z}^{+}$, at the beginning of each \term{Season} according to the peg maintenance mechanism. During the \term{Morning} of each \term{Season}, the \term{Temperature} is the result of a Dutch auction.\fref{en.wikipedia.org/wiki/Dutch\_auction} 
 
-%\vspace*{-3mm}
 \begin{figure}[h!]
     \centering
     \includegraphics[scale=.14]{Figure2}
@@ -507,9 +499,7 @@ Beanstalk changes the \term{Maximum Temperature} it is willing to offer each Sea
     \caption{Field}
     \label{fig 2}
 \end{figure}
-%\vspace*{-5mm}
 
-\newpage
 \section{Barn}
 The \term{Barn} is the Beanstalk recapitalization facility, being used for the Beanstalk \term{Replant}.\footnote{\href{https://bean.money/bfp-72}{bean.money/bfp-72}}$^{,}$\footnote{\href{https://bean.money/barn}{bean.money/barn}}
 
@@ -568,7 +558,7 @@ We define \hyperlink{ht202}{${\varphi}_t^C$} for a given \hyperlink{ht62}{$\Delt
 $$\hyperlink{ht202}{{\varphi}_t^C} = \hyperlink{ht62}{\Delta \mathfrak{X}} \times (\hyperlink{ht30}{C_{\bigodot}} + \hyperlink{ht107}{\eta_{\bigodot}^c})$$
 
 \subsubsection{Unripe Assets}
-Holders of Beans at the end of the block prior to the \term{Exploit} received \term{Unripe} \Bean\ (\hyperlink{ht229}{$\mathfrak{z}^{\bean}$}), such that $\hyperlink{ht233}{\mathfrak{z}^{\bean}} \in \{j \times 10^{-6} \mid j \in \mathbb{Z}^{+} \}$, at a 1:1 ratio. \footnote{\href{https://snapshot.org/\#/beanstalkdao.eth/proposal/0xe47741c4bfa4ac97ad23bbec0db8b9a5f2efc3e1737b309476d90611698193f4}{snapshot.org/\#/beanstalkdao.eth/proposal/0xe47741c4bfa4ac97ad23bbec0db8b9a5f2efc3e1737b309476d90611\\698193f4}} Holders of \hyperlink{ht126}{$\lambda$} not \term{Deposited} at the end of the block prior to the \term{Exploit} received \term{Unripe} \hyperlink{ht187}{$\Phi$} (\hyperlink{ht235}{$\mathfrak{z}^{\Phi}$}), such that $\hyperlink{ht235}{\mathfrak{z}^{\Phi}} \in \{j \times 10^{-6} \mid j \in \mathbb{Z}^{+} \}$, at a ratio of 1 \hyperlink{ht235}{$\mathfrak{z}^{\Phi}$} per BDV of \hyperlink{ht126}{$\lambda$} held at the end of the block prior to the \term{Exploit}. Holders of \hyperlink{ht126}{$\lambda$} \term{Deposited} at the end of the block prior to the \term{Exploit} received \hyperlink{ht235}{$\mathfrak{z}^{\Phi}$} at a ratio of 1 $\hyperlink{ht235}{\mathfrak{z}^{\Phi}}$ per the maximum of the BDV of \hyperlink{ht126}{$\lambda$} \term{Deposits} at the end of the block prior to the \term{Exploit} and at the time of \term{Deposit}, per \term{Deposit}. 
+Holders of Beans at the end of the block prior to the \term{Exploit} received \term{Unripe} \Bean\ (\hyperlink{ht229}{$\mathfrak{z}^{\bean}$}), such that $\hyperlink{ht233}{\mathfrak{z}^{\bean}} \in \{j \times 10^{-6} \mid j \in \mathbb{Z}^{+} \}$, at a 1:1 ratio.\footnote{\href{https://bean.money/bip-20}{bean.money/bip-20}} Holders of \hyperlink{ht126}{$\lambda$} not \term{Deposited} at the end of the block prior to the \term{Exploit} received \term{Unripe} \hyperlink{ht187}{$\Phi$} (\hyperlink{ht235}{$\mathfrak{z}^{\Phi}$}), such that $\hyperlink{ht235}{\mathfrak{z}^{\Phi}} \in \{j \times 10^{-6} \mid j \in \mathbb{Z}^{+} \}$, at a ratio of 1 \hyperlink{ht235}{$\mathfrak{z}^{\Phi}$} per BDV of \hyperlink{ht126}{$\lambda$} held at the end of the block prior to the \term{Exploit}. Holders of \hyperlink{ht126}{$\lambda$} \term{Deposited} at the end of the block prior to the \term{Exploit} received \hyperlink{ht235}{$\mathfrak{z}^{\Phi}$} at a ratio of 1 $\hyperlink{ht235}{\mathfrak{z}^{\Phi}}$ per the maximum of the BDV of \hyperlink{ht126}{$\lambda$} \term{Deposits} at the end of the block prior to the \term{Exploit} and at the time of \term{Deposit}, per \term{Deposit}. 
 
 \subsubsection{Ripe Assets}
 The number of \term{Ripe} assets (\term{i.e.}, \term{Ripe} \Bean\ (\hyperlink{ht158}{$\mathfrak{R}^{\bean}$}), such that $\hyperlink{ht158}{\mathfrak{R}^{\bean}} \in \{j \times 10^{-6} \mid j \in \mathbb{Z}^{+} \}$, and \term{Ripe} \hyperlink{ht187}{$\Phi$} (\hyperlink{ht160}{$\mathfrak{R}^{\Phi}$}), such that $\hyperlink{ht160}{\mathfrak{R}^{\Phi}} \in \{j \times 10^{-18} \mid j \in \mathbb{Z}^{+} \}$), increases as more \term{Fertilizer} is sold.
@@ -577,7 +567,7 @@ The change in \term{Ripe} \Bean\ (\hyperlink{ht58}{$\Delta \mathfrak{R}^{\bean}$
 
 We define \hyperlink{ht58}{$\Delta \mathfrak{R}^{\bean}$} for a given \hyperlink{ht61}{$\Delta \mathfrak{S}_{\Game}$}, \hyperlink{ht229}{$\mathfrak{Z}^{\bean}$}, \hyperlink{ht159}{$\mathfrak{R}_{<\Game}^{\bean}$}, \hyperlink{ht85}{$\mathfrak{F}$}, \hyperlink{ht175}{$\mathfrak{S}_{<\Game}$} as:
 $$\hyperlink{ht58}{\Delta \mathfrak{R}^{\bean}} = \frac{\hyperlink{ht61}{\Delta \mathfrak{S}_{\Game}} \times (\hyperlink{ht229}{\mathfrak{Z}^{\bean}} - \hyperlink{ht159}{\mathfrak{R}_{<\Game}^{\bean}})}{\hyperlink{ht85}{\mathfrak{F}} - \hyperlink{ht175}{\mathfrak{S}_{<\Game}}}$$
-The change in \term{Ripe} \hyperlink{ht187}{$\Phi$} (\hyperlink{ht59}{$\Delta \mathfrak{R}^{\Phi}$}), such that $\hyperlink{ht59}{\Delta \mathfrak{R}^{\Phi}} \in \{j \times 10^{-18} \mid j \in \mathbb{Z}^{+} \}$, is the result of calling the \code{calc\_token\_amount} function on the Curve Zap contract\fref{etherscan.io/address/0xA79828DF1850E8a3A3064576f380D90aECDD3359} for a given \hyperlink{ht61}{$\Delta \mathfrak{S}_{\Game}$}.
+The change in \term{Ripe} \hyperlink{ht187}{$\Phi$} (\hyperlink{ht59}{$\Delta \mathfrak{R}^{\Phi}$}), such that $\hyperlink{ht59}{\Delta \mathfrak{R}^{\Phi}} \in \{j \times 10^{-18} \mid j \in \mathbb{Z}^{+} \}$, is the result of calling the \code{calc\_token\_amount} function on the Curve Zap contract\fref{etherscan.io/address/0xA79828DF1850E8a3A3064576f380D90aECDD3359\#code} for a given \hyperlink{ht61}{$\Delta \mathfrak{S}_{\Game}$}.
 
 We define \hyperlink{ht59}{$\Delta \mathfrak{R}^{\Phi}$} for a given \hyperlink{ht61}{$\Delta \mathfrak{S}_{\Game}$} as:
 $$\hyperlink{ht59}{\Delta \mathfrak{R}^{\Phi}} = \code{calc\_token\_amount(}\hyperlink{ht187}{\Phi},\ [0.866616 \times \hyperlink{ht61}{\Delta \mathfrak{S}_{\Game}},\ 0,\ \hyperlink{ht61}{\Delta \mathfrak{S}_{\Game}},\ 0],\ true\code{)}$$
@@ -600,24 +590,31 @@ $$\hyperlink{ht143}{\mathfrak{P}^{\Phi}} = \frac{\hyperlink{ht235}{\mathfrak{z}^
 
 \term{Chopped} \term{Unripe} \Bean\ and \hyperlink{ht187}{$\Phi$} are burned (\term{i.e.}, $\hyperlink{ht229}{\mathfrak{Z}^{\bean}} \mathrel{-}= \hyperlink{ht233}{\mathfrak{z}^{\bean}}$, $\hyperlink{ht230}{\mathfrak{Z}^{\Phi}} \mathrel{-}= \hyperlink{ht235}{\mathfrak{z}^{\Phi}}$). \Bean\ and \hyperlink{ht187}{$\Phi$} received for \term{Chopping} are distributed from \term{Ripe} \Bean\ and \hyperlink{ht187}{$\Phi$}, respectively (\term{i.e.}, $\hyperlink{ht158}{\mathfrak{R}^{\bean}} \mathrel{-}= \hyperlink{ht142}{\mathfrak{P}^{\bean}}$, $\hyperlink{ht160}{\mathfrak{R}^{\Phi}} \mathrel{-}= \hyperlink{ht143}{\mathfrak{P}^{\Phi}}$).
 
-% \vspace*{-3mm}
+\vspace*{5mm}
+
 \begin{figure}[h!]
     \centering
-    \includegraphics[scale=.155]{Figure3} % mess with scale for desired picture size
+    \includegraphics[scale=.14]{Figure3} % mess with scale for desired picture size
     \vspace*{-5mm}
     \caption{Barn}
     \label{fig 3}
 \end{figure}
-%\vspace*{-5mm}
+
+\newpage
 
 \section{Peg Maintenance}
+
+\vspace*{2mm}
+
+
 Beanstalk faces the fundamental limitation that it cannot fix the price of \Bean1 at its value peg, but instead must encourage widespread participation in peg maintenance through protocol-native financial incentives. Stability is a function of how frequently and regularly the price of \Bean1 crosses, and the magnitudes of price deviations from, its value peg. Beanstalk regularly crosses the price of \Bean1 over its value peg during both long run decreases and increases in demand for Beans.
 
-Beanstalk has four peg maintenance tools available: (1) increase the Bean supply, (2) change the \term{Soil} supply, (3) change the \term{Temperature}, and (4) a \term{Flood} (defined below). At the beginning of every \term{Season}, Beanstalk evaluates its position (\term{i.e.}, price and debt level) and current state (\term{i.e.}, direction and acceleration) with respect to ideal equilibrium, and dynamically adjusts the Bean supply, \term{Soil} supply and \term{Temperature} to move closer to ideal equilibrium.
+Beanstalk has four peg maintenance tools available: (1) increase the Bean supply, (2) change the \term{Soil} supply, (3) change the \term{Temperature}, and (4) a \term{Flood} (defined below). At the beginning of every \term{Season}, Beanstalk evaluates its position (\term{i.e.}, price and debt level) and current state (\term{i.e.}, direction and acceleration) with respect to ideal equilibrium, and dynamically adjusts the Bean supply, \term{Soil} supply and \term{Maximum Temperature} to move closer to ideal equilibrium.
 
-\vspace*{-3mm}
+\vspace*{2mm}
 \subsection{Ideal Equilibrium}
-\vspace*{-1mm}
+\vspace*{2mm}
+
 Beanstalk is credit based. Beanstalk only fails if it can no longer attract creditors. A reasonable level of debt attracts creditors. Therefore, in addition to the Bean price, the peg maintenance mechanism considers the Beanstalk debt level (defined below). 
 
 Beanstalk is in ideal equilibrium when the Bean price and the Beanstalk debt level are both stable at their optimal levels. In practice, this requires that three conditions are met: (1) the price of \Bean1 is regularly oscillating over its value peg, (2) the Beanstalk debt level is optimal (defined below), and (3) demand for \term{Soil} is steady (defined below). 
@@ -626,21 +623,25 @@ Beanstalk affects the supply of and demand for Beans to return to ideal equilibr
 
 In practice, maintaining ideal equilibrium is impossible. Deviations from ideal equilibrium along both axes are normal and expected. As Beanstalk grows, the durations and magnitudes of deviations decrease. 
 
-\vspace*{-1mm}
+\vspace*{2mm}
 \subsection{Decentralized Price Oracle}
-\vspace*{-1mm}
+\vspace*{2mm}
 
 One problem native to decentralized stablecoin protocols is the need to be aware of some price without trusting a centralized party to provide it. An oracle delivers external information to smart contracts. A robust decentralized stablecoin requires a tamper-proof, manipulation resistant and decentralized price oracle.
 
-When a price source is not native to the network, decentralized price oracles are complicated to build, expensive to maintain and often inaccurate. Beanstalk leverages network-native decentralized AMMs, non-network-native exogenous value and network-native exogenous value convertible stablecoins to remove these complications, costs and inaccuracies almost entirely, and create an immutable, manipulation resistant and decentralized source for the price of a non-Ethereum-native value peg.
+When a price source is not native to the network, decentralized price oracles are complicated to build, expensive to maintain and often inaccurate. Beanstalk leverages network-native decentralized AMMs and non-network-native exogenous value convertible stablecoins to remove these complications, costs and inaccuracies almost entirely, and create an immutable, manipulation resistant and decentralized source for the price of a non-Ethereum-native value peg.
 
-Ethereum-native permissionless AMM protocols allow anyone to create new AMMs between at least two ERC-20 Standard tokens. AMMs always offer a price on any size trade, at any time, for a trading fee. AMMs allow continuous trading in either direction by maintaining a liquidity pool of the tokens. The current price is a function of the ratio of the assets in the pool and the AMM pricing formula. Anyone can add liquidity to the pool in exchange for liquidity pool tokens (\hyperlink{LP tokens}{LP tokens}) unique to that liquidity pool. LP token owners receive a portion of trading fees. Price slippage is proportional to the ratio between the sizes of a trade and the liquidity pool. AMMs with larger liquidity pools serve as more robust price sources.
+\newpage
 
-In general, Beanstalk can issue a Bean with a value peg (\hyperlink{ht216}{$V$}) for \Bean1 equal to any non-network-native asset (\term{e.g.}, \$1) with at least one existing ERC-20 Standard convertible stablecoin (\hyperlink{ht223}{$x$}) (\term{e.g.}, USDC) that (1) offers low-friction convertibility to \hyperlink{ht216}{$V$}, and (2) trades on an AMM against a liquid, decentralized network-native asset with endogenous value (\hyperlink{ht227}{$y$}) (\term{e.g.}, ETH\fref{weth.io}). To determine the value of \Bean1 compared to \hyperlink{ht216}{$V$}, Beanstalk can compare (1) an existing liquidity pool (\hyperlink{ht224}{$x$:$y$}) (\term{e.g.}, USDC:ETH) that consists of \hyperlink{ht223}{$x$} and \hyperlink{ht227}{$y$}, and (2) a new liquidity pool (\hyperlink{ht6}{\Bean:$y$}) that consists of Beans and \hyperlink{ht227}{$y$}. The combination of arbitrage opportunities between AMMs and other exchanges, and between \hyperlink{ht223}{$x$} and \hyperlink{ht216}{$V$}, ensures the \hyperlink{ht224}{$x$:$y$} AMM price closely mirrors the exchange rate between \hyperlink{ht216}{$V$} and \hyperlink{ht227}{$y$}. Beanstalk would consider the price of \Bean1 equal to its value peg when the ratios of \hyperlink{ht224}{$x$:$y$} and \hyperlink{ht6}{\Bean:$y$} are equal.
+Ethereum-native permissionless AMM protocols allow anyone to create new AMMs between at least two ERC-20 Standard tokens. AMMs always offer a price on any size trade, at any time, for a trading fee. AMMs allow continuous trading in either direction by maintaining a liquidity pool of the tokens. The current price is a function of the ratio of the assets in the pool and the AMM pricing formula. Anyone can add liquidity to the pool in exchange for liquidity pool tokens (\hyperlink{LP tokens}{LP tokens}) unique to that liquidity pool. LP token owners often receive a portion of trading fees. Price slippage is proportional to the ratio between the sizes of a trade and the liquidity pool. AMMs with larger liquidity pools serve as more robust price sources.
 
-Decentralized systems are never administered by or dependent on a single individual or centralized organization. Beanstalk can leverage an arbitrary \hyperlink{ht223}{$x$} while minimizing exposure to malicious actions from its operators (\term{e.g.}, censorship) by deriving the price from the ratio between \hyperlink{ht224}{$x$:$y$} and \hyperlink{ht6}{\Bean:$y$}.
+In general, Beanstalk can issue a Bean with a value peg (\hyperlink{ht216}{$V$}) for \Bean1 equal to any non-network-native asset (\term{e.g.}, \$1) with at least one existing ERC-20 Standard convertible stablecoin (\hyperlink{ht223}{$x$}) (\term{e.g.}, USDC) that (1) offers low-friction convertibility to \hyperlink{ht216}{$V$}, and (2) trades on an AMM against a liquid, decentralized network-native asset with endogenous value (\hyperlink{ht227}{$y$}) (\term{e.g.}, ETH\fref{coinmarketcap.com/academy/article/what-is-wrapped-ethereum-weth}). 
 
-In practice, Beanstalk never calculates the price of \Bean1. Instead, at the beginning of each \term{Season}, Beanstalk calculates a sum of liquidity and time weighted average shortages or excess of Beans across \hyperlink{ht6}{\Bean:$y$} liquidity pools on the \term{Oracle} \term{Whitelist} over the previous \term{Season} (\hyperlink{ht50}{$\Delta B_{\overline{t-1}}$}), such that $\hyperlink{ht50}{\Delta B_{\overline{t-1}}} \in \{j \times 10^{-6} \mid j \in \mathbb{N} \}$. Liquidity pools can be added to and removed from the \term{Oracle} \term{Whitelist} via Beanstalk governance. 
+To determine the value of \Bean1 compared to \hyperlink{ht216}{$V$}, Beanstalk can compare (1) an existing liquidity pool (\hyperlink{ht224}{$x$:$y$}) (\term{e.g.}, USDC:ETH) that consists of \hyperlink{ht223}{$x$} and \hyperlink{ht227}{$y$}, and (2) a new liquidity pool (\hyperlink{ht6}{\Bean:$y$}) that consists of Beans and \hyperlink{ht227}{$y$}. The combination of arbitrage opportunities between AMMs and other exchanges, and between \hyperlink{ht223}{$x$} and \hyperlink{ht216}{$V$}, ensures the \hyperlink{ht224}{$x$:$y$} AMM price closely mirrors the exchange rate between \hyperlink{ht216}{$V$} and \hyperlink{ht227}{$y$}. Beanstalk would consider the price of \Bean1 equal to its value peg when the ratios of \hyperlink{ht224}{$x$:$y$} and \hyperlink{ht6}{\Bean:$y$} are equal. 
+
+Decentralized systems are never administered by or dependent on a single individual or centralized organization. Beanstalk can leverage an arbitrary \hyperlink{ht223}{$x$} while minimizing exposure to malicious actions from its operators (\term{e.g.}, censorship) by deriving the price from the ratio between \hyperlink{ht224}{$x$:$y$} and \hyperlink{ht6}{\Bean:$y$}. In instances where there is insufficient inter-block MEV manipulation resistant liquidity for \hyperlink{ht224}{$x$:$y$} on DEX protocols, Beanstalk uses a Chainlink\fref{chain.link} data feed and compares it with the \hyperlink{ht224}{$x$:$y$} AMM prices to facilitate inter-block MEV manipulation resistance.
+
+In practice, Beanstalk never calculates the price of \Bean1. Instead, at the beginning of each \term{Season}, Beanstalk calculates a sum of liquidity and time weighted average shortages and excesses of Beans across \hyperlink{ht6}{\Bean:$y$} liquidity pools on the \term{Oracle} \term{Whitelist} over the previous \term{Season} (\hyperlink{ht50}{$\Delta B_{\overline{t-1}}$}), such that $\hyperlink{ht50}{\Delta B_{\overline{t-1}}} \in \{j \times 10^{-6} \mid j \in \mathbb{N} \}$. Liquidity pools can be added to and removed from the \term{Oracle} \term{Whitelist} via Beanstalk governance.
 
 \hyperlink{ht50}{$\Delta B_{\overline{t-1}}$} can be used to infer the liquidity and time weighted average price of \Bean1 compared to \hyperlink{ht216}{$V$} over the previous \term{Season} (\hyperlink{ht139}{$P_{\overline{t-1}}$}), such that $\hyperlink{ht139}{P_{\overline{t-1}}} \in \{j \times 10^{-6} \mid j \in \mathbb{Z}^{+} \}$. If there was a liquidity and time weighted average shortage of Beans across liquidity pools on the \term{Oracle} \term{Whitelist} over the previous \term{Season} (\term{i.e.}, $0 < \hyperlink{ht50}{\Delta B_{\overline{t-1}}}$), $\hyperlink{ht216}{V} < \hyperlink{ht139}{P_{\overline{t-1}}}$. If there was a liquidity and time weighted average excess of Beans across liquidity pools on the \term{Oracle} \term{Whitelist} over the previous \term{Season} (\term{i.e.}, $\hyperlink{ht50}{\Delta B_{\overline{t-1}}} < 0$), $\hyperlink{ht139}{P_{\overline{t-1}}} < \hyperlink{ht216}{V}$. If there was neither a liquidity and time weighted shortage nor excess of Beans across liquidity pools on the \term{Oracle} \term{Whitelist} over the previous \term{Season} (\term{i.e.}, $\hyperlink{ht50}{\Delta B_{\overline{t-1}}} = 0$), $\hyperlink{ht139}{P_{\overline{t-1}}} = \hyperlink{ht216}{V}$. 
 
@@ -689,7 +690,8 @@ The position of Beanstalk with respect to ideal equilibrium changes at the begin
 
 The direction of change in position of Beanstalk at the beginning of \hyperlink{ht204}{$t$} is considered either toward or away from ideal equilibrium, based on the \term{Pod Rate} at the end of the previous \term{Season} (\hyperlink{ht157}{$R^D_{t-1}$}), such that $\hyperlink{ht157}{R^D_{t-1}} \in \{j \times 10^{-6} \mid j \in \mathbb{Z}^{+} \}$, \hyperlink{ht157}{$R^D_{t-1}$} and \hyperlink{ht139}{$P_{\overline{t-1}}$}. When $\hyperlink{ht216}{V} < \hyperlink{ht139}{P_{\overline{t-1}}}$, debt is paid back; when $\hyperlink{ht139}{P_{\overline{t-1}}} < \hyperlink{ht216}{V}$, debt can only increase or remain constant.
 
-% \newpage
+\newpage
+
 Therefore, when $R^{D^*} < \hyperlink{ht157}{R^D_{t-1}}$ (\term{i.e.}, there was more debt than optimal):
 \begin{itemize}[topsep=0pt, itemsep=1pt]
     \item If $\hyperlink{ht216}{V} < P_{\overline{t-1}}$, Beanstalk moves toward ideal equilibrium; and
@@ -710,9 +712,8 @@ When $\hyperlink{ht157}{R^D_{t-1}} \leq R^{D^*}$ (\term{i.e.}, there was less de
     \label{fig 6}
 \end{figure}
 
-%\vspace*{-3.5mm} % addedSpace
 \subsection{Acceleration}
-%\vspace*{-3.5mm} % addedSpace
+
 The current state of Beanstalk with respect to ideal equilibrium also is determined by the rate of change of position of Beanstalk at the beginning of each \term{Season} (\term{i.e.}, its acceleration).
 
 The acceleration of Beanstalk is considered decelerating, steady or accelerating, based on $P_{\overline{t-1}}$ and changing demand for \term{Soil}. Demand for \term{Soil} is considered decreasing, steady or increasing. 
@@ -767,9 +768,6 @@ Beanstalk requires two $\frac{\partial u_t}{\partial t}$ levels to be set: (1) $
     \label{Fig 8}
 \end{figure}
 
-% \vspace*{3.5mm}
-%\vspace*{-2mm} % addedSpace
-\newpage
 However, when Beans are \term{Sown} in all \term{Soil} in a \term{Season} (defined as $\hyperlink{ht171}{S_t^{\text{end}}} \leq 1$), $\frac{\partial u_t}{\partial t}$ can inaccurately measure changing demand for \term{Soil}. The first time Beans are \term{Sown} in all but at most one \term{Soil} in a \term{Season}, after one or more \term{Seasons} where Beans were not \term{Sown} in all but at most one \term{Soil}, demand for \term{Soil} is considered increasing. When Beans are \term{Sown} in all but at most one \term{Soil} in consecutive \term{Seasons} (\term{i.e.}, $t-1$ and $t-2$), the difference in time it took for the Beans to be \term{Sown} in all but at most one \term{Soil} over the previous two \term{Seasons} (\hyperlink{ht56}{$\Delta E_{t}^{u}$}), such that $\hyperlink{ht56}{\Delta E_{t}^{u}} \in \mathbb{Z}$, can provide a more accurate measurement. 
 
 In order to measure \hyperlink{ht56}{$\Delta E_{t}^{u}$}, Beanstalk logs the time of the first \term{Sow} such that Beans are \term{Sown} in all but at most one \term{Soil} in each \term{Season} (\hyperlink{ht57}{$\Delta E_{t}^{u^{\text{first}}}$}), such that $\hyperlink{ht57}{\Delta E_{t}^{u^{\text{first}}}} \in \mathbb{N}$, as the difference between the Ethereum timestamp of the first \term{Sow} in \hyperlink{ht204}{$t$} such that there is at most one \term{Soil} (\hyperlink{ht76}{$E_{t}^{u^{\text{first}}}$}) and \hyperlink{ht74}{$E_\Xi$}. 
@@ -779,7 +777,11 @@ $$\hyperlink{ht57}{\Delta E_{t}^{u^{\text{first}}}} = \hyperlink{ht76}{E_{t}^{u^
 If Beans were \term{Sown} in all but at most one \term{Soil} in the first 10 minutes of the previous \term{Season} (\term{i.e.}, $\Delta E_{t-1}^{u^{\text{first}}} < 600$), demand for \term{Soil} is considered increasing. If Beans were \term{Sown} in all but at most one \term{Soil} in both $t-1$ and $t-2$, but $600 \leq \Delta E_{t-1}^{u^{\text{first}}}$, at the beginning of \hyperlink{ht204}{$t$} Beanstalk compares $\Delta E_{t-1}^{u^{\text{first}}}$ with $\Delta E_{t-2}^{u^{\text{first}}}$ to calculate \hyperlink{ht56}{$\Delta E_{t}^{u}$}.
 
 We define \hyperlink{ht56}{$\Delta E_{t}^{u}$} for a given $\Delta E_{t-1}^{u^{\text{first}}}$ and $\Delta E_{t-2}^{u^{\text{first}}}$ as:
+
 $$\hyperlink{ht56}{\Delta E_{t}^{u}} = \Delta E_{t-2}^{u^{\text{first}}} - \Delta E_{t-1}^{u^{\text{first}}}$$
+
+\newpage
+
 If the above condition is met, changing demand for \term{Soil} is measured by \hyperlink{ht56}{$\Delta E_{t}^{u}$}. Beanstalk requires two \hyperlink{ht56}{$\Delta E_{t}^{u}$} levels to be set: (1) $\Delta E_{t}^{u^{\text{lower}}}$, below which demand for \term{Soil} is considered decreasing, and (2) $\Delta E_{t}^{u^{\text{upper}}}$, above which demand for \term{Soil} is considered increasing, such that $\Delta E_{t}^{u^{\text{lower}}},\ \Delta E_{t}^{u^{\text{upper}}} \in \mathbb{Z}$. When $\Delta E_{t}^{u^{\text{lower}}} \leq \hyperlink{ht56}{\Delta E_{t}^{u}} < \Delta E_{t}^{u^{\text{upper}}}$, demand for \term{Soil} is considered steady.
 
 Thus, Beanstalk measures changing demand for \term{Soil}.
@@ -826,16 +828,12 @@ We define the current state of Beanstalk with respect to ideal equilibrium as th
     \label{fig 10}
 \end{figure}
 
-% \vspace*{-3.5mm}
-\newpage
 \subsection{Optimal State}
-% \vspace*{-2mm}
+
 An optimal state of Beanstalk is an optimal current state determined by its current debt level.
 
 We define an optimal state of Beanstalk as accelerating toward ideal equilibrium, or either steady or decelerating toward ideal equilibrium. When $R^D$ is excessively high or low, the optimal state is accelerating toward ideal equilibrium. When $R^D$ is reasonably high or low, the optimal state is either steady or decelerating toward ideal equilibrium.
 
-%\vspace*{-3.5mm}
-% \vspace*{2.5mm}
 \begin{figure}[h!]
     \centering
     \advance\leftskip-1cm
@@ -847,6 +845,7 @@ We define an optimal state of Beanstalk as accelerating toward ideal equilibrium
 \end{figure}
 
 \subsection{Bean Supply}
+
 At the beginning of each \term{Season}, if $\hyperlink{ht216}{V} < P_{\overline{t-1}}$, Beanstalk increases the Bean supply based on \hyperlink{ht50}{$\Delta B_{\overline{t-1}}$} in addition to the award for successfully calling the \code{gm} function. Up to two thirds of the additional Bean supply increase is used to pay off debt; the remainder is distributed to \term{Stalkholders}.
 
 At the beginning of each \term{Season}, Beanstalk mints $m_t$ Beans, such that $m_t \in \{j \times 10^{-6} \mid j \in \mathbb{Z}^{+} \}$.
@@ -857,7 +856,6 @@ The distribution of the additional mint is dependent on \hyperlink{ht50}{$\Delta
 Therefore, the number of \term{Unfertilized} \term{Sprouts} that are \term{Fertilized} by \term{Active} \term{Fertilizer} and become \term{Rinsable} at the beginning of each \term{Season} (\hyperlink{ht55}{$\Delta \mathfrak{D}_t$}), such that $\hyperlink{ht55}{\Delta \mathfrak{D}_t} \in \{j \times 10^{-6} \mid j \in \mathbb{N} \}$, for a given \hyperlink{ht50}{$\Delta B_{\overline{t-1}}$} and \hyperlink{ht41}{$\mathfrak{D}$} is:
 $$\hyperlink{ht55}{\Delta \mathfrak{D}_t} = \text{min}\left(\text{max}\left(0,\ \frac{\hyperlink{ht50}{\Delta B_{\overline{t-1}}}}{3}\right),\ \hyperlink{ht41}{\mathfrak{D}}\right)$$
 
-\newpage
 The distribution of the remaining Beans (\term{i.e. $\hyperlink{ht50}{\Delta B_{\overline{t-1}}} - \hyperlink{ht55}{\Delta \mathfrak{D}_t}$}) is dependent on \hyperlink{ht38}{$D$}. If $0 < \hyperlink{ht50}{\Delta B_{\overline{t-1}}} - \hyperlink{ht55}{\Delta \mathfrak{D}_t} < \hyperlink{ht38}{D}$ (\term{i.e.}, there are at most $\hyperlink{ht50}{\Delta B_{\overline{t-1}}} - \hyperlink{ht55}{\Delta \mathfrak{D}_t}$ \term{Unharvestable} \term{Pods}), $\frac{\hyperlink{ht50}{\Delta B_{\overline{t-1}}} - \hyperlink{ht55}{\Delta \mathfrak{D}_t}}{2}$ \term{Pods} \term{Ripen} and become \term{Harvestable} and $\frac{\hyperlink{ht50}{\Delta B_{\overline{t-1}}} - \hyperlink{ht55}{\Delta \mathfrak{D}_t}}{2}$ newly minted Beans are distributed to \term{Stalkholders}. If $0 < \hyperlink{ht38}{D} < \frac{\hyperlink{ht50}{\Delta B_{\overline{t-1}}} - \hyperlink{ht55}{\Delta \mathfrak{D}_t}}{2}$ (\term{i.e.}, there are less \term{Unharvestable} \term{Pods} than $\hyperlink{ht50}{\Delta B_{\overline{t-1}}} - \hyperlink{ht55}{\Delta \mathfrak{D}_t}$), \hyperlink{ht38}{$D$} \term{Pods} \term{Ripen} and become \term{Harvestable} and $\hyperlink{ht50}{\Delta B_{\overline{t-1}}} - (\hyperlink{ht55}{\Delta \mathfrak{D}_t} + \hyperlink{ht38}{D})$ newly minted Beans are distributed to \term{Stalkholders}.
 
 Therefore, the number of \term{Pods} that \term{Ripen} and become \term{Harvestable} at the beginning of each \term{Season} (\hyperlink{ht53}{$\Delta D_t$}), such that $\hyperlink{ht53}{\Delta D_t} \in \{j \times 10^{-6} \mid j \in \mathbb{N} \}$, is:
@@ -865,10 +863,11 @@ Therefore, the number of \term{Pods} that \term{Ripen} and become \term{Harvesta
 $$\hyperlink{ht53}{\Delta D_t} = \text{min}\left(\text{max}\left(0,\ \frac{\hyperlink{ht50}{\Delta B_{\overline{t-1}}} - \hyperlink{ht55}{\Delta \mathfrak{D}_t}}{2}\right),\ \hyperlink{ht38}{D}\right)$$
 
 \subsection{Soil Supply}
-\vspace*{1mm}
+
 Beanstalk is willing to issue debt every \term{Season}. When $\hyperlink{ht216}{V} \leq \hyperlink{ht139}{P_{\overline{t-1}}}$, the \term{Soil} supply is based on (1) the number of \term{Pods} that \term{Ripen} and become \term{Harvestable} at the beginning of the \term{Season}, (2) the \term{Temperature} in block $q$ of $t$ ($h_{t_q}$), such that $h_{t_q} \in \mathbb{Z}^{+}$, and (3) \hyperlink{ht157}{$R^D_{t-1}$}. When $\hyperlink{ht139}{P_{\overline{t-1}}} < \hyperlink{ht216}{V}$, the \term{Soil} supply is also based on \hyperlink{ht50}{$\Delta B_{\overline{t-1}}$}.
 
 We define the $S_{t_q}^{\text{min}}$ Beanstalk has outstanding for a given \hyperlink{ht53}{$\Delta D_t$}, {$h_{t_q}$} and \hyperlink{ht157}{$R^D_{t-1}$} as:
+
 \vspace*{2mm}
 
 $$S_{t_q}^{\text{min}} = \begin{cases} \dfrac{0.5 \times \hyperlink{ht53}{\Delta D_t}}{1 + \frac{h_{t_q}}{100}} & \text{if} \; R^{D^{\text{upper}}} \leq \hyperlink{ht157}{R^D_{t-1}} \vspace{.3cm} \\ 
@@ -879,11 +878,8 @@ $$S_{t_q}^{\text{min}} = \begin{cases} \dfrac{0.5 \times \hyperlink{ht53}{\Delta
 
 Beanstalk calculates the \term{Maximum Soil} ($S_{t_q}^{\text{max}}$), such that $S_{t_q}^{\text{max}} \in \{j \times 10^{-6} \mid j \in \mathbb{N} \}$, in block $q$ of $t$ for a given \hyperlink{ht50}{$\Delta B_{\overline{t-1}}$} and $S_{t_q}^{\text{min}}$ as:
 
-%\vspace*{2mm}
-
 $$S_{t_q}^{\text{max}} = \text{max}(-\hyperlink{ht50}{\Delta B_{\overline{t-1}}},\ S_{t_q}^{\text{min}})$$
 
-\vspace*{0mm}
 \subsection{Temperature}
 %\vspace*{1mm}
 Beanstalk regularly crosses the price of \Bean1 over its value peg during long run decreases and increases in demand for Beans primarily by adjusting the \term{Maximum Temperature} in an attempt to maintain an optimal state, or to move from its current state into an optimal state. The \term{Temperature} increases each block of the \term{Morning} of each \term{Season} according to a Dutch auction. 
@@ -891,7 +887,6 @@ Beanstalk regularly crosses the price of \Bean1 over its value peg during long r
 \subsubsection{Maximum Temperature}
 The \term{Maximum Temperature} change at the beginning of $t$ is determined by $R^D_{t-1}$ and the current state of Beanstalk with respect to ideal equilibrium. When $R^D_{t-1}$ is excessively high or low, Beanstalk changes the \term{Maximum Temperature} more aggressively.
 
-\newpage
 When $R^{D^{\text{upper}}} \leq \hyperlink{ht157}{R^D_{t-1}}$ (\term{i.e.}, the debt level was excessively high):
 \begin{itemize}[midsep]
     \item If the current state is accelerating or steady away from ideal equilibrium, the \term{Maximum Temperature} is raised 3\%;
@@ -900,6 +895,8 @@ When $R^{D^{\text{upper}}} \leq \hyperlink{ht157}{R^D_{t-1}}$ (\term{i.e.}, the 
     \item If the current state is steady toward ideal equilibrium, the \term{Maximum Temperature} is lowered 1\%; and
     \item If the current state is accelerating toward ideal equilibrium, the \term{Maximum Temperature} is lowered 3\%.
 \end{itemize}
+
+\newpage
 
 When $R^{D^*} \leq \hyperlink{ht157}{R^D_{t-1}} < R^{D^{\text{upper}}}$ (\term{i.e.}, the debt level was reasonably high):
 \begin{itemize}[midsep]
@@ -937,7 +934,6 @@ When $\hyperlink{ht157}{R^D_{t-1}} < R^{D^{\text{lower}}}$ (\term{i.e.}, the deb
     \label{fig 12}
 \end{figure}
 
-%\vspace*{5mm}
 \begin{figure}[h!]
     \centering
     \advance\leftskip-1cm
@@ -961,65 +957,85 @@ $$
 Thus, Beanstalk changes the \term{Temperature} to regularly cross the price of \Bean1 over its value peg during long run decreases and increases in demand for Beans.
 
 \subsection{Flood}
-Beanstalk sells newly minted Beans on the open market during long run increases in demand for Beans when increasing the Bean supply and lowering the \term{Temperature} has not crossed the average nor current prices of \Bean1 over its value peg at the end of a \term{Season}.
 
-If $\hyperlink{ht216}{V} < \hyperlink{ht139}{P_{\overline{t-1}}}$, it is \term{Raining}. If it is \term{Raining} and $\hyperlink{ht157}{R^D_{t-1}} < R^{D^{\text{lower}}}$, it \term{Floods} at the beginning of the next \term{Season}. At the beginning of each \term{Season} during a \term{Flood}, Beanstalk returns the price of \Bean1 in each liquidity pool on the \term{Oracle} \term{Whitelist} to its value peg by minting additional Beans and selling them directly in the pools. Proceeds from the sale are distributed to \term{Stalkholders} at the beginning of \hyperlink{ht204}{$t$} in proportion to their \term{Stalk} holdings when it began to \term{Flood}. At the beginning of the first \term{Season} after the \term{Flood} began, all \term{Pods} that grew from Beans \term{Sown} before the \term{Flood} \term{Ripen} and become \term{Harvestable}.
+Beanstalk sells newly minted Beans on the open market during long run increases in demand for Beans when increasing the Bean supply and lowering the \term{Maximum Temperature} has not crossed the average nor current prices of \Bean1 over its value peg at the end of a \term{Season}.
 
-The number of Beans that are minted and sold to return the price of \Bean1 to its value peg (\hyperlink{ht49}{$\Delta B_{t-1}$}), such that $\hyperlink{ht49}{\Delta B_{t-1}} \in \{j \times 10^{-6} \mid j \in \mathbb{N} \}$, is calculated from the sum of differences between the optimal number of Beans and the number of Beans in each \hyperlink{ht6}{\Bean:$y$} liquidity pool on the \term{Oracle} \term{Whitelist} at the end of the previous \term{Season}.
+If $\hyperlink{ht216}{V} < \hyperlink{ht139}{P_{\overline{t-1}}}$, it is \term{Raining}. If it is \term{Raining} and $\hyperlink{ht157}{R^D_{t-1}} < R^{D^{\text{lower}}}$, it \term{Floods} at the beginning of the next \term{Season}. At the beginning of each \term{Season} during a \term{Flood}, Beanstalk returns the price of \Bean1 in each liquidity pool on the \term{Flood} \term{Whitelist} to its value peg by minting additional Beans and selling them directly in the pools. Liquidity pools can be added to and removed from the \term{Flood Whitelist} via Beanstalk governance. Proceeds from the sale are distributed to \term{Stalkholders} at the beginning of \hyperlink{ht204}{$t$} in proportion to their \term{Stalk} holdings when it began to \term{Flood}. At the beginning of the first \term{Season} after the \term{Flood} began, all \term{Pods} that grew from Beans \term{Sown} before the \term{Flood} \term{Ripen} and become \term{Harvestable}.
+
+\newpage
+
+The number of Beans that are minted and sold to return the price of \Bean1 to its value peg (\hyperlink{ht49}{$\Delta B_{t-1}$}), such that $\hyperlink{ht49}{\Delta B_{t-1}} \in \{j \times 10^{-6} \mid j \in \mathbb{N} \}$, is calculated from the sum of differences between the optimal number of Beans and the number of Beans in each \hyperlink{ht6}{\Bean:$y$} liquidity pool on the \term{Flood} \term{Whitelist} at the end of the previous \term{Season}.
 
 In a \term{Flood}, $m_t$ for a given number of \term{Unharvestable} \term{Pods} that grew prior to the \term{Flood} (\hyperlink{ht39}{$D_{\gamma}$}), such that $\hyperlink{ht39}{D_{\gamma}} \in \{j \times 10^{-6} \mid j \in \mathbb{N} \}$, \hyperlink{ht11}{$a_t$}, $\hyperlink{ht50}{\Delta B_{\overline{t-1}}}$, and \hyperlink{ht49}{$\Delta B_{t-1}$} is:
 $$m_t = \hyperlink{ht39}{D_{\gamma}} + \hyperlink{ht11}{a_t} + \hyperlink{ht50}{\Delta B_{\overline{t-1}}} + \hyperlink{ht49}{\Delta B_{t-1}}$$
 Thus, Beanstalk regularly crosses the price of \Bean1 over its value peg during both long run increases and decreases in demand for Beans.
 
+\vspace*{-1.3mm}
 \section{Market}
+\vspace*{-1.3mm}
+
 Current DEXs are unable to attract liquidity without offering protocol-native emissions derived primarily from AMM trading fees. Beanstalk's ability to attract liquidity without fee-based emissions allows it to create a DEX without trading fees. The \term{Market} is the Beanstalk-native DEX. Specifications of the \term{Market} are outside the scope of this whitepaper. For information on the \term{Market}, refer to the \hyperlink{section.14}{Appendix}.
 
+\vspace*{-1.3mm}
 \section{Depot}
+\vspace*{-1.3mm}
+
 Current complex interactions with Ethereum-native protocols are tedious, cumbersome and expensive. The \term{Depot} facilitates complex, gas-efficient interactions with other Ethereum-native protocols in a single transaction. Any protocol with a \term{Pipeline} to the \term{Depot} can be used via Beanstalk in a single transaction. \term{Pipelines} to the \term{Depot} can be added via Beanstalk governance. The specifications of specific \term{Pipelines} are outside the scope of this whitepaper. For information on the \term{Depot}, refer to the \hyperlink{section.14}{Appendix}.
 
+\vspace*{-1.3mm}
 \section{Economics}
+\vspace*{-1.3mm}
+
 Beanstalk is designed from economic first principles to increase trustlessness, stability and liquidity over time.
 
-\vspace*{-1.75mm}
+\vspace*{-1.3mm}
 \subsection{Ownership Concentration}
-\vspace*{-1.75mm}
+\vspace*{-1.3mm}
+
 A design that lowers the Gini coefficient\fref{wikipedia.org/wiki/Gini\_coefficient} of Beans and \term{Stalk} over time is essential to censorship resistance.
 
 Older \term{Deposits} have their \term{Stalk} from \term{Seeds} diluted relative to newer \term{Deposits} every \term{Season}. Therefore, newly minted Beans are more widely distributed over time.
 
 Beanstalk does not require a pre-mine. The first 100 Beans are created when the \code{init} function is called to deploy Beanstalk.
 
-\vspace*{-1.75mm}
+\vspace*{-1.3mm}
 \subsection{Strong Credit}
-\vspace*{-1.75mm}
+\vspace*{-1.3mm}
+
 Beanstalk is credit based and only fails if it can no longer attract creditors. A reasonable level of debt, strong credit history and competitive interest rate attract creditors. 
 
 Beanstalk changes the \term{Temperature} to return \hyperlink{ht156}{$R^D$} to $R^{D^*}$ while regularly crossing the price of \Bean1 over its value peg. Beanstalk acts more aggressively when \hyperlink{ht156}{$R^D$} is excessively high or low.
 
 Beanstalk never defaults on debt and is willing to issue \term{Pods} every \term{Season}. 
 
-\vspace*{-1.75mm}
+\vspace*{-1.3mm}
 \subsection{Marginal Rate of Substitution}
-\vspace*{-1.75mm}
+\vspace*{-1.3mm}
+
 There are a wide variety of opportunities Beanstalk has to compete with for creditors. Therefore, Beanstalk does not define an optimal \term{Temperature}, but instead adjusts it to move closer to ideal equilibrium. 
 
-\vspace*{-1.75mm}
+\vspace*{-1.3mm}
 \subsection{Low Friction}
-\vspace*{-1.75mm}
+\vspace*{-1.3mm}
+
 Minimizing the cost of using Beans and barriers to the \term{Farm} maximize utility for users and appeal to creditors. The \term{Depot} realizes the full benefits of composability on Ethereum.
 
 The FIFO \term{Pod} \term{Harvest} schedule allows smaller \term{Sowers} to participate in peg maintenance and decreases the benefit of large scale price manipulation. The combination of non-expiry, the FIFO \term{Harvest} schedule, transferability and a liquid secondary market (see \hyperlink{subsection.14.5}{Appendix}) enables \term{Sowers} to \term{Sow} Beans as efficiently as possible. By maximizing the efficiency of the \term{Soil} market, Beanstalk minimizes its cost to attract creditors, the durations and magnitudes of price deviations below its value peg, and excess \term{Pod} issuance.
 
-\vspace*{-1.75mm}
+\vspace*{-1.3mm}
 \subsection{Equilibrium}
-\vspace*{-1.75mm}
+\vspace*{-1.3mm}
+
 Equilibrium is a state of equivalent marginal quantity supplied and demanded. Beanstalk affects the supply of and demand for Beans to regularly cross the equilibrium price of \Bean1 over its value peg. 
 
 While Beanstalk can arbitrarily increase the Bean supply when the equilibrium price of \Bean1 is above its value peg, Beanstalk cannot arbitrarily decrease the Bean supply when the equilibrium price of \Bean1 is below it. Beanstalk relies on the codependence between the equilibria of Beans and \term{Soil} to work around this limitation. 
 
 In order to \term{Sow} Beans, they must be acquired (\term{i.e.}, marginal demand for \term{Soil} affects marginal demand for Beans). The marginal demand for \term{Soil} and Beans are functions of the \term{Temperature} and the Bean price. By changing the \term{Temperature}, Beanstalk affects decreases in the Bean supply and changes in demand for Beans. 
 
+\vspace*{-1.3mm}
 \subsection{Incentives}
+\vspace*{-1.3mm}
+
 Beanstalk-native financial incentives consistently increase trustlessness, stability and liquidity over time by coordinating independently financially motivated actors (\term{i.e}, \term{Stalkholders} and \term{Sowers}). 
 
 The \term{Stalk System} incentivizes (1) leaving assets \term{Deposited} in the \term{Silo} continuously by creating opportunity cost to \term{Withdraw} assets from the \term{Silo}, (2) adding value to liquidity pools with Beans by rewarding more \term{Seeds} to \term{Deposited} LP tokens than \term{Deposited} \Bean, and (3) returning the price of \Bean1 to its value peg by allowing \term{Conversions} within the \term{Silo} without forfeiting \term{Stalk}.
@@ -1033,16 +1049,46 @@ When $\hyperlink{ht216}{V} < P_{\overline{t}}$, there is an incentive to buy Bea
 Thus, Beanstalk consistently increases trustlessness, stability and liquidity over time.
 
 \section{Risk}
+
 There are numerous risks associated with Beanstalk.\fref{bean.money/disclosures} This is not an exhaustive list.
 
-The Beanstalk code base and peg maintenance mechanism are novel. Neither had been tested in the “real world” prior to the initial Beanstalk deployment. Portions of the Beanstalk code base are unaudited.\footnote{\href{https://github.com/BeanstalkFarms/Beanstalk-Audits}{github.com/BeanstalkFarms/Beanstalk-Audits}} The open source nature of Beanstalk means that others can take advantage of any bugs, flaws or deficiencies in Beanstalk and launch identical or very similar stablecoin implementations.
+The Beanstalk code base and peg maintenance mechanism are novel. Neither had been tested in the “real world” prior to the initial Beanstalk deployment. Portions of the Beanstalk code base are unaudited.\footnote{\href{https://github.com/BeanstalkFarms/Beanstalk-Audits}{github.com/BeanstalkFarms/Beanstalk-Audits}} The open source nature of Beanstalk means that others can take advantage of any bugs, flaws or deficiencies in Beanstalk and launch identical or very similar stablecoin implementations. Beanstalk was exploited on April 17th, 2022 and all value in the protocol was stolen or destroyed.
 
-A decentralized implementation of Beanstalk has three external dependencies: (1) a trustless computer network that supports composability and fungible token standards, (2) a DEX protocol that runs on (1), and (3) a non-network-native exogenous value convertible stablecoin protocol native to (1) that offers convertibility to the non-network-native exogenous value and trades on (2). 
+A decentralized implementation of Beanstalk has four external dependencies:
 
-To date, the Ethereum blockchain is the most developed decentralized smart contract platform and has an active community. The ERC-20 Standard is the most widely used fungible token standard. The ERC-1155 Standard is the most widely used semi-fungible token standard. Curve is one of the largest Ethereum-native DEX protocols by volume.\fref{defiprime.com/dex-volume} USDC and USDT are the largest non-network-native exogenous value USD stablecoin protocols, and DAI is the largest network-native exogenous value USD stablecoin protocol (by market capitalization). In general, open source protocols with large amounts of value on them (\term{e.g.}, Ethereum, Curve, USDC, USDT and DAI) are high value targets for exploits. Long track records indicate security. We assume the security of the Ethereum blockchain, ERC-20 Standard, ERC-1155 Standard, Curve, USDC, USDT and DAI.
+\begin{enumerate}[label=(\arabic*)]
+  \item A trustless computer network that supports composability and both fungible and semi-fungible token standards (\term{e.g.}, Ethereum and the ERC-20 and ERC-1155 Standards, respectively);
+
+  \item A DEX protocol with an inter-block MEV manipulation resistant oracle that runs on (1) (\term{e.g.}, Basin\fref{basin.exchange} and Multi Flow, respectively); 
+
+  \item A liquid, decentralized network-native asset with endogenous value (\term{e.g.}, ETH); and
+
+  \item A non-network-native exogenous value convertible stablecoin protocol native to (1) that offers convertibility to its non-network-native exogenous value collateral (\term{e.g.}, USDC, USDT) that trades on (2) against (3) with sufficient liquidity.
+\end{enumerate}
+
+The current implementation of Beanstalk has four additional external dependencies: 
+
+\begin{enumerate}[label=(\arabic*), start=5]
+  \item A non-network-native data feed that facilitates reading an inter-block MEV manipulation resistant price of (3) in $V$ (\term{i.e.}, the ETH/USD Chainlink data feed\fref{data.chain.link/ethereum/mainnet/crypto-usd/eth-usd});
+
+  \item A DEX protocol without an inter-block MEV manipulation resistant oracle but with sufficient liquidity for (3) against (4) (\term{i.e.}, the ETH:USDC\fref{info.uniswap.org/\#/pools/0x88e6a0c2ddd26feeb64f039a2c41296fcb3f5640} and ETH:USDT\fref{info.uniswap.org/\#/pools/0x11b815efb8f581194ae79006d24e0d814b7697f6} 0.05\% fee Uniswap V3 pools);
+
+  \item Curve and 3CRV (and therefore, USDC, USDT and DAI), due to the inclusion of the BEAN:3CRV Curve pool on the \term{Deposit Whitelist}; and
+
+  \item Pipeline\fref{evmpipeline.org}, in order to facilitate complex, gas-efficient interactions with other Ethereum-native protocols in a single transaction.
+\end{enumerate}
+
+To date, the Ethereum blockchain is the most developed decentralized smart contract platform and has an active community. The ERC-20 and ERC-1155 Standards are the most widely used fungible and semi-fungible token standards, respectively. ETH is the most decentralized, censorship resistant and liquid asset on the Ethereum network. USDC and USDT are the largest non-network-native exogenous value convertible USD stablecoin protocols by market capitalization.\fref{defillama.com/stablecoins} Chainlink is the most widely used oracle network on Ethereum. Uniswap V3 and Curve are two of the largest Ethereum-native DEX protocols by depth.\fref{defillama.com/protocols/dexes} 3CRV is the LP token of one of the largest liquidity pools on Curve by depth.\fref{curve.fi/\#/ethereum/pools} DAI is the largest network-native exogenous value convertible USD stablecoin protocol by market capitalization (although is now only partially collateralized by network-native value). In general, open source protocols with large amounts of value on them are high value targets for exploits. Long track records indicate security. 
+
+The code bases of Basin, Multi Flow, and Pipeline are novel. They had not been tested in the “real world” prior to their initial deployments. Their open source nature means others can exploit any bugs, flaws, or deficiencies. Although Basin, Multi Flow, and Pipeline have been audited\fref{github.com/BeanstalkFarms/Beanstalk-Audits\#ecosystem-reports}, it is no guarantee of security.
+
+We assume the security of the Ethereum blockchain, ERC-20 Standard, ERC-1155 Standard, Basin, Multi Flow, ETH, USDC, USDT, Chainlink, Uniswap V3, Curve, 3CRV, DAI, and Pipeline.
+
+The Beanstalk price oracle contains exposure to risk related to (1) the underlying collateral of 3CRV (\term{i.e.}, USDC, USDT and DAI), (2) inter-block MEV manipulation of the ETH:USDC and ETH:USDT 0.05\% fee Uniswap V3 and BEAN:3CRV Curve pools, and (3) the centralized nature of Chainlink. There is no guarantee the centralized operators of USDC, USDT and DAI hold non-network-native exogenous value worth at least 100\% of all outstanding non-network-native protocol liabilities. There is no guarantee that the centralized operators of USDC and USDT will not ban them from the ETH:USDC and ETH:USDT 0.05\% fee Uniswap V3 and 3CRV Curve pools, although doing so would cause significant financial self-harm. Furthermore, the centralized operators of USDC and USDT may alter their convertibility policies, which would negatively affect their respective stablecoins as accurate price sources for USD. However, in theory, if the price of 3CRV falls below \hyperlink{ht216}{$V$}, it would cause some short run excess inflation of the Bean supply until the BEAN:3CRV Curve pool is removed from the \term{Oracle Whitelist}, but would not otherwise directly affect Beanstalk. There is no guarantee the node operators for the ETH/USD Chainlink data feed report price data accurately.
+
+We assume the accuracy of the 3CRV Curve pool and the ETH/USD Chainlink data feed as price sources for USD.
 
 \newpage
-The Beanstalk price oracle contains exposure to risk related to the underlying collateral of \hyperlink{ht223}{$x$} (\term{e.g.}, USDC, USDT, DAI). There is no guarantee the centralized operators of USDC and USDT hold non-network-native exogenous value worth at least 100\% of all outstanding protocol liabilities or will not ban them from the 3CRV pool, although either would cause significant financial self-harm. The operators of USDC and USDT may alter their convertibility policies, which would negatively affect their respective stablecoins as price sources for USD, and thereby corrupt the accuracy of 3CRV as a price source for USD. However, in theory, if the price of \hyperlink{ht223}{$x$} falls below \hyperlink{ht216}{$V$}, it would cause some short run excess inflation of the Bean supply until \hyperlink{ht223}{$x$} is replaced in the price oracle, but would not otherwise directly affect Beanstalk.
 
 \section{Future Work}
 Beanstalk is a work in progress. The following are potential improvements that can be incorporated into Beanstalk as one or more \term{BIPs}:
@@ -1057,19 +1103,18 @@ Beanstalk is a work in progress. The following are potential improvements that c
     \item Additional \hyperlink{ht223}{$x$} and Ethereum-native DEXs can be incorporated into \hyperlink{ht139}{$P_{\overline{t-1}}$}.
     \item The mechanism to measure changing demand for \term{Soil}, in cases where \hyperlink{ht63}{$\frac{\partial u_t}{\partial t}$} can inaccurately indicate changing demand for \term{Soil}, can be further refined.
     \item The \term{Market} can be further developed.
-    \item The \term{Depot} can support additional \term{Pipelines}.
     \item Beanstalk can issue unique assets with different value pegs on Ethereum.
 \end{itemize}
 
 \newpage
 \section{Appendix}
-\input{appendix/Parameters} % Initial Parameters
+\input{appendix/Current-Parameters} % Current Parameters
 
 \newpage
 \input{appendix/Deposit-Whitelist} % Deposit Whitelist
 
 \newpage
-\input{appendix/Silo-Governance} % Silo Governance
+\input{appendix/Former-Governance} % Former Governance
 
 \newpage
 \input{appendix/Convert-Whitelist} % Convert Whitelist
@@ -1081,7 +1126,7 @@ Beanstalk is a work in progress. The following are potential improvements that c
 \input{appendix/Oracle-Whitelist} % Oracle Whitelist
 
 \newpage
-\input{appendix/Flood} % Flood
+\input{appendix/Flood-Whitelist} % Flood Whitelist
 
 \newpage
 \input{appendix/Market} % Market
@@ -1096,6 +1141,6 @@ Beanstalk is a work in progress. The following are potential improvements that c
 \input{appendix/Glossary} % Glossary
 
 \newpage
-\input{appendix/Version-History} % Whitepaper Version History 
+\input{appendix/Whitepaper-Version-History} % Whitepaper Version History 
 
 \end{document}
