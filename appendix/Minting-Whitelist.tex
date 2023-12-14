@@ -1,0 +1,114 @@
+\documentclass[class=article, crop=false]{standalone}
+\usepackage[subpreambles=true]{standalone}
+\usepackage{import}
+\usepackage{amsmath}
+\usepackage{enumitem} % Format list spacing 
+
+\begin{document}
+
+%%%%%%%%%%%%%%% Minting Whitelist %%%%%%%%%%%%%%%
+
+\subsection{Minting Whitelist}
+
+The following liquidity pools are \term{Whitelisted} for inclusion in the calculation of \hyperlink{ht50}{$\Delta B_{\overline{t-1}}$}:
+
+\subsubsection{$\Phi$}
+
+\begin{enumerate}
+    \item \textbf{Pool Address:} $\Phi^{@}$
+    
+    \item \textbf{\hyperlink{ht50}{$\Delta b_{\overline{t-1}}$} Calculation:} The liquidity and time weighted average shortage or excess of Beans in the BEAN:3CRV Curve liquidity pool over the previous \term{Season} (\hyperlink{ht52}{$\Delta b_{\overline{t-1}}^{\Phi}$}) is calculated as the difference between the optimal liquidity and time weighted average number of Beans (\hyperlink{ht199}{$\Phi_{\overline{t-1}}^{{\bean}^*}$}) and the liquidity and time weighted average number of Beans (\hyperlink{ht198}{$\Phi_{\overline{t-1}}^{\bean}$}) in \hyperlink{ht187}{$\Phi$} over the previous \term{Season}, such that $\hyperlink{ht52}{\Delta b_{\overline{t-1}}^{\Phi}},\ \hyperlink{ht199}{\Phi_{\overline{t-1}}^{{\bean}^*}},\ \hyperlink{ht198}{\Phi_{\overline{t-1}}^{\bean}} \in \{j \times 10^{-6} \mid j \in \mathbb{Z}^{+} \}$. \hyperlink{ht199}{$\Phi_{\overline{t-1}}^{{\bean}^*}$} is calculated from \hyperlink{ht198}{$\Phi_{\overline{t-1}}^{\bean}$}, the time weighted average number of 3CRV in \hyperlink{ht187}{$\Phi$} over the previous \term{Season} (\hyperlink{ht200}{$\Phi_{\overline{t-1}}^{\text{3CRV}}$}), such that $\hyperlink{ht200}{\Phi_{\overline{t-1}}^{\text{3CRV}}} \in \{j \times 10^{-18} \mid j \in \mathbb{Z}^{+} \}$, \hyperlink{ht136}{$P^{\text{3CRV}}$} and \hyperlink{ht190}{$\Phi^{A}$}. The absolute value of $\Delta b_{\overline{t-1}}^{\Phi}$ is at most 1\% of the Bean supply at the end of the previous Season ($B_{t-1}$), such that $B_{t-1} \in \{j \times 10^{-6} \mid j \in \mathbb{Z}^{+} \}$.
+
+        Beanstalk calculates a liquidity and time weighted average price invariant for \hyperlink{ht187}{$\Phi$} over the previous \term{Season} (\hyperlink{ht98}{$\zeta^{\Phi}_{\overline{t-1}}$}), such that $\hyperlink{ht98}{\zeta^{\Phi}_{\overline{t-1}}} \in \{j \times 10^{-18} \mid j \in \mathbb{Z}^{+} \}$, by calling the Curve \code{get\_D} function on \hyperlink{ht198}{$\Phi_{\overline{t-1}}^{\bean}$}, \hyperlink{ht200}{$\Phi_{\overline{t-1}}^{\text{3CRV}}$}, \hyperlink{ht136}{$P^{\text{3CRV}}$} and \hyperlink{ht190}{$\Phi^{A}$} as:
+        
+            $$
+                \hyperlink{ht98}{\zeta^{\Phi}_{\overline{t-1}}} = 
+                    \code{get\_D(}
+                        [\hyperlink{ht198}{\Phi_{\overline{t-1}}^{\bean}},\ 
+                            \hyperlink{ht200}{\Phi_{\overline{t-1}}^{\text{3CRV}}} \times 
+                                \hyperlink{ht136}{P^{\text{3CRV}}}],\ 
+                        \hyperlink{ht190}{\Phi^{A}}\code{)}
+            $$
+        
+        Beanstalk calculates \hyperlink{ht199}{$\Phi_{\overline{t-1}}^{{\bean}^*}$} from \hyperlink{ht98}{$\zeta^{\Phi}_{\overline{t-1}}$} as:
+        
+            $$
+                \hyperlink{ht199}{\Phi_{\overline{t-1}}^{{\bean}^*}} = 
+                    \frac{\hyperlink{ht98}{\zeta^{\Phi}_{\overline{t-1}}}}
+                        {2}
+            $$
+        
+        Beanstalk calculates \hyperlink{ht52}{$\Delta b_{\overline{t-1}}^{\Phi}$} for a given \hyperlink{ht199}{$\Phi_{\overline{t-1}}^{{\bean}^*}$}, \hyperlink{ht198}{$\Phi_{\overline{t-1}}^{\bean}$} and $B_{t-1}$ as:
+        
+            $$
+                \hyperlink{ht52}{\Delta b_{\overline{t-1}}^{\Phi}} = 
+                    \begin{cases} 
+                        \text{max}\left(
+                                \hyperlink{ht199}{\Phi_{\overline{t-1}}^{{\bean}^*}} - 
+                                    \hyperlink{ht198}{\Phi_{\overline{t-1}}^{\bean}}, 
+                                -\frac{B_{t-1}}{100}\right) 
+                            & \text{if} \; \hyperlink{ht199}{\Phi_{\overline{t-1}}^{{\bean}^*}} - 
+                                    \hyperlink{ht198}{\Phi_{\overline{t-1}}^{\bean}} < 0 \vspace{.3cm} \\ 
+                        
+                        \text{min}\left(
+                                \hyperlink{ht199}{\Phi_{\overline{t-1}}^{{\bean}^*}} - 
+                                    \hyperlink{ht198}{\Phi_{\overline{t-1}}^{\bean}}, 
+                                \frac{B_{t-1}}{100}\right) 
+                            & \text{else} 
+                    \end{cases}
+            $$
+
+\end{enumerate}
+
+\subsubsection{$\Theta$}
+
+    \begin{enumerate}
+        \item \textbf{Pool Address:} $\Theta^{@}$
+        
+        \item \textbf{\hyperlink{ht50}{$\Delta b_{\overline{t-1}}$} Calculation:} The liquidity and time weighted average shortage or excess of Beans in the BEAN:ETH \term{Well} over the previous \term{Season} ($\Delta b_{\overline{t-1}}^{\Theta}$) is calculated as the difference between the optimal liquidity and time weighted average number of Beans in $\Theta$ over the previous \term{Season} ($\Theta_{\overline{t-1}}^{{\bean}^*}$), such that $\Delta b_{\overline{t-1}}^{\Theta},\ \Theta_{\overline{t-1}}^{{\bean}^*} \in \{j \times 10^{-6} \mid j \in \mathbb{Z}^{+} \}$, and $\Theta^{\text{SMA}}_{\bean,t_0,\Game}$. The absolute value of $\Delta b_{\overline{t-1}}^{\Theta}$ is at most 1\% of $B_{t-1}$.
+
+            Beanstalk calculates $\Theta_{\overline{t-1}}^{{\bean}^*}$ by calling the \term{Well Function}\fref{etherscan.io/address/0xBA510C20FD2c52E4cb0d23CFC3cCD092F9165a6E\#code} \code{calcReserveAtRatioSwap} function with $\Theta^{\text{SMA}}_{\bean,t_0,\Game}$, $\Theta^{\text{SMA}}_{\text{ETH},t_0,\Game}$ and $\Theta^{*}$ as:
+    
+                $$
+                    \Theta_{\overline{t-1}}^{{\bean}^*} = 
+                        \code{calcReserveAtRatioSwap(}
+                            [\Theta^{\text{SMA}}_{\bean,t_0,\Game} ,\ \Theta^{\text{SMA}}_{\text{ETH},t_0,\Game}],\ 
+                            0,\ 
+                            [10^6 ,\ 10^{18}],\ 
+                            \Theta^{*} 
+                        \code{)}
+                $$
+            
+            Beanstalk calculates $\Delta b_{\overline{t-1}}^{\Theta}$ for a given $\Theta^{\text{SMA}}_{\bean,t_0,\Game}$, $\Theta^{\text{min}(\bean)}$, $\Theta_{\overline{t-1}}^{{\bean}^*}$ and $B_{t-1}$ as:
+    
+                $$
+                    \Delta b_{\overline{t-1}}^{\Theta} = 
+                        \begin{cases} 
+                            0 
+                                & \text{if} \; 
+                                    \Theta^{\text{SMA}}_{\bean,t_0,\Game} < \Theta^{\text{min}(\bean)} \vspace{.3cm} \\
+                            
+                            \text{max}\left(
+                                    \Theta_{\overline{t-1}}^{{\bean}^*} - 
+                                            \Theta^{\text{SMA}}_{\bean,t_0,\Game}, 
+                                        -\frac{B_{t-1}}{100}\right) 
+                                & \text{if} \; \Theta_{\overline{t-1}}^{{\bean}^*} - \Theta^{\text{SMA}}_{\bean,t_0,\Game} < 0 \vspace{.3cm} \\ 
+                            
+                            \text{min}\left(
+                                    \Theta_{\overline{t-1}}^{{\bean}^*} - 
+                                            \Theta^{\text{SMA}}_{\bean,t_0,\Game}, 
+                                        \frac{B_{t-1}}{100}\right) 
+                                & \text{else} 
+                        \end{cases}
+                $$
+
+\end{enumerate}
+
+Therefore, we define \hyperlink{ht50}{$\Delta B_{\overline{t-1}}$} for a given \hyperlink{ht52}{$\Delta b_{\overline{t-1}}^{\Phi}$} and $\Delta b_{\overline{t-1}}^{\Theta}$ as:
+
+    $$
+        \hyperlink{ht50}{\Delta B_{\overline{t-1}}} = 
+            \hyperlink{ht52}{\Delta b_{\overline{t-1}}^{\Phi}} + \Delta b_{\overline{t-1}}^{\Theta}
+    $$
+    
+\end{document}

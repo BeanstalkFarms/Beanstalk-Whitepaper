@@ -6,145 +6,214 @@
 
 \begin{document}
 
+%%%%%%%%%%%%%%% Convert Whitelist %%%%%%%%%%%%%%%
+
 \subsection{Convert Whitelist} 
 
 The following \term{Conversions} within the \term{Silo} are \term{Whitelisted}:
+
 \subsubsection{$\lambda$ $\rightarrow$ $\lambda$}
-    \begin{enumerate}
-        \item \textbf{From Token Address:} The from token address must match the to token address.
-        \item \textbf{To Token Address:} The to token address must match the from token address.
-        \item \textbf{Conditions:} \term{Deposited} \hyperlink{ht126}{$\lambda$} can be \term{Converted} to a \hyperlink{ht126}{$\lambda$} \term{Deposit} at anytime. 
-        \item \textbf{Convert Function:} The number of \hyperlink{ht126}{$\lambda$} received for \term{Converting} \term{Deposited} \hyperlink{ht126}{$\lambda$} within the \term{Silo} is equivalent to the number of \hyperlink{ht126}{$\lambda$} \term{Converted}. Therefore, we define function as:
-        
-        $$\hyperlink{ht83}{f^{\lambda \rightarrow \lambda}(z^{\lambda})} = z^{\hyperlink{ht126}{\lambda}}$$
-        
-    \end{enumerate}
+
+\begin{enumerate}
+    \item \textbf{From Token Address:} The from token address must match the to token address.
+    
+    \item \textbf{To Token Address:} The to token address must match the from token address.
+    
+    \item \textbf{Conditions:} \term{Deposited} \hyperlink{ht126}{$\lambda$} can be \term{Converted} to a \hyperlink{ht126}{$\lambda$} \term{Deposit} at anytime. 
+    
+    \item \textbf{Convert Function:} The number of \hyperlink{ht126}{$\lambda$} received for \term{Converting} \term{Deposited} \hyperlink{ht126}{$\lambda$} within the \term{Silo} is equivalent to the number of \hyperlink{ht126}{$\lambda$} \term{Converted}. Therefore, we define function as:
+    
+        $$
+            \hyperlink{ht83}{f^{\lambda \rightarrow \lambda}(z^{\lambda})} = 
+                z^{\hyperlink{ht126}{\lambda}}
+        $$
+
+\end{enumerate}
+
 \subsubsection{\Bean\ $\rightarrow$ $\Phi$}
-    \begin{enumerate}
-        \item \textbf{From Token Address:} The \Bean\ token address is 0xBEA0000029AD1c77D3d5D23Ba2D8893dB9d1Efab.
-        \item \textbf{To Token Address:} The \hyperlink{ht187}{$\Phi$} token address is 0xc9C32cd16Bf7eFB85Ff14e0c8603cc90F6F2eE49.
-        \item \textbf{Conditions:} \term{Deposited} \Bean\ cannot be \term{Converted} to \term{Deposited} \hyperlink{ht187}{$\Phi$} when the USD price of \Bean1 in the pool (\hyperlink{ht2}{$\$^{\bean(\Phi)}$}), such that $\hyperlink{ht2}{\$^{\bean(\Phi)}}\in \{j \times 10^{-6} \mid j \in \mathbb{Z}^{+} \}$, is below \$1 (\term{i.e}, $\hyperlink{ht2}{\$^{\bean(\Phi)}} < 10^6$). 
+
+\begin{enumerate}
+    \item \textbf{From Token Address:} $\Bean^{@}$
+    
+    \item \textbf{To Token Address:} $\Phi^{@}$
+        
+    \item \textbf{Conditions:} \term{Deposited} \Bean\ cannot be \term{Converted} to \term{Deposited} \hyperlink{ht187}{$\Phi$} when the USD price of \Bean1 in the pool (\hyperlink{ht2}{$\$^{\bean(\Phi)}$}), such that $\hyperlink{ht2}{\$^{\bean(\Phi)}}\in \{j \times 10^{-6} \mid j \in \mathbb{Z}^{+} \}$, is below \$1 (\term{i.e}, $\hyperlink{ht2}{\$^{\bean(\Phi)}} < 10^6$). 
 
         \hyperlink{ht2}{$\$^{\bean(\Phi)}$} is calculated using the number of Beans (\hyperlink{ht188}{$\Phi^{\bean}$}), such that $\hyperlink{ht188}{\Phi^{\bean}} \in \{j \times 10^{-6} \mid j \in \mathbb{Z}^{+} \}$, and number of 3CRV (\hyperlink{ht189}{$\Phi^{\text{3CRV}}$}), such that $\hyperlink{ht189}{\Phi^{\text{3CRV}}} \in \{j \times 10^{-18} \mid j \in \mathbb{Z}^{+} \}$, in the BEAN:3CRV Curve pool, \hyperlink{ht136}{$P^{\text{3CRV}}$}, \hyperlink{ht190}{$\Phi^{A}$} and \hyperlink{ht140}{$P^{\Phi}$}. 
         
         Beanstalk calculates a price invariant for the BEAN:3CRV Curve pool (\hyperlink{ht95}{$\zeta^{\Phi}$}), such that $\hyperlink{ht95}{\zeta^{\Phi}}\in \{j \times 10^{-18} \mid j \in \mathbb{Z}^{+} \}$, by calling the Curve \code{get\_D} function with \hyperlink{ht188}{$\Phi^{\bean}$}, \hyperlink{ht189}{$\Phi^{\text{3CRV}}$}, \hyperlink{ht136}{$P^{\text{3CRV}}$} and \hyperlink{ht190}{$\Phi^{A}$} as:
         
-        $$\hyperlink{ht95}{\zeta^{\Phi}} = \code{get\_D(}[\hyperlink{ht188}{\Phi^{\bean}},\ \hyperlink{ht189}{\Phi^{\text{3CRV}}} \times \hyperlink{ht136}{P^{\text{3CRV}}}],\ \hyperlink{ht190}{\Phi^{A}}\code{)}$$
+            $$
+                \hyperlink{ht95}{\zeta^{\Phi}} = 
+                    \code{get\_D(}[\hyperlink{ht188}{\Phi^{\bean}},\ \hyperlink{ht189}{\Phi^{\text{3CRV}}} \times \hyperlink{ht136}{P^{\text{3CRV}}}],\
+                        \hyperlink{ht190}{\Phi^{A}}\code{)}
+            $$
         
         Beanstalk calculates a total number of \hyperlink{ht187}{$\Phi$}, such that $\hyperlink{ht187}{\Phi}\in \{j \times 10^{-18} \mid j \in \mathbb{Z}^{+} \}$, from \hyperlink{ht95}{$\zeta^{\Phi}$} and \hyperlink{ht140}{$P^{\Phi}$} as:
         
-        $$\hyperlink{ht187}{\Phi} = \frac{\hyperlink{ht95}{\zeta^{\Phi}}}{\hyperlink{ht140}{P^{\Phi}}}$$
-        
+            $$
+                \hyperlink{ht187}{\Phi} = 
+                    \frac{\hyperlink{ht95}{\zeta^{\Phi}}}
+                        {\hyperlink{ht140}{P^{\Phi}}}
+            $$
+            
         Beanstalk calculates the \hyperlink{ht2}{$\$^{\bean(\Phi)}$} by calling the Curve \code{get\_y} function with \hyperlink{ht188}{$\Phi^{\bean}$}, \hyperlink{ht189}{$\Phi^{\text{3CRV}}$} and \hyperlink{ht136}{$P^{\text{3CRV}}$} as:
         
-        $$\hyperlink{ht2}{\$^{\bean(\Phi)}} =  \hyperlink{ht188}{\Phi^{\bean}} - \code{get\_y(}0, 1, \hyperlink{ht188}{\Phi^{\bean}} + 1, [\hyperlink{ht188}{\Phi^{\bean}},\ \hyperlink{ht189}{\Phi^{\text{3CRV}}} \times \hyperlink{ht136}{P^{\text{3CRV}}}]\code{)} - 10^{-6}$$
+            $$
+                \hyperlink{ht2}{\$^{\bean(\Phi)}} = 
+                    \hyperlink{ht188}{\Phi^{\bean}} - 
+                    \code{get\_y(}0, 
+                        1, 
+                        \hyperlink{ht188}{\Phi^{\bean}} + 1, 
+                        [\hyperlink{ht188}{\Phi^{\bean}},\ 
+                            \hyperlink{ht189}{\Phi^{\text{3CRV}}} \times 
+                            \hyperlink{ht136}{P^{\text{3CRV}}}]\code{)} - 
+                    10^{-6}
+            $$
         
-        \item \textbf{Convert Function:} The number of \hyperlink{ht187}{$\Phi$} received for \term{Converting} \term{Deposited} Beans within the \term{Silo} for a given minimum \hyperlink{ht187}{$\Phi$} received ($\Phi^{\text{min}}$), such that $\Phi^{\text{min}} \in \{j \times 10^{-18} \mid j \in \mathbb{N} \}$, is the result of calling the Curve \code{add\_liquidity} function on \hyperlink{ht187}{$\Phi$} with \hyperlink{ht191}{$\Phi^{\text{min}}$} as:
-        
-        $$f^{\bean \rightarrow \hyperlink{ht187}{\Phi}}(z^{\bean}) = \Phi \code{.add\_liquidity(}[z^{\bean},\ 0],\ \hyperlink{ht191}{\Phi^{\text{min}}} \code{)}$$
-        
-    \end{enumerate}
+    \item \textbf{Convert Function:} The number of \hyperlink{ht187}{$\Phi$} received for \term{Converting} \term{Deposited} Beans within the \term{Silo} for a given minimum \hyperlink{ht187}{$\Phi$} received ($\Phi^{\text{min}}$), such that $\Phi^{\text{min}} \in \{j \times 10^{-18} \mid j \in \mathbb{N} \}$, is the result of calling the Curve \code{add\_liquidity} function on \hyperlink{ht187}{$\Phi$} with \hyperlink{ht191}{$\Phi^{\text{min}}$} as:
+    
+        $$
+            f^{\bean \rightarrow \hyperlink{ht187}{\Phi}}(z^{\bean}) = 
+                \Phi \code{.add\_liquidity(}[z^{\bean},\ 0],\ 
+                        \hyperlink{ht191}{\Phi^{\text{min}}} \code{)}
+        $$
+    
+\end{enumerate}
     
 \subsubsection{$\Phi$ $\rightarrow$ \Bean}
-    \begin{enumerate}
-        \item \textbf{From Token Address:} The \hyperlink{ht187}{$\Phi$} token address is 0xc9C32cd16Bf7eFB85Ff14e0c8603cc90F6F2eE49.
-        \item \textbf{To Token Address:} The \Bean\ token address is 0xBEA0000029AD1c77D3d5D23Ba2D8893dB9d1Efab.
-        \item \textbf{Conditions:} \term{Deposited} \hyperlink{ht187}{$\Phi$} cannot be \term{Converted} to \term{Deposited} \Bean\ when the price of \Bean1 in the pool is greater than or equal to \$1 (\term{i.e}, $10^6 \leq \hyperlink{ht2}{\$^{\bean(\Phi)}}$). 
-        \item \textbf{Convert Function:} The number of Beans received for \term{Converting} \term{Deposited} \hyperlink{ht187}{$\Phi$} within the \term{Silo} for a given minimum Beans received ($\Bean^{\text{min}}$), such that $\Bean^{\text{min}} \in \{j \times 10^{-6} \mid j \in \mathbb{N} \}$, is the result of calling the Curve \code{remove\_liquidity\_one\_coin} function on \hyperlink{ht187}{$\Phi$} with $\Bean^{\text{min}}$ as:
-        
-        $$f^{\hyperlink{ht187}{\Phi} \rightarrow \bean}(z^{\hyperlink{ht187}{\Phi}}) = \hyperlink{ht187}{\Phi} \code{.remove\_liquidity\_one\_coin(} z^{\hyperlink{ht187}{\Phi}},\ 0,\ \Bean^{\text{min}} \code{)}$$
-        
-    \end{enumerate}
+
+\begin{enumerate}
+    \item \textbf{From Token Address:} $\Phi^{@}$
     
-\subsubsection{$\mathfrak{z}^{\bean}$ $\rightarrow$ $\mathfrak{z}^{\Phi}$}
-    \begin{enumerate}
-        \item \textbf{From Token Address:} The \hyperlink{ht233}{$\mathfrak{z}^{\bean}$} token address is 0x1BEA0050E63e05FBb5D8BA2f10cf5800B6224449.
-        \item \textbf{To Token Address:} The \hyperlink{ht235}{$\mathfrak{z}^{\Phi}$} token address is 0x1BEA3CcD22F4EBd3d37d731BA31Eeca95713716D.
-        \item \textbf{Conditions:} \term{Deposited} \hyperlink{ht233}{$\mathfrak{z}^{\bean}$} cannot be \term{Converted} to \term{Deposited} \hyperlink{ht235}{$\mathfrak{z}^{\Phi}$} when the price of \Bean1 in the BEAN:3CRV liquidity pool is less than or equal to \$1 (\term{i.e}, $\hyperlink{ht2}{\$^{\bean(\Phi)}} \leq 10^6$). 
-        \item \textbf{Convert Function:} The number of \hyperlink{ht235}{$\mathfrak{z}^{\Phi}$} received for \term{Converting} \term{Deposited} \hyperlink{ht233}{$\mathfrak{z}^{\bean}$} within the \term{Silo} for a given \hyperlink{ht174}{$\mathfrak{S}$}, \hyperlink{ht232}{$\mathfrak{Z}_{\bigotimes}^{\Phi}$}, \hyperlink{ht230}{$\mathfrak{Z}^{\Phi}$}, \hyperlink{ht160}{$\mathfrak{R}^{\Phi}$}, \hyperlink{ht158}{$\mathfrak{R}^{\bean}$}, \hyperlink{ht229}{$\mathfrak{Z}^{\bean}$} and minimum \term{Unripe} \hyperlink{ht187}{$\Phi$} received (\hyperlink{ht236}{$\mathfrak{z}^{\Phi^{\text{min}}}$}), such that $\hyperlink{ht236}{\mathfrak{z}^{\Phi^{\text{min}}}} \in \{j \times 10^{-6} \mid j \in \mathbb{N} \}$, is the result of calling the Curve \code{add\_liquidity} function on $\hyperlink{ht187}{\Phi}$ as:
-        
-        $$f^{\mathfrak{z}^{\tinybean} \rightarrow \hyperlink{ht235}{\mathfrak{z}^{\Phi}}}(z^{\mathfrak{z}^{\tinybean}}) = \frac{\hyperlink{ht174}{\mathfrak{S}} \times \hyperlink{ht232}{\mathfrak{Z}_{\bigotimes}^{\Phi}} \times \hyperlink{ht230}{\mathfrak{Z}^{\Phi}}}{7.7 \times 10^{7} \times \hyperlink{ht160}{\mathfrak{R}^{\Phi}}} \times \hyperlink{ht187}{\Phi} \code{.add\_liquidity}\left(\left[\frac{z^{\mathfrak{z}^{\tinybean}} \times \hyperlink{ht158}{\mathfrak{R}^{\bean}}}{\hyperlink{ht229}{\mathfrak{Z}^{\bean}}},\ 0\right],\ \hyperlink{ht236}{\mathfrak{z}^{\Phi^{\text{min}}}} \right)$$
-        
-    \end{enumerate}
+    \item \textbf{To Token Address:} $\Bean^{@}$
     
-\subsubsection{$\mathfrak{z}^{\Phi}$ $\rightarrow$ $\mathfrak{z}^{\bean}$}
-    \begin{enumerate}
-        \item \textbf{From Token Address:} The \hyperlink{ht235}{$\mathfrak{z}^{\Phi}$} token address is 0x1BEA3CcD22F4EBd3d37d731BA31Eeca95713716D.
-        \item \textbf{To Token Address:} The \hyperlink{ht233}{$\mathfrak{z}^{\bean}$} token address is 0x1BEA0050E63e05FBb5D8BA2f10cf5800B6224449.
-        \item \textbf{Conditions:} \term{Deposited} $\mathfrak{z}^{\Phi}$ cannot be \term{Converted} to \term{Deposited} $\mathfrak{z}^{\bean}$ when the price of \Bean1 in the pool is greater than or equal \$1 (\term{i.e}, $10^6 \leq \hyperlink{ht2}{\$^{\bean(\Phi)}}$). 
-        \item \textbf{Convert Function:} The number of \hyperlink{ht233}{$\mathfrak{z}^{\bean}$} received for \term{Converting} \term{Deposited} \hyperlink{ht235}{$\mathfrak{z}^{\Phi}$} within the \term{Silo} for a given \hyperlink{ht230}{$\mathfrak{Z}^{\Phi}$}, \hyperlink{ht174}{$\mathfrak{S}$}, \hyperlink{ht232}{$\mathfrak{Z}_{\bigotimes}^{\Phi}$}, \hyperlink{ht160}{$\mathfrak{R}^{\Phi}$} and minimum \term{Unripe} Beans received (\hyperlink{ht234}{$\mathfrak{z}^{\bean^{\text{min}}}$}), such that $\hyperlink{ht234}{\mathfrak{z}^{\bean^{\text{min}}}} \in \{j \times 10^{-6} \mid j \in \mathbb{N} \}$, is the result of calling the Curve \code{remove\_liquidity\_one\_coin} function on $\hyperlink{ht187}{\Phi}$ as:
-        
-        $$f^{\hyperlink{ht235}{\mathfrak{z}^{\Phi}} \rightarrow \mathfrak{z}^{\tinybean}}(z^{\hyperlink{ht235}{\mathfrak{z}^{\Phi}}}) = \frac{7.7 \times 10^{7} \times \hyperlink{ht230}{\mathfrak{Z}^{\Phi}}}{\mathfrak{S} \times \hyperlink{ht232}{\mathfrak{Z}_{\bigotimes}^{\Phi}}} \times \hyperlink{ht187}{\Phi}\code{.remove\_liquidity\_one\_coin}\left(\left[\frac{z^{\hyperlink{ht235}{\mathfrak{z}^{\Phi}}} \times \hyperlink{ht160}{\mathfrak{R}^{\Phi}}}{\hyperlink{ht230}{\mathfrak{Z}^{\Phi}}},\ 0\right],\ \hyperlink{ht234}{\mathfrak{z}^{\bean^{\text{min}}}} \right)$$ 
-        
-    \end{enumerate}
+    \item \textbf{Conditions:} \term{Deposited} \hyperlink{ht187}{$\Phi$} cannot be \term{Converted} to \term{Deposited} \Bean\ when the price of \Bean1 in the pool is greater than or equal to \$1 (\term{i.e}, $10^6 \leq \hyperlink{ht2}{\$^{\bean(\Phi)}}$). 
     
-\subsubsection{\Bean\ $\rightarrow$ $\Theta$}
-    \begin{enumerate}
-        \item \textbf{From Token Address:} The \Bean\ token address is 0xBEA0000029AD1c77D3d5D23Ba2D8893dB9d1Efab.
-        \item \textbf{To Token Address:} The $\Theta$ token address is 0xBEA0e11282e2bB5893bEcE110cF199501e872bAd.        
-        \item \textbf{Conditions:} \term{Deposited} \Bean\ cannot be \term{Converted} to \term{Deposited} $\Theta$ when the USD price of \Bean1 in the \term{Well} ($\$^{\bean(\Theta)}$), such that $\$^{\bean(\Theta)}\in \{j \times 10^{-6} \mid j \in \mathbb{Z}^{+} \}$, is below \$1 (\term{i.e}, $\$^{\bean(\Theta)} < 10^6$). 
-
-        $\$^{\bean(\Theta)}$ is calculated using the number of Beans ($\Theta_{\Game}^{\bean}$), such that $\Theta_{\Game}^{\bean} \in \{j \times 10^{-6} \mid j \in \mathbb{Z}^{+} \}$, and number of ETH ($\Theta_{\Game}^{\text{ETH}}$), such that $\Theta_{\Game}^{\text{ETH}} \in \{j \times 10^{-18} \mid j \in \mathbb{Z}^{+} \}$, in the BEAN:ETH \term{Well's Reserves} in the current transaction and the inter-block MEV manipulation resistant USD price of 1 ETH ($\$^{\text{ETH}}$), such that $\$^{\text{ETH}} \in \{j \times 10^{-6} \mid j \in \mathbb{Z}^{+} \}$.
-
-        $\$^{\text{ETH}}$ is calculated using the USD prices of 1 ETH from (1) the ETH/USD Chainlink data feed ($\$^{\text{ETH}(\chi)}$), (2) the ETH:USDC 0.05\% fee Uniswap V3 pool ($\$^{\text{ETH}(\nu)}$) and (3) the ETH:USDT 0.05\% fee Uniswap V3 pool ($\$^{\text{ETH}(\tau)}$), such that $\$^{\text{ETH}(\chi)},\ \$^{\text{ETH}(\nu)},\ \$^{\text{ETH}(\tau)} \in \{j \times 10^{-6} \mid j \in \mathbb{Z}^{+} \}$.
-
-        $\$^{\text{ETH}(\chi)}$ is calculated by calling the Chainlink\fref{etherscan.io/address/0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419\#code} \code{latestRoundData} and \code{decimals} functions on $\chi$ as:
-
-        $$ \$^{\text{ETH}(\chi)} = \frac{\code{latestRoundData()} \times 10^6}{10^{\mkern3mu \code{decimals()}}} $$
-
-        $\$^{\text{ETH}(\nu)}$ and $\$^{\text{ETH}(\tau)}$ are calculated by calling the Uniswap V3 \code{getQuoteAtTick} function using ticks read over the last 15 minutes on $\nu$ and $\tau$, respectively.\fref{etherscan.io/address/0x88e6A0c2dDD26FEEb64F039a2c41296FcB3f5640\#code}$^{,}$\fref{etherscan.io/address/0x11b815efB8f581194ae79006d24E0d814B7697F6\#code}
-
-        We define $\$^{\text{ETH}}$ for a given $\$^{\text{ETH}(\chi)}$, $\$^{\text{ETH}(\nu)}$, $\$^{\text{ETH}(\tau)}$, the percent difference between $\$^{\text{ETH}(\chi)}$ and $\$^{\text{ETH}(\nu)}$ ($\Delta^{\$^{\text{ETH}(\nu \slash \chi)}}$, \term{i.e.}, $\frac{\$^{\text{ETH}(\nu)}}{\$^{\text{ETH}(\chi)}} - 1$) and the percent difference between $\$^{\text{ETH}(\chi)}$ and $\$^{\text{ETH}(\tau)}$ ($\Delta^{\$^{\text{ETH}(\tau \slash \chi)}}$, \term{i.e.}, $\frac{\$^{\text{ETH}(\tau)}}{\$^{\text{ETH}(\chi)}} - 1$), such that $\Delta^{\$^{\text{ETH}(\nu \slash \chi)}},\ \Delta^{\$^{\text{ETH}(\tau \slash \chi)}} \in \{j \times 10^{-6} \mid j \in \mathbb{Z}^{+} \}$, as:
-
-        $$ \$^{\text{ETH}} =
-        \begin{cases}
-        {0} & \text{if} \; \$^{\text{ETH}(\chi)} = 0  \\
+    \item \textbf{Convert Function:} The number of Beans received for \term{Converting} \term{Deposited} \hyperlink{ht187}{$\Phi$} within the \term{Silo} for a given minimum Beans received ($\Bean^{\text{min}}$), such that $\Bean^{\text{min}} \in \{j \times 10^{-6} \mid j \in \mathbb{N} \}$, is the result of calling the Curve \code{remove\_liquidity\_one\_coin} function on \hyperlink{ht187}{$\Phi$} with $\Bean^{\text{min}}$ as:
         
-        {\frac{\$^{\text{ETH}(\chi)} + \$^{\text{ETH}(\tau)}}{2}} & \text{if} \; \Delta^{\$^{\text{ETH}(\tau \slash \chi)}} < \Delta^{\$^{\text{ETH}(\nu \slash \chi)}} \mkern6mu \&\& \mkern6mu \Delta^{\$^{\text{ETH}(\tau \slash \chi)}} < 0.05\% \\
-        
-        {\frac{\$^{\text{ETH}(\chi)} + \$^{\text{ETH}(\nu)}}{2}} & \text{if} \; \Delta^{\$^{\text{ETH}(\tau \slash \chi)}} >= \Delta^{\$^{\text{ETH}(\nu \slash \chi)}} \mkern6mu \&\& \mkern6mu \Delta^{\$^{\text{ETH}(\nu \slash \chi)}} < 0.05\% \\
-        
-        {\$^{\text{ETH}(\chi)}} & \text{else}
-        
-        \end{cases} 
+        $$
+            f^{\hyperlink{ht187}{\Phi} \rightarrow \bean}(z^{\hyperlink{ht187}{\Phi}}) =
+                \hyperlink{ht187}{\Phi} \code{.remove\_liquidity\_one\_coin(} 
+                    z^{\hyperlink{ht187}{\Phi}},\ 
+                    0,\ 
+                    \Bean^{\text{min}} \code{)}
         $$
         
+\end{enumerate}
+    
+\subsubsection{$\mathfrak{z}^{\bean}$ $\rightarrow$ $\mathfrak{z}^{\Theta}$}
+
+\begin{enumerate}
+    \item \textbf{From Token Address:} $\mathfrak{z}^{\bean^@}$
+    
+    \item \textbf{To Token Address:} $\mathfrak{z}^{\Theta^@}$
+    
+    \item \textbf{Conditions:} \term{Deposited} \hyperlink{ht233}{$\mathfrak{z}^{\bean}$} cannot be \term{Converted} to \term{Deposited} \hyperlink{ht235}{$\mathfrak{z}^{\Theta}$} when the USD price of \Bean1 in the BEAN:ETH \term{Well} ($\$^{\bean(\Theta)}$), such that $\$^{\bean(\Theta)}\in \{j \times 10^{-6} \mid j \in \mathbb{Z}^{+} \}$, is below \$1 (\term{i.e}, $\$^{\bean(\Theta)} < 10^6$). 
+
+        $\$^{\bean(\Theta)}$ is calculated using the number of Beans ($\Theta_{\Game}^{\bean}$), such that $\Theta_{\Game}^{\bean} \in \{j \times 10^{-6} \mid j \in \mathbb{Z}^{+} \}$, and number of ETH ($\Theta_{\Game}^{\text{ETH}}$), such that $\Theta_{\Game}^{\text{ETH}} \in \{j \times 10^{-18} \mid j \in \mathbb{Z}^{+} \}$, in the BEAN:ETH \term{Well's Reserves} in the current transaction and $\$^{\text{ETH}}$.
+
         Therefore, we define $\$^{\bean(\Theta)}$ for a given (1) output of the \term{Well Implementation}\fref{etherscan.io/address/0xBA510e11eEb387fad877812108a3406CA3f43a4B\#code} \code{getSwapOut} function with $\Theta_{\Game}^{\bean}$ and $\Theta_{\Game}^{\text{ETH}}$, and (2) $\$^{\text{ETH}}$ as:
 
-        $$ \$^{\bean(\Theta)} = \frac{\code{getSwapOut(} \Theta_{\Game}^{\bean},\ \Theta_{\Game}^{\text{ETH}},\ 1 \code{)} \times 10^6 }{\$^{\text{ETH}}}$$
-    
-        \item \textbf{Convert Function:} The number of $\Theta$ received for \term{Converting} \term{Deposited} Beans within the \term{Silo} for a given minimum $\Theta$ received ($\Theta^{\text{min}}$), such that $\Theta^{\text{min}} \in \{j \times 10^{-18} \mid j \in \mathbb{N} \}$, Beanstalk contract address and \code{block.timestamp}\fref{docs.soliditylang.org/en/v0.7.6/units-and-global-variables.html\#block-and-transaction-properties} is the result of calling the \term{Well Implementation} \code{addLiquidity} function on $\Theta$ as:
+            $$ \$^{\bean(\Theta)} = \frac{\code{getSwapOut(} \Theta_{\Game}^{\bean},\ \Theta_{\Game}^{\text{ETH}},\ 1 \code{)} \times 10^6 }{\$^{\text{ETH}}}$$
 
-        \begin{multline*}
-            \begin{aligned}
-            & f^{\bean \rightarrow \Theta}(z^{\bean}) = \Theta \code{.addLiquidity(} \\
-            & \hspace{4.9cm} [z^{\bean}, 0],\ \\
-            & \hspace{4.9cm} \Theta^{\text{min}},\ \\
-            & \hspace{4.9cm} \text{0xc1e088fc1323b20bcbee9bd1b9fc9546db5624c5},\ \\
-            & \hspace{4.9cm} \code{block.timestamp} \code{)}
-            \end{aligned}
-        \end{multline*}
+    \item \textbf{Convert Function:} The number of $\mathfrak{z}^{\Theta}$ received for \term{Converting} \term{Deposited} $\mathfrak{z}^{\bean}$ within the \term{Silo} for a given $\mathfrak{Z}_{\bigotimes}^{\Phi}$, $\mathfrak{Z}^{\bean}$, $\mathfrak{R}^{\Theta}$, $\mathfrak{R}^{\bean}$, minimum \term{Unripe} $\Theta$ received ($\mathfrak{z}^{\Theta^{\text{min}}}$), such that $\mathfrak{z}^{\Theta^{\text{min}}} \in \{j \times 10^{-6} \mid j \in \mathbb{N} \}$, $\Beanstalk^{@}$ and \code{block.timestamp}\fref{docs.soliditylang.org/en/v0.7.6/units-and-global-variables.html\#block-and-transaction-properties} is the result of calling the \term{Well Implementation}\fref{etherscan.io/address/0xBA510e11eEb387fad877812108a3406CA3f43a4B\#code} \code{addLiquidity} function on $\Theta$ as:
+
+        $$
+            f^{\mathfrak{z}^{\tinybean} \rightarrow {\mathfrak{z}^{\Phi}}}(z^{\mathfrak{z}^{\tinybean}}) = 
+                \frac{\mathfrak{S} \times 
+                        \mathfrak{Z}_{\bigotimes}^{\Phi} \times 
+                        \mathfrak{Z}^{\bean}}
+                    {7.7 \times 
+                        10 \times 
+                        \mathfrak{R}^{\Theta} \times 
+                        \mathfrak{R}^{\bean}} \times 
+                \Theta \code{.addLiquidity(} [\frac{z^{\mathfrak{z}^{\tinybean}} \times \mathfrak{R}^{\bean}}
+                                                {\mathfrak{Z}^{\bean}}, 0],\
+                                            \mathfrak{z}^{\Theta^{\text{min}}},\
+                                            \Beanstalk^{@},\
+                                            \code{block.timestamp} 
+                        \code{)}
+        $$
         
-    \end{enumerate}
+\end{enumerate}
+    
+\subsubsection{$\mathfrak{z}^{\Theta}$ $\rightarrow$ $\mathfrak{z}^{\bean}$}
+
+\begin{enumerate}
+    \item \textbf{From Token Address:} $\mathfrak{z}^{\Theta^@}$
+    
+    \item \textbf{To Token Address:} $\mathfrak{z}^{\bean^@}$
+    
+    \item \textbf{Conditions:} \term{Deposited} $\mathfrak{z}^{\Theta}$ cannot be \term{Converted} to \term{Deposited} $\mathfrak{z}^{\bean}$ when the price of \Bean1 in the BEAN:ETH \term{Well} is greater than or equal \$1 (\term{i.e}, $10^6 \leq \hyperlink{ht2}{\$^{\bean(\Theta)}}$). 
+    
+    \item \textbf{Convert Function:} The number of \hyperlink{ht233}{$\mathfrak{z}^{\bean}$} received for \term{Converting} \term{Deposited} $\mathfrak{z}^{\Theta}$ within the \term{Silo} for a given $\mathfrak{Z}^{\Theta}$, $\mathfrak{S}$, $\mathfrak{Z}_{\bigotimes}^{\Phi}$, $\mathfrak{R}^{\Theta}$, $\Bean^{@}$, minimum \term{Unripe} Beans received (\hyperlink{ht234}{$\mathfrak{z}^{\bean^{\text{min}}}$}), such that $\hyperlink{ht234}{\mathfrak{z}^{\bean^{\text{min}}}} \in \{j \times 10^{-6} \mid j \in \mathbb{N} \}$, $\Beanstalk^{@}$ and \code{block.timestamp} is the result of calling the \term{Well Implementation}\fref{etherscan.io/address/0xBA510e11eEb387fad877812108a3406CA3f43a4B\#code} \code{removeLiquidityOneToken} function on $\Theta$ as:
+
+    \begin{multline*}
+        \begin{aligned}
+            & \hspace{-1.5cm} 
+            f^{\mathfrak{z}^{\Theta} \rightarrow \mathfrak{z}^{\tinybean}}(z^{\mathfrak{z}^{\Theta}}) = 
+                \frac{7.7 \times 
+                    10 \times 
+                    \mathfrak{Z}^{\Theta}}
+                {\mathfrak{S} \times 
+                    \mathfrak{Z}_{\bigotimes}^{\Phi}} \times
+                \Theta \code{.removeLiquidityOneToken(} [\frac{z^{\mathfrak{z}^{\Theta}} \times \mathfrak{R}^{\Theta}}
+                                                                        {\mathfrak{Z}^{\Theta}}],\
+                                                                        \Bean^{@},\
+                                                                        \mathfrak{z}^{\bean^{\text{min}}},\
+                                                                        \Beanstalk^{@},\
+                                                                        \code{block.timestamp} 
+                                        \code{)}
+        \end{aligned}
+    \end{multline*}
+        
+\end{enumerate}
+    
+\subsubsection{\Bean\ $\rightarrow$ $\Theta$}
+
+\begin{enumerate}
+    \item \textbf{From Token Address:} $\Bean^{@}$
+    
+    \item \textbf{To Token Address:} $\Theta^{@}$ 
+    
+    \item \textbf{Conditions:} \term{Deposited} \Bean\ cannot be \term{Converted} to \term{Deposited} $\Theta$ when the USD price of \Bean1 in the BEAN:ETH \term{Well} is below \$1 (\term{i.e}, $\$^{\bean(\Theta)} < 10^6$). 
+    
+    \item \textbf{Convert Function:} The number of $\Theta$ received for \term{Converting} \term{Deposited} Beans within the \term{Silo} for a given minimum $\Theta$ received ($\Theta^{\text{min}}$), such that $\Theta^{\text{min}} \in \{j \times 10^{-18} \mid j \in \mathbb{N} \}$, $\Beanstalk^{@}$ and \code{block.timestamp} is the result of calling the \term{Well Implementation} \code{addLiquidity} function on $\Theta$ as:
+
+        $$
+            f^{\bean \rightarrow \Theta}(z^{\bean}) = 
+                \Theta \code{.addLiquidity(}
+                            [z^{\bean}, 0],\ 
+                            \Theta^{\text{min}},\
+                            \Beanstalk^{@},\
+                            \code{block.timestamp} 
+                        \code{)}
+        $$
+        
+\end{enumerate}
     
 \subsubsection{$\Theta$ $\rightarrow$ \Bean}
-    \begin{enumerate}
-        \item \textbf{From Token Address:} The $\Theta$ token address is 0xBEA0e11282e2bB5893bEcE110cF199501e872bAd.
-        \item \textbf{To Token Address:} The \Bean\ token address is 0xBEA0000029AD1c77D3d5D23Ba2D8893dB9d1Efab.
-        \item \textbf{Conditions:} \term{Deposited} $\Theta$ cannot be \term{Converted} to \term{Deposited} \Bean\ when the price of \Bean1 in the \term{Well} is less than or equal to \$1 (\term{i.e}, $10^6 \leq \$^{\bean(\Theta)}$). 
-        \item \textbf{Convert Function:} The number of \Bean\ received for \term{Converting} \term{Deposited} $\Theta$ within the \term{Silo} for a given number of $\Theta$ LP tokens \term{Converted} ($\Theta^{\rightarrow}$), such that $\Theta^{\rightarrow} \in \{j \times 10^{-18} \mid j \in \mathbb{N} \}$, $\Bean$ token address, $\Bean^{\text{min}}$, Beanstalk contract address and \code{block.timestamp} is the result of calling the \term{Well Implementation} \code{removeLiquidityOneToken} function on $\Theta$ as:
 
-        \begin{multline*}
-            \begin{aligned}
-            & f^{\Theta \rightarrow \bean}(z^{\Theta}) = \\
-            & \hspace{0.6cm}\Theta \code{.removeLiquidityOneToken(} \\
-            & \hspace{5.6cm} \Theta^{\rightarrow},\ \\
-            & \hspace{5.6cm} \text{0xBEA0000029AD1c77D3d5D23Ba2D8893dB9d1Efab},\ \\
-            & \hspace{5.6cm} \Bean^{\text{min}},\ \\
-            & \hspace{5.6cm} \text{0xc1e088fc1323b20bcbee9bd1b9fc9546db5624c5},\ \\
-            & \hspace{5.6cm} \code{block.timestamp} \code{)}
-            \end{aligned}
-        \end{multline*}
+\begin{enumerate}
+    \item \textbf{From Token Address:} $\Theta^{@}$
+    
+    \item \textbf{To Token Address:} $\Bean^{@}$
+    
+    \item \textbf{Conditions:} \term{Deposited} $\Theta$ cannot be \term{Converted} to \term{Deposited} \Bean\ when the price of \Bean1 in the BEAN:ETH \term{Well} is less than or equal to \$1 (\term{i.e}, $10^6 \leq \$^{\bean(\Theta)}$). 
+    
+    \item \textbf{Convert Function:} The number of \Bean\ received for \term{Converting} \term{Deposited} $\Theta$ within the \term{Silo} for a given $\Bean^{@}$, $\Bean^{\text{min}}$, $\Beanstalk^{@}$ and \code{block.timestamp} is the result of calling the \term{Well Implementation} \code{removeLiquidityOneToken} function on $\Theta$ as:
+
+        $$
+            f^{\Theta \rightarrow \bean}(z^{\Theta}) = 
+                \Theta \code{.removeLiquidityOneToken(} 
+                            z^{\Theta},\ 
+                            \Bean^{@},\ 
+                            \Bean^{\text{min}},\ 
+                            \Beanstalk^{@},\
+                            \code{block.timestamp} 
+                        \code{)}
+        $$
         
     \end{enumerate}
 \end{document}

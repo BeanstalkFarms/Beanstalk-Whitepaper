@@ -5,8 +5,12 @@
 
 \begin{document}
 
+%%%%%%%%%%%%%%% Glossary %%%%%%%%%%%%%%%
+
 \subsection{Glossary}
+
 The following conventions are used throughout this paper:
+
 \begin{itemize}
     \item Lower case Latin letters are unique values;
     \item Upper case Latin letters are totals or rates;
@@ -29,6 +33,7 @@ The following variables and terms are used throughout this paper:
     \item[] \term{Barn} - \hypertarget{ht18}{The Beanstalk recapitalization facility};
     \item[] \term{BCM} - \hypertarget{ht19}{The \term{Beanstalk Community Multisig}};
     \item[] BDV - \hypertarget{ht20}{Bean-denominated-value};
+    \item[] \term{BEAN:ETH Migration} - Migration of \term{Ripe} $\Phi$ and \term{Unripe} $\Phi$ to \term{Ripe} $\Theta$ and \term{Unripe} $\Theta$, respectively.
     \item[] \term{Beanstalk Community Multisig} - \hypertarget{ht21}{The owner of the Beanstalk contract};
     \item[] \term{Beanstalk Improvement Proposal} - \hypertarget{ht22}{A Beanstalk governance proposal};
     \item[] \term{BIP} - \hypertarget{ht23}{A \term{Beanstalk Improvement Proposal}};
@@ -70,9 +75,9 @@ The following variables and terms are used throughout this paper:
     \item[] \term{Maximum Soil} - The maximum \term{Soil} supply at a given block during a \term{Season};
     \item[] \term{Maximum Temperature} - The maximum \term{Temperature} Beanstalk is willing to offer during a \term{Season};
     \item[] \term{Minimum Soil} - The minimum \term{Soil} supply at a given block during a \term{Season};
+    \item[] \term{Minting Whitelist} - \hypertarget{ht133}{The whitelist of pools included in the calculation of $\Delta B_{\overline{t-1}}$};
     \item[] \term{Morning} - The first $Q$ blocks of each \term{Season};
     \item[] \term{Mow} - \hypertarget{ht131}{Turn \term{Grown Stalk} into \term{Stalk}};
-    \item[] \term{Oracle Whitelist} - \hypertarget{ht133}{The whitelist of pools included in the calculation of $\Delta B_{\overline{t-1}}$};
     \item[] \term{Order} - \hypertarget{ht134}{Create an offer to buy};
     \item[] \term{Pause} - \hypertarget{ht144}{Stop accepting \code{gm} function calls};
     \item[] \term{Paused} - \hypertarget{ht145}{Beanstalk has stopped accepting \code{gm} function calls};
@@ -134,9 +139,8 @@ The following variables and terms are used throughout this paper:
     \item[] $B^{\text{BIP}}$ - \hypertarget{ht17}{The total Beans minted via \term{BIPs}};
     \item[] $B_{t-1}$ - The Bean supply at the end of the previous \term{Season};
     \item[] $\Delta B_{t-1}$ - \hypertarget{ht49}{The number of Beans that are minted and sold to return the price of \Bean1 to its value peg};
-    \item[] $\Delta B_{\overline{t-1}}$ - \hypertarget{ht50}{The sum of liquidity and time weighted average shortages or excess of Beans across \Bean:$y$ liquidity pools on the \term{Oracle Whitelist} over the previous \term{Season}};
+    \item[] $\Delta B_{\overline{t-1}}$ - \hypertarget{ht50}{The sum of liquidity and time weighted average shortages or excess of Beans across \Bean:$y$ liquidity pools on the \term{Minting Whitelist} over the previous \term{Season}};
     \item[] $\Delta b_{\overline{t-1}}^{\Theta}$ - The liquidity and time weighted average shortage or excess of Beans in the BEAN:ETH \term{Well} over the previous \term{Season};
-
     \item[] $\Delta b_{t-1}^{\Phi}$ - \hypertarget{ht51}{The shortage of Beans in the BEAN:3CRV Curve pool at the end of the previous \term{Season}};
     \item[] $\Delta b_{\overline{t-1}}^{\Phi}$ - \hypertarget{ht52}{The liquidity and time weighted average shortage or excess of Beans in the BEAN:3CRV Curve pool over the previous \term{Season}};
     \item[] $C_t$ - \hypertarget{ht29}{A \term{Stalkholder's} total \term{Seeds} during $t$};
@@ -216,10 +220,10 @@ The following variables and terms are used throughout this paper:
     \item[] $\mathfrak{F}$ - \hypertarget{ht85}{The total \term{Fertilizer}};
     \item[] $\mathfrak{H}$ - \hypertarget{ht111}{The \term{Humidity}};
     \item[] $\mathfrak{M}$ - \hypertarget{ht129}{The percentage of \term{Ripe} assets received for \term{Chopping} a pro-rata portion of \term{Unripe} assets};
-    \item[] $\mathfrak{P}^{\Phi}$ - \hypertarget{ht143}{The number of $\Phi$ received for \term{Chopping} a given $\mathfrak{z}^{\Phi}$};
+    \item[] $\mathfrak{P}^{\Theta}$ - \hypertarget{ht143}{The number of $\Theta$ received for \term{Chopping} a given $\mathfrak{z}^{\Theta}$};
     \item[] $\mathfrak{P}^{\bean}$ - \hypertarget{ht142}{The number of Beans received for \term{Chopping} a given $\mathfrak{z}^{\bean}$};
-    \item[] $\mathfrak{R}^{\Phi}$ - \hypertarget{ht160}{\term{Ripe} $\Phi$};
-    \item[] $\Delta \mathfrak{R}^{\Phi}$ - \hypertarget{ht59}{The change in \term{Ripe} $\Phi$ for a given $\Delta \mathfrak{S}_{\Game}$};
+    \item[] $\mathfrak{R}^{\Theta}$ - \hypertarget{ht160}{\term{Ripe} $\Theta$};
+    \item[] $\Delta \mathfrak{R}^{\Theta}$ - \hypertarget{ht59}{The change in \term{Ripe} $\Theta$ for a given $\Delta \mathfrak{S}_{\Game}$};
     \item[] $\mathfrak{R}^{\bean}$ - \hypertarget{ht158}{\term{Ripe} \Bean};
     \item[] $\Delta \mathfrak{R}^{\bean}$ - \hypertarget{ht58}{The change in \term{Ripe} \Bean for a given purchase of \term{Fertilizer}};
     \item[] $\mathfrak{R}_{<\Game}^{\bean}$ - \hypertarget{ht159}{The \term{Ripe} \Bean\ prior to a purchase of \term{Fertilizer}};
@@ -232,21 +236,20 @@ The following variables and terms are used throughout this paper:
     \item[] $\mathfrak{X}$ - \hypertarget{ht225}{The percentage of \term{Fertilizer} sold};
     \item[] $\Delta \mathfrak{X}$ - \hypertarget{ht62}{The change in $\mathfrak{X}$ between (1) $\varphi$ or (2) the \term{Replant}, if $\varphi = 0$, and $t$};
     \item[] $\mathfrak{X}_{\bigotimes}$ - \hypertarget{ht226}{The percentage of \term{Fertilizer} sold prior to \term{Replant}};
-    \item[] $\mathfrak{Z}^{\Phi}$ - \hypertarget{ht230}{The current total \term{Unripe} $\Phi$};
+    \item[] $\mathfrak{Z}^{\Theta}$ - \hypertarget{ht230}{The current total \term{Unripe} $\Theta$};
     \item[] $\mathfrak{Z}^{\bean}$ - \hypertarget{ht229}{The total \term{Unripe} \Bean};
     \item[] $\mathfrak{Z}_{\bigotimes}^{\Phi}$ - \hypertarget{ht232}{The total \term{Unripe} $\Phi$ at the time of \term{Replant}};
-    \item[] $\mathfrak{z}^{\Phi}$ - \hypertarget{ht235}{\term{Unripe} $\Phi$};
-    \item[] $\mathfrak{z}^{\Phi^{\text{min}}}$ - \hypertarget{ht236}{The minimum number of \term{Unripe} $\Phi$ received for \term{Converting} \term{Deposited} \term{Unripe} Beans within the \term{Silo}};
-    \item[] $\mathfrak{z}^{\bean}$ - \hypertarget{ht233}{\term{Unripe} \Bean}; and
-    \item[] $\mathfrak{z}^{\bean^{\text{min}}}$ - \hypertarget{ht234}{The minimum number of \term{Unripe} Beans received for \term{Converting} \term{Deposited} \term{Unripe} $\Phi$ within the \term{Silo}}.
+    \item[] $\mathfrak{z}^{\Theta}$ - \hypertarget{ht235}{\term{Unripe} $\Theta$};
+    \item[] $\mathfrak{z}^{\Theta^{\text{min}}}$ - \hypertarget{ht236}{The minimum number of \term{Unripe} $\Theta$ received for \term{Converting} \term{Deposited} \term{Unripe} Beans within the \term{Silo}};
+    \item[] $\mathfrak{z}^{\Theta^@}$- The $\mathfrak{z}^{\Theta}$ token address;
+    \item[] $\mathfrak{z}^{\bean}$ - \hypertarget{ht233}{\term{Unripe} \Bean};
+    \item[] $\mathfrak{z}^{\bean^{\text{min}}}$ - \hypertarget{ht234}{The minimum number of \term{Unripe} Beans received for \term{Converting} \term{Deposited} \term{Unripe} $\Theta$ within the \term{Silo}}; and
+    \item[] $\mathfrak{z}^{\bean^@}$- The $\mathfrak{z}^{\bean}$ token address.
 \end{itemize}
 
 \subsubsection{Greek Alphabet Variables}
 
 \begin{itemize}[topsep=0pt, itemsep=3pt,leftmargin=16pt]
-
-
-
     \item[] $\zeta^{\Phi}$ - \hypertarget{ht95}{The price invariant for the BEAN:3CRV Curve pool};
     \item[] $\zeta^{\Phi}_{\Xi-1}$ - \hypertarget{ht96}{The flash-loan-resistant price invariant for the BEAN:3CRV Curve pool};
     \item[] $\zeta^{\Phi}_{t-1}$ - \hypertarget{ht97}{The price invariant for $\Phi$ at the end of the previous \term{Season}};
@@ -266,10 +269,10 @@ The following variables and terms are used throughout this paper:
     \item[] $\Theta^{\text{min}(\bean)}$ - The minimum number of Beans that must be in the BEAN:ETH \term{Well} in order for the oracle to be considered;
     \item[] $\Theta^{\text{SMA}}_{\bean,t_0,\Game}$ - The inter-block MEV manipulation resistant TWA Bean reserves in the Multi Flow \term{Pump} of the BEAN:ETH \term{Well} from the beginning of the \term{Season} to the current transaction;
     \item[] $\Theta^{\text{SMA}}_{\text{ETH},t_0,\Game}$ - The inter-block MEV manipulation resistant TWA ETH reserves in the Multi Flow \term{Pump} of the BEAN:ETH \term{Well} from the beginning of the \term{Season} to the current transaction;
+    \item[] $\Theta^{@}$ - The $\Theta$ token address;
     \item[] $\Theta^{*}$ - The data associated with the \term{Well Function} of $\Theta$;
     \item[] $\Theta_{\Game}^{\bean}$ - The number of Beans in the BEAN:ETH \term{Well's Reserves} in the current transaction;
     \item[] $\Theta_{\overline{t-1}}^{{\bean}^*}$ - The optimal liquidity and time weighted average number of Beans in $\Theta$ over the previous \term{Season};
-    \item[] $\Theta^{\rightarrow}$ - The number of $\Theta$ LP tokens \term{Converted};
     \item[] $\Lambda$ - \hypertarget{ht127}{The \term{Deposit Whitelist}};
     \item[] $\lambda$ - \hypertarget{ht126}{\Bean\ and other assets on the \term{Deposit Whitelist}};
     \item[] $f^{\lambda}(z^{\lambda})$ - \hypertarget{ht84}{The function to calculate the flash-loan-resistant Bean-denominated-value for a given number of $\lambda$ \term{Deposited}};
@@ -279,6 +282,7 @@ The following variables and terms are used throughout this paper:
     \item[] $\Phi^{\text{3CRV}}$ - \hypertarget{ht189}{The number of 3CRV in the BEAN:3CRV Curve pool};
     \item[] $\Phi^{\text{min}}$ - \hypertarget{ht191}{The minimum number of $\Phi$ received for \term{Converting} to \term{Deposited} $\Phi$ within the \term{Silo}};
     \item[] $\Phi^{A}$ - \hypertarget{ht190}{The A parameter of $\Phi$};
+    \item[] $\Phi^{@}$ - The $\Phi$ token address;
     \item[] $\Phi_{t-1}^{\bean}$ - \hypertarget{ht195}{The number of Beans in $\Phi$ at the end of the previous \term{Season}};
     \item[] $\Phi_{t-1}^{{\bean}^*}$ - \hypertarget{ht196}{The optimal number of Beans in $\Phi$ at the end of the previous \term{Season}};
     \item[] $\Phi_{t-1}^{\text{3CRV}}$ - \hypertarget{ht197}{The number of 3CRV in $\Phi$ at the end of the previous \term{Season}};
@@ -327,8 +331,10 @@ The following variables and terms are used throughout this paper:
 \subsubsection{Symbol Variables}
 
 \begin{itemize}[topsep=0pt, itemsep=3pt,leftmargin=16pt]
+    \item[] $\Beanstalk^{@}$ - The Beanstalk contract address;
     \item[] \Bean\ - Bean;
     \item[] $\Bean^{\text{min}}$ - The minimum number of Beans received for \term{Converting} to \term{Deposited} Beans within the \term{Silo};
+    \item[] $\Bean^{@}$ - The \Bean\ token address;
     \item[] \Bean:$y$ - \hypertarget{ht6}{A new liquidity pool that consists of Beans and $y$};
     \item[] \$ - 1 US Dollar;
     \item[] $\$^{\text{ETH}}$ - The inter-block MEV manipulation resistant USD price of 1 ETH;
@@ -342,9 +348,7 @@ The following variables and terms are used throughout this paper:
     \item[] $\$^{\bean(\Phi)}$ - \hypertarget{ht2}{The USD price of \Bean1 in the BEAN:3CRV Curve pool};
     \item[] $\$^{\bean(\Phi)}_{\Xi-1}$ - \hypertarget{ht3}{The flash-loan-resistant USD price of \Bean1 in the BEAN:3CRV Curve pool};
     \item[] $\$^{\bean(\daleth)}$ - \hypertarget{ht1a}{The USD price of \Bean1 in the old BEAN:3CRV Curve pool}; and
-    
     \item[] $\sun_{\Xi}$ - An approximation of the cost to call the \code{gm} function in Beans in the current block.
 \end{itemize}
-
 
 \end{document}

@@ -5,80 +5,188 @@
 \usepackage{enumitem} % Format list spacing 
 
 \begin{document}
+
+%%%%%%%%%%%%%%% Barn %%%%%%%%%%%%%%%
+
 \subsection{Barn}
 \vspace*{-1.5mm}
+
 The following ERC-20 Standard tokens were \term{Whitelisted} for \term{Deposit} in the \term{Silo} at the end of the block prior to the \term{Exploit}. Upon \term{Replant}, \term{Stalkholders} at the end of the block prior to the \term{Exploit} received \term{Stalk} and \term{Seeds} based on their \term{Deposits} at the end of the block prior to the \term{Exploit}. All non-Bean \term{Deposits} are credited with 4 \term{Seeds} per BDV upon \term{Deposit}, independent of \hyperlink{ht32}{$c^{\lambda}$}. The previous \hyperlink{ht32}{$c^{\lambda}$}, total supply and BDV of each token at the end of the block prior to the \term{Exploit} have been included for reference. 
 
 \vspace*{-1.5mm}
 \subsubsection{Old \Bean}
 \vspace*{-1.5mm}
+
 \begin{enumerate}
-        \item \textbf{Token Address:} The old \Bean\ token address is 0xDC59ac4FeFa32293A95889Dc396682858d52e5Db.
-        \item \textbf{BDV Function:} The BDV of 1 \Bean\ is 1 \Bean. 
+    \item \textbf{Token Address:} The old \Bean\ token address is 0xDC59ac4FeFa32293A95889Dc396682858d52e5Db.
+    
+    \item \textbf{BDV Function:} The BDV of 1 \Bean\ is 1 \Bean. 
         
-Therefore, we defined $f^{\bean}(z^{\bean})$ as:
-            $$f^{\bean}(z^{\bean}) = z^{\bean}$$
-        \item \textbf{Stalk per BDV:} \Bean\ \term{Deposits} received 1 \term{Stalk} per BDV upon \term{Deposit} (\term{i.e.}, $k^{\bean} = 1$).
-        \item \textbf{Seeds per BDV:} \Bean\ \term{Deposits} received 2 \term{Seeds} per BDV upon \term{Deposit} (\term{i.e.}, $c^{\bean} = 2$).
-        \item \textbf{Total Supply:} There were 108155457.359439 old \Bean\ at the end of the block prior to the \term{Exploit}.
-        \item \textbf{BDV Per Token:} The BDV per old \Bean\ at the end of the block prior to the \term{Exploit} was 1.
-    \end{enumerate}
+        Therefore, we defined $f^{\bean}(z^{\bean})$ as:
+        
+            $$
+                f^{\bean}(z^{\bean}) = z^{\bean}
+            $$
+            
+    \item \textbf{Stalk per BDV:} \Bean\ \term{Deposits} received 1 \term{Stalk} per BDV upon \term{Deposit} (\term{i.e.}, $k^{\bean} = 1$).
+    
+    \item \textbf{Seeds per BDV:} \Bean\ \term{Deposits} received 2 \term{Seeds} per BDV upon \term{Deposit} (\term{i.e.}, $c^{\bean} = 2$).
+    
+    \item \textbf{Total Supply:} There were 108155457.359439 old \Bean\ at the end of the block prior to the \term{Exploit}.
+    
+    \item \textbf{BDV Per Token:} The BDV per old \Bean\ at the end of the block prior to the \term{Exploit} was 1.
+\end{enumerate}
 
 \vspace{-1.5mm}
 \subsubsection{Old BEAN:ETH Uniswap V2 LP Tokens ($\beth$)}
 \vspace*{-1.5mm}
-    \begin{enumerate}
-        \item \textbf{Token Address:} The \hyperlink{ht25}{$\beth$} token address is 0x87898263b6c5babe34b4ec53f22d98430b91e371.
-        \item \textbf{BDV Function:} The BDV of \hyperlink{ht25}{$\beth$} was calculated using the last traded price in the old BEAN:ETH Uniswap v2 pool unless there was an interaction with the pool in the current block. The last traded price was a function of the current number of Beans in the pool (\hyperlink{ht27}{$\beth^{\bean}$}), such that $\hyperlink{ht27}{\beth^{\bean}} \in \{j \times 10^{-6} \mid j \in \mathbb{Z}^{+} \}$. If there was an interaction with the pool in the current block, Beanstalk used the time weighted average number of Beans in the pool from the start of the current \term{Season} to the current block (\hyperlink{ht28}{$\beth_{\overline{t}}^{\bean}$}), such that $\hyperlink{ht28}{\beth_{\overline{t}}^{\bean}} \in \{j \times 10^{-6} \mid j \in \mathbb{Z}^{+} \}$ unless the \code{gm} function was also called in the current block. If there was an interaction with the pool and the \code{gm} function was called in the current block, \hyperlink{ht25}{$\beth$} \term{Deposits} are not accepted. 
+
+\begin{enumerate}
+    \item \textbf{Token Address:} The \hyperlink{ht25}{$\beth$} token address is 0x87898263b6c5babe34b4ec53f22d98430b91e371.
+    
+    \item \textbf{BDV Function:} The BDV of \hyperlink{ht25}{$\beth$} was calculated using the last traded price in the old BEAN:ETH Uniswap v2 pool unless there was an interaction with the pool in the current block. The last traded price was a function of the current number of Beans in the pool (\hyperlink{ht27}{$\beth^{\bean}$}), such that $\hyperlink{ht27}{\beth^{\bean}} \in \{j \times 10^{-6} \mid j \in \mathbb{Z}^{+} \}$. If there was an interaction with the pool in the current block, Beanstalk used the time weighted average number of Beans in the pool from the start of the current \term{Season} to the current block (\hyperlink{ht28}{$\beth_{\overline{t}}^{\bean}$}), such that $\hyperlink{ht28}{\beth_{\overline{t}}^{\bean}} \in \{j \times 10^{-6} \mid j \in \mathbb{Z}^{+} \}$ unless the \code{gm} function was also called in the current block. If there was an interaction with the pool and the \code{gm} function was called in the current block, \hyperlink{ht25}{$\beth$} \term{Deposits} are not accepted. 
         
-Therefore, we defined $f^{\hyperlink{ht25}{\beth}}(z^{\hyperlink{ht25}{\beth}})$ for a given timestamp of the last interaction with the pool (\hyperlink{ht72}{$E_{\beth}$}), current block timestamp (\hyperlink{ht73}{$E_{\Xi}^*$}), \hyperlink{ht74}{$E_t$}, \hyperlink{ht28}{$\beth_{\overline{t}}^{\bean}$}, the current total number of \hyperlink{ht25}{$\beth$} in the current block (\hyperlink{ht25}{$\beth$}), such that $\hyperlink{ht25}{\beth} \in \{j \times 10^{-18} \mid j \in \mathbb{Z}^{+} \}$, and \hyperlink{ht27}{$\beth^{\bean}$} as:
-$$f^{\hyperlink{ht25}{\beth}}(z^{\hyperlink{ht25}{\beth}}) = \begin{cases} \text{FAIL} & \text{if} \; \hyperlink{ht72}{E_{\beth}} = \hyperlink{ht73}{E_{\Xi}^*}\ \&\ \hyperlink{ht73}{E_{\Xi}^*}\ = \hyperlink{ht74}{E_t} \vspace{.3cm} \\ 
-\dfrac{z^{\hyperlink{ht25}{\beth}} \times 2 \times \hyperlink{ht28}{\beth_{\overline{t}}^{\bean}}}{\hyperlink{ht25}{\beth}} & \text{if} \; \hyperlink{ht72}{E_{\hyperlink{ht25}{\beth}}} = \hyperlink{ht73}{E_{\Xi}^*} \vspace{.3cm}\\ 
-\dfrac{z^{\hyperlink{ht25}{\beth}} \times 2 \times \hyperlink{ht27}{\beth^{\bean}}}{\beth} & \text{else}\end{cases}$$
+        Therefore, we defined $f^{\hyperlink{ht25}{\beth}}(z^{\hyperlink{ht25}{\beth}})$ for a given timestamp of the last interaction with the pool (\hyperlink{ht72}{$E_{\beth}$}), current block timestamp (\hyperlink{ht73}{$E_{\Xi}^*$}), \hyperlink{ht74}{$E_t$}, \hyperlink{ht28}{$\beth_{\overline{t}}^{\bean}$}, the current total number of \hyperlink{ht25}{$\beth$} in the current block (\hyperlink{ht25}{$\beth$}), such that $\hyperlink{ht25}{\beth} \in \{j \times 10^{-18} \mid j \in \mathbb{Z}^{+} \}$, and \hyperlink{ht27}{$\beth^{\bean}$} as:
+        
+            $$
+                f^{\hyperlink{ht25}{\beth}}(z^{\hyperlink{ht25}{\beth}}) = 
+                    \begin{cases} 
+                        \text{FAIL} 
+                            & \text{if} \; \hyperlink{ht72}{E_{\beth}} = \hyperlink{ht73}{E_{\Xi}^*}\ \&\&\ 
+                                \hyperlink{ht73}{E_{\Xi}^*}\ = \hyperlink{ht74}{E_t} \vspace{.3cm} \\ 
+                        \dfrac{z^{\hyperlink{ht25}{\beth}} \times 
+                                2 \times 
+                                \hyperlink{ht28}{\beth_{\overline{t}}^{\bean}}}{\hyperlink{ht25}{\beth}} 
+                            & \text{if} \; \hyperlink{ht72}{E_{\hyperlink{ht25}{\beth}}} = \hyperlink{ht73}{E_{\Xi}^*} \vspace{.3cm}\\ 
+                        \dfrac{z^{\hyperlink{ht25}{\beth}} \times 2 \times \hyperlink{ht27}{\beth^{\bean}}}{\beth} 
+                            & \text{else}
+                    \end{cases}
+            $$
 
-        \item \textbf{Stalk per BDV:} \hyperlink{ht25}{$\beth$} \term{Deposits} received 1 \term{Stalk} per BDV upon \term{Deposit} (\term{i.e.}, $k^{\hyperlink{ht25}{\beth}} = 1$).
-        \item \textbf{Seeds per BDV:} \hyperlink{ht25}{$\beth$} \term{Deposits} received 4 \term{Seeds} per BDV upon \term{Deposit} (\term{i.e.}, $c^{\hyperlink{ht25}{\beth}} = 4$).
-        \item \textbf{Total Supply:} There were 0.540894218294675521 \hyperlink{ht25}{$\beth$} at the end of the block prior to the \term{Exploit}.
-        \item \textbf{BDV Per Token:} The BDV per \hyperlink{ht25}{$\beth$} at the end of the block prior to the \term{Exploit} was 119,894,802.186829.
-    \end{enumerate}
+    \item \textbf{Stalk per BDV:} \hyperlink{ht25}{$\beth$} \term{Deposits} received 1 \term{Stalk} per BDV upon \term{Deposit} (\term{i.e.}, $k^{\hyperlink{ht25}{\beth}} = 1$).
+    
+    \item \textbf{Seeds per BDV:} \hyperlink{ht25}{$\beth$} \term{Deposits} received 4 \term{Seeds} per BDV upon \term{Deposit} (\term{i.e.}, $c^{\hyperlink{ht25}{\beth}} = 4$).
+    
+    \item \textbf{Total Supply:} There were 0.540894218294675521 \hyperlink{ht25}{$\beth$} at the end of the block prior to the \term{Exploit}.
+    
+    \item \textbf{BDV Per Token:} The BDV per \hyperlink{ht25}{$\beth$} at the end of the block prior to the \term{Exploit} was 119,894,802.186829.
+\end{enumerate}
 
-\newpage
 \subsubsection{Old BEAN:3CRV Curve LP Tokens ($\daleth$)}
-    \begin{enumerate}
-        \item \textbf{Token Address:} The $\hyperlink{ht64}{\daleth}$ token address is 0x3a70DfA7d2262988064A2D051dd47521E43c9BdD.
-        \item \textbf{BDV Function:} The BDV of \hyperlink{ht64}{$\daleth$} was calculated using the number of Beans (\hyperlink{ht67}{$\daleth_{\Xi-1}^{\bean}$}), such that $\hyperlink{ht67}{\daleth_{\Xi-1}^{\bean}} \in \{j \times 10^{-6} \mid j \in \mathbb{Z}^{+} \}$, and number of 3CRV (\hyperlink{ht68}{$\daleth_{\Xi-1}^{\text{3CRV}}$}) in the old BEAN:3CRV Curve pool at the end of the last block, \hyperlink{ht136}{$P^{\text{3CRV}}$}, the A parameter of the pool (\hyperlink{ht65}{$\daleth^{A}$}), such that $\hyperlink{ht65}{\daleth^{A}} \in \{j \times 10^{-2} \mid j \in \mathbb{Z}^{+} \}$, and the \hyperlink{ht64}{$\daleth$} virtual price (\hyperlink{ht137}{$P^{\daleth}$}), such that $\hyperlink{ht68}{\daleth_{\Xi-1}^{\text{3CRV}}},\ \hyperlink{ht137}{P^{\daleth}} \in \{j \times 10^{-18} \mid j \in \mathbb{Z}^{+} \}$. 
 
-Beanstalk calculated a flash-loan-resistant price invariant for the old BEAN:3CRV Curve pool (\hyperlink{ht94}{$\zeta^{\daleth}$}), such that $\hyperlink{ht94}{\zeta^{\daleth}} \in \{j \times 10^{-18} \mid j \in \mathbb{Z}^{+} \}$, by calling the Curve \code{get\_D} function on \hyperlink{ht67}{$\daleth_{\Xi-1}^{\bean}$}, \hyperlink{ht68}{$\daleth_{\Xi-1}^{\text{3CRV}}$}, \hyperlink{ht136}{$P^{\text{3CRV}}$} and \hyperlink{ht65}{$\daleth^{A}$} as:
-$$\hyperlink{ht94}{\zeta^{\daleth}} = \code{get\_D(}[\hyperlink{ht67}{\daleth_{\Xi-1}^{\bean}},\ \hyperlink{ht68}{\daleth_{\Xi-1}^{\text{3CRV}}} \times \hyperlink{ht136}{P^{\text{3CRV}}}],\ \hyperlink{ht65}{\daleth^{A}}\code{)}$$
-Beanstalk calculated a flash-loan-resistant total number of \hyperlink{ht64}{$\daleth$} (\hyperlink{ht66}{$\daleth_{\Xi-1}$}), such that $\hyperlink{ht66}{\daleth_{\Xi-1}} \in \{j \times 10^{-18} \mid j \in \mathbb{Z}^{+} \}$, from \hyperlink{ht94}{$\zeta^{\daleth}$} and \hyperlink{ht137}{$P^{\daleth}$} as:
-$$\hyperlink{ht66}{\daleth_{\Xi-1}} = \frac{\hyperlink{ht94}{\zeta^{\daleth}}}{\hyperlink{ht137}{P^{\daleth}}}$$
-Beanstalk calculated the USD price of \Bean1 from the old BEAN:3CRV Curve pool (\hyperlink{ht1a}{$\$^{\bean(\daleth)}$}), such that $\hyperlink{ht1a}{\$^{\bean(\daleth)}} \in \{j \times 10^{-6} \mid j \in \mathbb{Z}^{+} \}$, by calling the Curve \code{get\_y} function on \hyperlink{ht67}{$\daleth_{\Xi-1}^{\bean}$}, \hyperlink{ht68}{$\daleth_{\Xi-1}^{\text{3CRV}}$} and \hyperlink{ht136}{$P^{\text{3CRV}}$} as:
-$$\hyperlink{ht1a}{\$^{\bean(\daleth)}} =  \hyperlink{ht67}{\daleth_{\Xi-1}^{\bean}} - \code{get\_y(}0, 1, \hyperlink{ht67}{\daleth_{\Xi-1}^{\bean}} + 1, [\hyperlink{ht67}{\daleth_{\Xi-1}^{\bean}},\ \hyperlink{ht68}{\daleth_{\Xi-1}^{\text{3CRV}}} \times \hyperlink{ht136}{P^{\text{3CRV}}}]\code{)} - 10^{-6}$$
-Beanstalk calculated $f^{\text{3CRV}}(z^{\text{3CRV}})$ from \hyperlink{ht1a}{$\$^{\bean(\daleth)}$} and \hyperlink{ht136}{$P^{\text{3CRV}}$} as:
-$$f^{\text{3CRV}}(z^{\text{3CRV}}) = \frac{z^{\text{3CRV}} \times \hyperlink{ht136}{P^{\text{3CRV}}}}{\hyperlink{ht1a}{\$^{\bean(\daleth)}}}$$
-We defined $f^{\daleth}(z^{\daleth})$ for a given \hyperlink{ht67}{$\daleth_{\Xi-1}^{\bean}$}, $f^{\text{3CRV}}(z^{\text{3CRV}})$, \hyperlink{ht68}{$\daleth_{\Xi-1}^{\text{3CRV}}$} and \hyperlink{ht66}{$\daleth_{\Xi-1}$} as:
-$$f^{\daleth}(z^{\daleth}) = \frac{z^{\daleth} \times ( \hyperlink{ht67}{\daleth_{\Xi-1}^{\bean}} + f^{\text{3CRV}}(\hyperlink{ht68}{\daleth_{\Xi-1}^{\text{3CRV}}}))}{\hyperlink{ht66}{\daleth_{\Xi-1}}}$$
-        \item \textbf{Stalk per BDV:} \hyperlink{ht64}{$\daleth$} \term{Deposits} received 1 \term{Stalk} per BDV upon \term{Deposit} (\term{i.e.}, $k^{\hyperlink{ht64}{\daleth}} = 1$).
-        \item \textbf{Seeds per BDV:} \hyperlink{ht64}{$\daleth$} \term{Deposits} received 4 \term{Seeds} per BDV upon \term{Deposit} (\term{i.e.}, $c^{\hyperlink{ht64}{\daleth}} = 4$)   
-        \item \textbf{Total Supply:} There were 79284313.822927052565331157 \hyperlink{ht64}{$\daleth$} at the end of the block prior to the \term{Exploit}.
-        \item \textbf{BDV Per Token:} The BDV per \hyperlink{ht64}{$\daleth$} at the end of the block prior to the \term{Exploit} was 0.992035.
-    \end{enumerate}
-    \subsubsection{Old BEAN:LUSD Curve LP Tokens ($\gimel$)}
-   \begin{enumerate}
-        \item \textbf{Token Address:} The \hyperlink{ht108}{$\gimel$} token address is 0xD652c40fBb3f06d6B58Cb9aa9CFF063eE63d465D.
-        \item \textbf{BDV Function:} The BDV of \hyperlink{ht108}{$\gimel$} was calculated using the number of LUSD (\hyperlink{ht241}{$\Omega_{\Xi-1}^{\text{LUSD}}$}) and number of 3CRV (\hyperlink{ht240}{$\Omega_{\Xi-1}^{\text{3CRV}}$}) in the LUSD:3CRV Curve pool (\hyperlink{ht237}{$\Omega$}) at the end of the last block, \hyperlink{ht136}{$P^{\text{3CRV}}$}, the A parameter of the pool (\hyperlink{ht238}{$\Omega^{A}$}), such that $\hyperlink{ht238}{\Omega^{A}} \in \{j \times 10^{-2} \mid j \in \mathbb{Z}^{+} \}$, \hyperlink{ht136}{$P^{\text{3CRV}}$} and \hyperlink{ht1a}{$\$^{\bean(\daleth)}$}, the \hyperlink{ht237}{$\Omega$} virtual price (\hyperlink{ht141}{$P^{\Omega}$}), the \hyperlink{ht108}{$\gimel$} virtual price (\hyperlink{ht138}{$P^{\gimel}$}), such that $\hyperlink{ht241}{\Omega_{\Xi-1}^{\text{LUSD}}},\ \hyperlink{ht240}{\Omega_{\Xi-1}^{\text{3CRV}}},\ \hyperlink{ht141}{P^{\Omega}},\ \hyperlink{ht138}{P^{\gimel}} \in \{j \times 10^{-18} \mid j \in \mathbb{Z}^{+} \}$, \hyperlink{ht136}{$P^{\text{3CRV}}$} and \hyperlink{ht1a}{$\$^{\bean(\daleth)}$}. 
+\begin{enumerate}
+    \item \textbf{Token Address:} The $\hyperlink{ht64}{\daleth}$ token address is 0x3a70DfA7d2262988064A2D051dd47521E43c9BdD.
+    
+    \item \textbf{BDV Function:} The BDV of \hyperlink{ht64}{$\daleth$} was calculated using the number of Beans (\hyperlink{ht67}{$\daleth_{\Xi-1}^{\bean}$}), such that $\hyperlink{ht67}{\daleth_{\Xi-1}^{\bean}} \in \{j \times 10^{-6} \mid j \in \mathbb{Z}^{+} \}$, and number of 3CRV (\hyperlink{ht68}{$\daleth_{\Xi-1}^{\text{3CRV}}$}) in the old BEAN:3CRV Curve pool at the end of the last block, \hyperlink{ht136}{$P^{\text{3CRV}}$}, the A parameter of the pool (\hyperlink{ht65}{$\daleth^{A}$}), such that $\hyperlink{ht65}{\daleth^{A}} \in \{j \times 10^{-2} \mid j \in \mathbb{Z}^{+} \}$, and the \hyperlink{ht64}{$\daleth$} virtual price (\hyperlink{ht137}{$P^{\daleth}$}), such that $\hyperlink{ht68}{\daleth_{\Xi-1}^{\text{3CRV}}},\ \hyperlink{ht137}{P^{\daleth}} \in \{j \times 10^{-18} \mid j \in \mathbb{Z}^{+} \}$. 
 
-Beanstalk calculated a flash-loan-resistant price invariant for the LUSD:3CRV Curve pool (\hyperlink{ht99}{$\zeta^{\Omega}$}), such that $\hyperlink{ht99}{\zeta^{\Omega}} \in \{j \times 10^{-18} \mid j \in \mathbb{Z}^{+} \}$, by calling the Curve \code{get\_D} function on \hyperlink{ht241}{$\Omega_{\Xi-1}^{\text{LUSD}}$}, \hyperlink{ht240}{$\Omega_{\Xi-1}^{\text{3CRV}}$}, \hyperlink{ht136}{$P^{\text{3CRV}}$} and \hyperlink{ht238}{$\Omega^{A}$} as:
-$$\hyperlink{ht99}{\zeta^{\Omega}} = \code{get\_D(}[\hyperlink{ht241}{\Omega_{\Xi-1}^{\text{LUSD}}},\ \hyperlink{ht240}{\Omega_{\Xi-1}^{\text{3CRV}}} \times \hyperlink{ht136}{P^{\text{3CRV}}}],\ \hyperlink{ht238}{\Omega^{A}}\code{)}$$
-Beanstalk calculated a flash-loan-resistant total number of \hyperlink{ht237}{$\Omega$} (\hyperlink{ht239}{$\Omega_{\Xi-1}$}), such that $\hyperlink{ht239}{\Omega_{\Xi-1}} \in \{j \times 10^{-18} \mid j \in \mathbb{Z}^{+} \}$, from \hyperlink{ht99}{$\zeta^{\Omega}$} and \hyperlink{ht141}{$P^{\Omega}$} as:
-$$\hyperlink{ht239}{\Omega_{\Xi-1}} = \frac{\hyperlink{ht99}{\zeta^{\Omega}}}{\hyperlink{ht141}{P^{\Omega}}}$$
-Beanstalk calculated the USD price of 1 LUSD from the LUSD:3CRV Curve pool (\hyperlink{ht4}{$\$^{\text{LUSD}(\Omega))}$}), such that $\hyperlink{ht4}{\$^{\text{LUSD}(\Omega))}} \in \{j \times 10^{-6} \mid j \in \mathbb{Z}^{+} \}$, by calling the Curve \code{get\_y} function on \hyperlink{ht241}{$\Omega_{\Xi-1}^{\text{LUSD}}$}, \hyperlink{ht240}{$\Omega_{\Xi-1}^{\text{3CRV}}$} and \hyperlink{ht136}{$P^{\text{3CRV}}$} as:
-$$\hyperlink{ht4}{\$^{\text{LUSD}(\Omega))}} =  (\hyperlink{ht241}{\Omega_{\Xi-1}^{\text{LUSD}}} - \code{get\_y(}0, 1, \hyperlink{ht241}{\Omega_{\Xi-1}^{\text{LUSD}}} + 1, [\hyperlink{ht241}{\Omega_{\Xi-1}^{\text{LUSD}}},\ \hyperlink{ht240}{\Omega_{\Xi-1}^{\text{3CRV}}} \times \hyperlink{ht136}{P^{\text{3CRV}}}]\code{)} - 10^{-6})$$
-We defined $f^{\hyperlink{ht108}{\gimel}}(z^{\hyperlink{ht108}{\gimel}})$ for a given \hyperlink{ht138}{$P^{\gimel}$}, \hyperlink{ht4}{$\$^{\text{LUSD}(\Omega))}$} and \hyperlink{ht1a}{$\$^{\bean(\daleth)}$} as:
-$$f^{\hyperlink{ht108}{\gimel}}(z^{\hyperlink{ht108}{\gimel}}) = z^{\hyperlink{ht108}{\gimel}} \times \hyperlink{ht138}{P^{\gimel}} \times \text{min}\left(1, \frac{\hyperlink{ht4}{\$^{\text{LUSD}(\Omega))}}}{\hyperlink{ht1a}{\$^{\bean(\daleth)}}}\right)$$
-        \item \textbf{Stalk per BDV:} \hyperlink{ht108}{$\gimel$} \term{Deposits} received 1 \term{Stalk} per BDV upon \term{Deposit} (\term{i.e.}, $k^{\hyperlink{ht108}{\gimel}} = 1$).
-        \item \textbf{Seeds per BDV:} \hyperlink{ht108}{$\gimel$} \term{Deposits} received 3 \term{Seeds} per BDV upon \term{Deposit} (\term{i.e.}, $c^{\hyperlink{ht108}{\gimel}} = 3$).
-        \item \textbf{Total Supply:} There were 1637956.191657208904972868 \hyperlink{ht108}{$\gimel$} at the end of the block prior to the \term{Exploit}.
-        \item \textbf{BDV Per Token:} The BDV per \hyperlink{ht108}{$\gimel$} at the end of the block prior to the \term{Exploit} was 0.983108.
-    \end{enumerate}
+        Beanstalk calculated a flash-loan-resistant price invariant for the old BEAN:3CRV Curve pool (\hyperlink{ht94}{$\zeta^{\daleth}$}), such that $\hyperlink{ht94}{\zeta^{\daleth}} \in \{j \times 10^{-18} \mid j \in \mathbb{Z}^{+} \}$, by calling the Curve \code{get\_D} function on \hyperlink{ht67}{$\daleth_{\Xi-1}^{\bean}$}, \hyperlink{ht68}{$\daleth_{\Xi-1}^{\text{3CRV}}$}, \hyperlink{ht136}{$P^{\text{3CRV}}$} and \hyperlink{ht65}{$\daleth^{A}$} as:
+
+            $$
+                \hyperlink{ht94}{\zeta^{\daleth}} = 
+                    \code{get\_D(}[\hyperlink{ht67}{\daleth_{\Xi-1}^{\bean}},\ 
+                            \hyperlink{ht68}{\daleth_{\Xi-1}^{\text{3CRV}}} \times 
+                            \hyperlink{ht136}{P^{\text{3CRV}}}],\ 
+                        \hyperlink{ht65}{\daleth^{A}}\code{)}
+            $$
+
+        Beanstalk calculated a flash-loan-resistant total number of \hyperlink{ht64}{$\daleth$} (\hyperlink{ht66}{$\daleth_{\Xi-1}$}), such that $\hyperlink{ht66}{\daleth_{\Xi-1}} \in \{j \times 10^{-18} \mid j \in \mathbb{Z}^{+} \}$, from \hyperlink{ht94}{$\zeta^{\daleth}$} and \hyperlink{ht137}{$P^{\daleth}$} as:
+
+            $$
+                \hyperlink{ht66}{\daleth_{\Xi-1}} = 
+                    \frac{\hyperlink{ht94}{\zeta^{\daleth}}}
+                        {\hyperlink{ht137}{P^{\daleth}}}
+            $$
+
+        Beanstalk calculated the USD price of \Bean1 from the old BEAN:3CRV Curve pool (\hyperlink{ht1a}{$\$^{\bean(\daleth)}$}), such that $\hyperlink{ht1a}{\$^{\bean(\daleth)}} \in \{j \times 10^{-6} \mid j \in \mathbb{Z}^{+} \}$, by calling the Curve \code{get\_y} function on \hyperlink{ht67}{$\daleth_{\Xi-1}^{\bean}$}, \hyperlink{ht68}{$\daleth_{\Xi-1}^{\text{3CRV}}$} and \hyperlink{ht136}{$P^{\text{3CRV}}$} as:
+
+            $$
+                \hyperlink{ht1a}{\$^{\bean(\daleth)}} = 
+                    \hyperlink{ht67}{\daleth_{\Xi-1}^{\bean}} - 
+                    \code{get\_y(}0, 1, \hyperlink{ht67}{\daleth_{\Xi-1}^{\bean}} + 1, [\hyperlink{ht67}{\daleth_{\Xi-1}^{\bean}},\ 
+                        \hyperlink{ht68}{\daleth_{\Xi-1}^{\text{3CRV}}} \times 
+                        \hyperlink{ht136}{P^{\text{3CRV}}}]\code{)} - 
+                    10^{-6}
+            $$
+
+        Beanstalk calculated $f^{\text{3CRV}}(z^{\text{3CRV}})$ from \hyperlink{ht1a}{$\$^{\bean(\daleth)}$} and \hyperlink{ht136}{$P^{\text{3CRV}}$} as:
+
+            $$
+                f^{\text{3CRV}}(z^{\text{3CRV}}) = 
+                    \frac{z^{\text{3CRV}} \times \hyperlink{ht136}{P^{\text{3CRV}}}}
+                        {\hyperlink{ht1a}{\$^{\bean(\daleth)}}}
+            $$
+
+        We defined $f^{\daleth}(z^{\daleth})$ for a given \hyperlink{ht67}{$\daleth_{\Xi-1}^{\bean}$}, $f^{\text{3CRV}}(z^{\text{3CRV}})$, \hyperlink{ht68}{$\daleth_{\Xi-1}^{\text{3CRV}}$} and \hyperlink{ht66}{$\daleth_{\Xi-1}$} as:
+
+            $$
+                f^{\daleth}(z^{\daleth}) = \frac{z^{\daleth} \times ( \hyperlink{ht67}{\daleth_{\Xi-1}^{\bean}} + f^{\text{3CRV}}(\hyperlink{ht68}{\daleth_{\Xi-1}^{\text{3CRV}}}))}{\hyperlink{ht66}{\daleth_{\Xi-1}}}
+            $$
+
+    \item \textbf{Stalk per BDV:} \hyperlink{ht64}{$\daleth$} \term{Deposits} received 1 \term{Stalk} per BDV upon \term{Deposit} (\term{i.e.}, $k^{\hyperlink{ht64}{\daleth}} = 1$).
+    
+    \item \textbf{Seeds per BDV:} \hyperlink{ht64}{$\daleth$} \term{Deposits} received 4 \term{Seeds} per BDV upon \term{Deposit} (\term{i.e.}, $c^{\hyperlink{ht64}{\daleth}} = 4$).
+    
+    \item \textbf{Total Supply:} There were 79284313.822927052565331157 \hyperlink{ht64}{$\daleth$} at the end of the block prior to the \term{Exploit}.
+    
+    \item \textbf{BDV Per Token:} The BDV per \hyperlink{ht64}{$\daleth$} at the end of the block prior to the \term{Exploit} was 0.992035.
+\end{enumerate}
+
+\subsubsection{Old BEAN:LUSD Curve LP Tokens ($\gimel$)}
+
+\begin{enumerate}
+    \item \textbf{Token Address:} The \hyperlink{ht108}{$\gimel$} token address is 0xD652c40fBb3f06d6B58Cb9aa9CFF063eE63d465D.
+    
+    \item \textbf{BDV Function:} The BDV of \hyperlink{ht108}{$\gimel$} was calculated using the number of LUSD (\hyperlink{ht241}{$\Omega_{\Xi-1}^{\text{LUSD}}$}) and number of 3CRV (\hyperlink{ht240}{$\Omega_{\Xi-1}^{\text{3CRV}}$}) in the LUSD:3CRV Curve pool (\hyperlink{ht237}{$\Omega$}) at the end of the last block, \hyperlink{ht136}{$P^{\text{3CRV}}$}, the A parameter of the pool (\hyperlink{ht238}{$\Omega^{A}$}), such that $\hyperlink{ht238}{\Omega^{A}} \in \{j \times 10^{-2} \mid j \in \mathbb{Z}^{+} \}$, \hyperlink{ht136}{$P^{\text{3CRV}}$} and \hyperlink{ht1a}{$\$^{\bean(\daleth)}$}, the \hyperlink{ht237}{$\Omega$} virtual price (\hyperlink{ht141}{$P^{\Omega}$}), the \hyperlink{ht108}{$\gimel$} virtual price (\hyperlink{ht138}{$P^{\gimel}$}), such that $\hyperlink{ht241}{\Omega_{\Xi-1}^{\text{LUSD}}},\ \hyperlink{ht240}{\Omega_{\Xi-1}^{\text{3CRV}}},\ \hyperlink{ht141}{P^{\Omega}},\ \hyperlink{ht138}{P^{\gimel}} \in \{j \times 10^{-18} \mid j \in \mathbb{Z}^{+} \}$, \hyperlink{ht136}{$P^{\text{3CRV}}$} and \hyperlink{ht1a}{$\$^{\bean(\daleth)}$}. 
+
+        Beanstalk calculated a flash-loan-resistant price invariant for the LUSD:3CRV Curve pool (\hyperlink{ht99}{$\zeta^{\Omega}$}), such that $\hyperlink{ht99}{\zeta^{\Omega}} \in \{j \times 10^{-18} \mid j \in \mathbb{Z}^{+} \}$, by calling the Curve \code{get\_D} function on \hyperlink{ht241}{$\Omega_{\Xi-1}^{\text{LUSD}}$}, \hyperlink{ht240}{$\Omega_{\Xi-1}^{\text{3CRV}}$}, \hyperlink{ht136}{$P^{\text{3CRV}}$} and \hyperlink{ht238}{$\Omega^{A}$} as:
+        
+            $$
+                \hyperlink{ht99}{\zeta^{\Omega}} = 
+                    \code{get\_D(}[\hyperlink{ht241}{\Omega_{\Xi-1}^{\text{LUSD}}},\ 
+                            \hyperlink{ht240}{\Omega_{\Xi-1}^{\text{3CRV}}} \times 
+                                \hyperlink{ht136}{P^{\text{3CRV}}}],\ 
+                        \hyperlink{ht238}{\Omega^{A}}\code{)}
+            $$
+            
+        Beanstalk calculated a flash-loan-resistant total number of \hyperlink{ht237}{$\Omega$} (\hyperlink{ht239}{$\Omega_{\Xi-1}$}), such that $\hyperlink{ht239}{\Omega_{\Xi-1}} \in \{j \times 10^{-18} \mid j \in \mathbb{Z}^{+} \}$, from \hyperlink{ht99}{$\zeta^{\Omega}$} and \hyperlink{ht141}{$P^{\Omega}$} as:
+        
+            $$
+                \hyperlink{ht239}{\Omega_{\Xi-1}} = 
+                    \frac{\hyperlink{ht99}{\zeta^{\Omega}}}
+                        {\hyperlink{ht141}{P^{\Omega}}}
+            $$
+
+        Beanstalk calculated the USD price of 1 LUSD from the LUSD:3CRV Curve pool (\hyperlink{ht4}{$\$^{\text{LUSD}(\Omega)}$}), such that $\hyperlink{ht4}{\$^{\text{LUSD}(\Omega)}} \in \{j \times 10^{-6} \mid j \in \mathbb{Z}^{+} \}$, by calling the Curve \code{get\_y} function on \hyperlink{ht241}{$\Omega_{\Xi-1}^{\text{LUSD}}$}, \hyperlink{ht240}{$\Omega_{\Xi-1}^{\text{3CRV}}$} and \hyperlink{ht136}{$P^{\text{3CRV}}$} as:
+        
+            $$
+                \hyperlink{ht4}{\$^{\text{LUSD}(\Omega)}} = 
+                    \hyperlink{ht241}{\Omega_{\Xi-1}^{\text{LUSD}}} - 
+                    \code{get\_y(}0, 
+                            1, 
+                            \hyperlink{ht241}{\Omega_{\Xi-1}^{\text{LUSD}}} + 1, 
+                            [\hyperlink{ht241}{\Omega_{\Xi-1}^{\text{LUSD}}},\ 
+                                \hyperlink{ht240}{\Omega_{\Xi-1}^{\text{3CRV}}} \times 
+                                \hyperlink{ht136}{P^{\text{3CRV}}}]\code{)} - 
+                    10^{-6}
+            $$
+        
+        We defined $f^{\hyperlink{ht108}{\gimel}}(z^{\hyperlink{ht108}{\gimel}})$ for a given \hyperlink{ht138}{$P^{\gimel}$}, \hyperlink{ht4}{$\$^{\text{LUSD}(\Omega)}$} and \hyperlink{ht1a}{$\$^{\bean(\daleth)}$} as:
+        
+            $$
+                f^{\hyperlink{ht108}{\gimel}}(z^{\hyperlink{ht108}{\gimel}}) = 
+                    z^{\hyperlink{ht108}{\gimel}} \times 
+                    \hyperlink{ht138}{P^{\gimel}} \times 
+                    \text{min}\left(1, 
+                        \frac{\hyperlink{ht4}{\$^{\text{LUSD}(\Omega)}}}
+                            {\hyperlink{ht1a}{\$^{\bean(\daleth)}}}\right)
+            $$
+
+    \item \textbf{Stalk per BDV:} \hyperlink{ht108}{$\gimel$} \term{Deposits} received 1 \term{Stalk} per BDV upon \term{Deposit} (\term{i.e.}, $k^{\hyperlink{ht108}{\gimel}} = 1$).
+    
+    \item \textbf{Seeds per BDV:} \hyperlink{ht108}{$\gimel$} \term{Deposits} received 3 \term{Seeds} per BDV upon \term{Deposit} (\term{i.e.}, $c^{\hyperlink{ht108}{\gimel}} = 3$).
+    
+    \item \textbf{Total Supply:} There were 1637956.191657208904972868 \hyperlink{ht108}{$\gimel$} at the end of the block prior to the \term{Exploit}.
+    
+    \item \textbf{BDV Per Token:} The BDV per \hyperlink{ht108}{$\gimel$} at the end of the block prior to the \term{Exploit} was 0.983108.
+\end{enumerate}
 \end{document}

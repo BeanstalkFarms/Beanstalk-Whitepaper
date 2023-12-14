@@ -11,19 +11,43 @@
 At the beginning of each \term{Season} during a \term{Flood}, Beanstalk returns the price of \Bean1 in each of the following liquidity pools to their value pegs by minting additional Beans and selling them directly in the pools:
 
 \subsubsection{$\Phi$}
-    \begin{enumerate}
-        \item \textbf{Pool Address:} The \hyperlink{ht187}{$\Phi$} liquidity pool address is 0xc9C32cd16Bf7eFB85Ff14e0c8603cc90F6F2eE49.
-        \item \textbf{\hyperlink{ht49}{$\Delta b_{t-1}$} Calculation:} The shortage of Beans in the BEAN:3CRV Curve liquidity pool at the end of the previous \term{Season} (\hyperlink{ht51}{$\Delta b_{t-1}^{\Phi}$}) is calculated as the difference between the optimal number of Beans (\hyperlink{ht196}{$\Phi_{t-1}^{{\bean}^*}$}) and the number of Beans (\hyperlink{ht195}{$\Phi_{t-1}^{\bean}$}) in \hyperlink{ht187}{$\Phi$} at the end of the previous \term{Season}, such that $\hyperlink{ht51}{\Delta b_{t-1}^{\Phi}},\ \hyperlink{ht196}{\Phi_{t-1}^{{\bean}^*}},\ \hyperlink{ht195}{\Phi_{t-1}^{\bean}} \in \{j \times 10^{-6} \mid j \in \mathbb{Z}^{+} \}$. \hyperlink{ht196}{$\Phi_{t-1}^{{\bean}^*}$} is calculated from \hyperlink{ht195}{$\Phi_{t-1}^{\bean}$}, the number of 3CRV in \hyperlink{ht187}{$\Phi$} at the end of the previous \term{Season} (\hyperlink{ht197}{$\Phi_{t-1}^{\text{3CRV}}$}), such that $\hyperlink{ht197}{\Phi_{t-1}^{\text{3CRV}}}\in \{j \times 10^{-18} \mid j \in \mathbb{Z}^{+} \}$, \hyperlink{ht136}{$P^{\text{3CRV}}$} and \hyperlink{ht190}{$\Phi^{A}$}. 
+\begin{enumerate}
+    \item \textbf{Pool Address:} $\Phi^{@}$
+    
+    \item \textbf{\hyperlink{ht49}{$\Delta b_{t-1}$} Calculation:} The shortage of Beans in the BEAN:3CRV Curve liquidity pool at the end of the previous \term{Season} (\hyperlink{ht51}{$\Delta b_{t-1}^{\Phi}$}) is calculated as the difference between the optimal number of Beans (\hyperlink{ht196}{$\Phi_{t-1}^{{\bean}^*}$}) and the number of Beans (\hyperlink{ht195}{$\Phi_{t-1}^{\bean}$}) in \hyperlink{ht187}{$\Phi$} at the end of the previous \term{Season}, such that $\hyperlink{ht51}{\Delta b_{t-1}^{\Phi}},\ \hyperlink{ht196}{\Phi_{t-1}^{{\bean}^*}},\ \hyperlink{ht195}{\Phi_{t-1}^{\bean}} \in \{j \times 10^{-6} \mid j \in \mathbb{Z}^{+} \}$. \hyperlink{ht196}{$\Phi_{t-1}^{{\bean}^*}$} is calculated from \hyperlink{ht195}{$\Phi_{t-1}^{\bean}$}, the number of 3CRV in \hyperlink{ht187}{$\Phi$} at the end of the previous \term{Season} (\hyperlink{ht197}{$\Phi_{t-1}^{\text{3CRV}}$}), such that $\hyperlink{ht197}{\Phi_{t-1}^{\text{3CRV}}}\in \{j \times 10^{-18} \mid j \in \mathbb{Z}^{+} \}$, \hyperlink{ht136}{$P^{\text{3CRV}}$} and \hyperlink{ht190}{$\Phi^{A}$}. 
 
-Beanstalk calculates a price invariant for \hyperlink{ht187}{$\Phi$} at the end of the previous \term{Season} (\hyperlink{ht97}{$\zeta^{\Phi}_{t-1}$}), such that $\hyperlink{ht97}{\zeta^{\Phi}_{t-1}}\in \{j \times 10^{-18} \mid j \in \mathbb{Z}^{+} \}$, by calling the Curve \code{get\_D} function on \hyperlink{ht195}{$\Phi_{t-1}^{\bean}$}, \hyperlink{ht197}{$\Phi_{t-1}^{\text{3CRV}}$}, \hyperlink{ht136}{$P^{\text{3CRV}}$} and \hyperlink{ht190}{$\Phi^{A}$} as:
-$$\hyperlink{ht97}{\zeta^{\Phi}_{t-1}} = \code{get\_D(}[\hyperlink{ht195}{\Phi_{t-1}^{\bean}},\ \hyperlink{ht197}{\Phi_{t-1}^{\text{3CRV}}} \times \hyperlink{ht136}{P^{\text{3CRV}}}],\ \hyperlink{ht190}{\Phi^{A}}\code{)}$$
-Beanstalk calculates \hyperlink{ht196}{$\Phi_{t-1}^{{\bean}^*}$} from \hyperlink{ht97}{$\zeta^{\Phi}_{t-1}$} as:
-$$\hyperlink{ht196}{\Phi_{t-1}^{{\bean}^*}} = \frac{\hyperlink{ht97}{\zeta^{\Phi}_{t-1}}}{2}$$
-Beanstalk calculates \hyperlink{ht51}{$\Delta b_{t-1}^{\Phi}$} for a given \hyperlink{ht196}{$\Phi_{t-1}^{{\bean}^*}$} and \hyperlink{ht195}{$\Phi_{t-1}^{\bean}$} as:
-$$\hyperlink{ht51}{\Delta b_{t-1}^{\Phi}} = \hyperlink{ht196}{\Phi_{t-1}^{{\bean}^*}} - \hyperlink{ht195}{\Phi_{t-1}^{\bean}}$$
-    \end{enumerate}
+        Beanstalk calculates a price invariant for \hyperlink{ht187}{$\Phi$} at the end of the previous \term{Season} (\hyperlink{ht97}{$\zeta^{\Phi}_{t-1}$}), such that $\hyperlink{ht97}{\zeta^{\Phi}_{t-1}}\in \{j \times 10^{-18} \mid j \in \mathbb{Z}^{+} \}$, by calling the Curve \code{get\_D} function on \hyperlink{ht195}{$\Phi_{t-1}^{\bean}$}, \hyperlink{ht197}{$\Phi_{t-1}^{\text{3CRV}}$}, \hyperlink{ht136}{$P^{\text{3CRV}}$} and \hyperlink{ht190}{$\Phi^{A}$} as:
+
+            $$
+                \hyperlink{ht97}{\zeta^{\Phi}_{t-1}} = 
+                    \code{get\_D(}
+                        [\hyperlink{ht195}{\Phi_{t-1}^{\bean}},\ 
+                            \hyperlink{ht197}{\Phi_{t-1}^{\text{3CRV}}} \times 
+                                \hyperlink{ht136}{P^{\text{3CRV}}}],\ 
+                        \hyperlink{ht190}{\Phi^{A}}\code{)}
+            $$
+
+        Beanstalk calculates \hyperlink{ht196}{$\Phi_{t-1}^{{\bean}^*}$} from \hyperlink{ht97}{$\zeta^{\Phi}_{t-1}$} as:
+        
+            $$
+                \hyperlink{ht196}{\Phi_{t-1}^{{\bean}^*}} = 
+                    \frac{\hyperlink{ht97}{\zeta^{\Phi}_{t-1}}}
+                        {2}
+            $$
+
+        Beanstalk calculates \hyperlink{ht51}{$\Delta b_{t-1}^{\Phi}$} for a given \hyperlink{ht196}{$\Phi_{t-1}^{{\bean}^*}$} and \hyperlink{ht195}{$\Phi_{t-1}^{\bean}$} as:
+        
+            $$
+                \hyperlink{ht51}{\Delta b_{t-1}^{\Phi}} = 
+                    \hyperlink{ht196}{\Phi_{t-1}^{{\bean}^*}} - \hyperlink{ht195}{\Phi_{t-1}^{\bean}}
+            $$
+        
+\end{enumerate}
 
 Therefore, we define \hyperlink{ht49}{$\Delta B_{t-1}$} for a given \hyperlink{ht51}{$\Delta b_{t-1}^{\Phi}$} as:
-$$\hyperlink{ht49}{\Delta B_{t-1}} = \left\lceil\hyperlink{ht51}{\Delta b_{t-1}^{\Phi}}\right\rceil$$
+
+    $$
+        \hyperlink{ht49}{\Delta B_{t-1}} = \left\lceil\hyperlink{ht51}{\Delta b_{t-1}^{\Phi}}\right\rceil
+    $$
 
 \end{document}

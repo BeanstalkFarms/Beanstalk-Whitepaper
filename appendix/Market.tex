@@ -5,10 +5,14 @@
 
 \begin{document}
 
+%%%%%%%%%%%%%%% Market %%%%%%%%%%%%%%%
+
 \subsection{Market}
+
 Beanstalk supports the following exchanges on the \term{Market}:
 
 \subsubsection{Pods}
+
 \term{Pods} can be bought and sold in a decentralized fashion at the \term{Pod} \term{Market}. 
 
 \paragraph{Pod Orders}
@@ -17,10 +21,10 @@ Anyone with Beans not in the \term{Silo} can \term{Order} \term{Pods}.
 
 A \term{Pod Order} has four inputs:
 \begin{enumerate}
-        \item The maximum number of \term{Pods} to be purchased;
-        \item The maximum place in the \term{Pod Line} (\term{i.e.}, the number of \term{Pods} that will become \term{Harvestable} before a given \term{Pod}) to purchase from;
-        \item The minimum number of Pods that can \term{Fill} the \term{Pod Order}; and
-        \item Either (a) a constant that represents the maximum price per \term{Pod} or (b) a piecewise polynomial function that determines the price per \term{Pod} by its current place in the \term{Pod Line}, denominated in Beans.
+    \item The maximum number of \term{Pods} to be purchased;
+    \item The maximum place in the \term{Pod Line} (\term{i.e.}, the number of \term{Pods} that will become \term{Harvestable} before a given \term{Pod}) to purchase from;
+    \item The minimum number of Pods that can \term{Fill} the \term{Pod Order}; and
+    \item Either (a) a constant that represents the maximum price per \term{Pod} or (b) a piecewise polynomial function that determines the price per \term{Pod} by its current place in the \term{Pod Line}, denominated in Beans.
 \end{enumerate}
 
 A \term{Pod Order} can be \term{Cancelled} at any time until it is entirely \term{Filled}. To facilitate instant clearance, Beans are locked in a \term{Pod Order} until it is entirely \term{Filled} or \term{Cancelled}. Beans can only be locked in a single \term{Pod Order} at a time.
@@ -30,13 +34,14 @@ A \term{Pod Order} can be \term{Cancelled} at any time until it is entirely \ter
 \term{Pods} that \term{Yield} from Beans that were \term{Sown} from a single call of the \code{sow} function form a \term{Plot}. Anyone with a \term{Plot} can \term{List} a whole or partial \term{Plot} to be sold for Beans.
 
 A \term{Pod Listing} has six inputs: 
+
 \begin{enumerate}
-        \item The \term{Plot} being \term{Listed};
-        \item The difference between the front of the portion of the \term{Plot} included in the \term{Pod Listing} from the front of the whole \term{Plot}, denominated in \term{Pods}, where a null input \term{Lists} from the back of the \term{Plot};
-        \item The number of \term{Pods} in the \term{Plot} for sale, where a null input \term{Lists} the whole \term{Plot};
-        \item The minimum number of Pods that can \term{Fill} the \term{Pod Listing}; 
-        \item The maximum number of total \term{Harvestable} \term{Pods} over all \term{Seasons} before the \term{Pod Listing} expires; and
-        \item Either (a) a constant that represents the minimum price per \term{Pod} or (b) a piecewise polynomial function that determines the price per \term{Pod} by its current place in the \term{Pod Line}, denominated in Beans.
+    \item The \term{Plot} being \term{Listed};
+    \item The difference between the front of the portion of the \term{Plot} included in the \term{Pod Listing} from the front of the whole \term{Plot}, denominated in \term{Pods}, where a null input \term{Lists} from the back of the \term{Plot};
+    \item The number of \term{Pods} in the \term{Plot} for sale, where a null input \term{Lists} the whole \term{Plot};
+    \item The minimum number of Pods that can \term{Fill} the \term{Pod Listing}; 
+    \item The maximum number of total \term{Harvestable} \term{Pods} over all \term{Seasons} before the \term{Pod Listing} expires; and
+    \item Either (a) a constant that represents the minimum price per \term{Pod} or (b) a piecewise polynomial function that determines the price per \term{Pod} by its current place in the \term{Pod Line}, denominated in Beans.
 \end{enumerate}
 
 A \term{Pod Listing} can be \term{Cancelled} at any time until it is entirely \term{Filled}. \term{Plots} can only be \term{Listed} in a single \term{Pod Listing} at a time. \term{Pod Listings} are automatically \term{Cancelled} if the owner of the \term{Plot} transfers, or simultaneously includes in another \term{Listing}, any \term{Pods} in the \term{Plot}.
