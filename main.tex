@@ -179,20 +179,23 @@
             \end{tabular}
         \end{center}
         
-        \vspace{-0.25cm}
+        \vspace{0.1cm}
         \normalsize{\href{https://bean.money/}{bean.money}}
         
         \vspace{0.4cm}
-        \footnotesize{Published:} \normalsize{August 6, 2021}
+        \footnotesize{Published:} {\normalsize{August 6, 2021}}
         
         \vspace{-0.25cm}
-        \footnotesize{Modified:} \normalsize{December 14, 2023}
+        \footnotesize{Code Version:} \href{https://github.com/BeanstalkFarms/Beanstalk}{\normalsize{2.7.6}}\footnote{\href{https://github.com/BeanstalkFarms/Beanstalk}{github.com/BeanstalkFarms/Beanstalk}}
+
+        \vspace{-0.25cm}
+        \footnotesize{Deployed:} {\normalsize{February 5, 2024}}
+
+        \vspace{-0.25cm}
+        \footnotesize{Whitepaper Version:} {\normalsize{2.7.2}}
         
         \vspace{-0.25cm}
-        \footnotesize{Whitepaper Version:} {\normalsize{2.7.0}}
-        
-        \vspace{-0.25cm}
-        \footnotesize{Code Version:} \href{https://github.com/BeanstalkFarms/Beanstalk}{\normalsize{2.7.0}}\footnote{\href{https://github.com/BeanstalkFarms/Beanstalk}{github.com/BeanstalkFarms/Beanstalk}}
+        \footnotesize{Modified:} {\normalsize{December 31, 2024}}
         
         \vspace{0.1cm}
         \flushleft{\normalsize{\term{“A national debt if it is not excessive will be to us a national blessing; it will be powerfull cement of our union.”}}}
@@ -364,6 +367,7 @@ Therefore, we define $\sun_{\Xi}$ for a given $\varrho$, $\varpi_\Xi$ and $\vart
     $$
 
 Therefore, we define $a_t$ for a given $\sun_{\Xi}$, $\Theta^{\text{SMA}}_{\bean,t_0,\Game}$, $\Theta^{\text{min}(\bean)}$, the timestamp of the current block ($E_\Xi$), and $\hyperlink{ht75}{E_{t}^{\text{min}}}$ as:
+\vspace*{-4mm}
 
     $$ 
         a_t =
@@ -413,10 +417,11 @@ In order for a given \hyperlink{ht126}{$\lambda$} to be added to \hyperlink{ht12
 \subsection{Deposits, Withdrawals, Transfers and Conversions}
 \vspace*{-1mm}
 
-\hyperlink{ht126}{$\lambda$} can be \term{Deposited} into, \term{Withdrawn} from and \term{Converted} within, the \term{Silo} at any time.
+\hyperlink{ht126}{$\lambda$} can be \term{Deposited} into and \term{Converted} within the \term{Silo} at any time. {$\lambda$} can be \term{Withdrawn} from the \term{Silo} at anytime except from the beginning of each \term{Season} until the start of the 11th block after the block containing the \code{gm} function call which began the \term{Season}. 
 
 \vspace*{-1mm}
 
+\newpage
 Beanstalk rewards \term{Stalk} and \term{Seeds} to \term{Depositors} immediately upon \term{Depositing} \hyperlink{ht126}{$\lambda$} into the \term{Silo} based on its BDV when \term{Deposited}, \hyperlink{ht120}{$k^{\lambda}$} and \hyperlink{ht32}{$c^{\lambda}$}. \term{Deposits} implement the ERC-1155 Standard.\fref{ethereum.org/en/developers/docs/standards/tokens/erc-1155}
 
 Upon a \term{Deposited} asset's \term{Withdrawal} from the \term{Silo}, the \term{Deposit} itself is burned and the number of \term{Stalk}, \term{Seeds}, and \term{Stalk} from \term{Seeds} rewarded to it must also be forfeited. 
@@ -616,7 +621,7 @@ Beanstalk changes the \term{Maximum Temperature} it is willing to offer each Sea
 
 \begin{figure}[h!]
     \centering
-    \includegraphics[scale=.14]{Figure2}
+    \includegraphics[scale=.16]{Figure2}
     \vspace*{-5mm}
     \caption{Field}
     \label{fig 2}
@@ -640,16 +645,11 @@ Anytime there is \term{Available} \term{Fertilizer} (defined below) in the \term
 
 We define \term{Available} \term{Fertilizer} (\hyperlink{ht217}{$\mathfrak{V}$}) as the number of \term{Fertilizer} that can be bought from Beanstalk in exchange for 1 USD worth of ETH using the inter-block MEV manipulation resistant USD price of ETH ($\$^{\text{ETH}}$), such that $\$^{\text{ETH}} \in \{j \times 10^{-6} \mid j \in \mathbb{Z}^{+} \}$, \term{Active} \term{Fertilizer} (\hyperlink{ht12}{$\mathfrak{A}$}) as the number of \term{Fertilizer} that have been bought but have not \term{Fertilized} all associated \term{Sprouts}, and \term{Used} \term{Fertilizer} (\hyperlink{ht209}{$\mathfrak{U}$}), such that $\hyperlink{ht217}{\mathfrak{V}},\ \hyperlink{ht12}{\mathfrak{A}},\ \hyperlink{ht209}{\mathfrak{U}} \in \mathbb{N}$, as the number of \term{Fertilizer} that have been bought and \term{Fertilized} all associated \term{Sprouts}. 
 
-$\$^{\text{ETH}}$ is calculated using the USD prices of ETH from (1) the ETH/USD Chainlink data feed ($\$^{\text{ETH}(\chi)}$), (2) the ETH:USDC 0.05\% fee Uniswap V3 pool ($\$^{\text{ETH}(\nu)}$) and (3) the ETH:USDT 0.05\% fee Uniswap V3 pool ($\$^{\text{ETH}(\tau)}$), such that $\$^{\text{ETH}(\chi)},\ \$^{\text{ETH}(\nu)},\ \$^{\text{ETH}(\tau)} \in \{j \times 10^{-6} \mid j \in \mathbb{Z}^{+} \}$.
+$\$^{\text{ETH}}$ is calculated using the USD prices of ETH from (1) the ETH/USD Chainlink data feed ($\$^{\text{ETH}(\chi)}$), (2) the ETH:USDC 0.05\% fee Uniswap V3 pool  ($\$^{\text{ETH}(\nu)}$) and (3) the ETH:USDT 0.05\% fee Uniswap V3 pool ($\$^{\text{ETH}(\tau)}$), such that $\$^{\text{ETH}(\chi)},\ \$^{\text{ETH}(\nu)},\ \$^{\text{ETH}(\tau)} \in \{j \times 10^{-6} \mid j \in \mathbb{Z}^{+} \}$.
 
-$\$^{\text{ETH}(\chi)}$ is calculated by calling the Chainlink\fref{etherscan.io/address/0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419\#code} \code{latestRoundData} and \code{decimals} functions on $\chi$ as:
+$\$^{\text{ETH}(\chi)}$ is calculated as the time weighted average of Chainlink\fref{etherscan.io/address/0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419\#code} \code{getRoundData} on $\chi$ over the last 60 minutes.
 
-    $$ 
-        \$^{\text{ETH}(\chi)} = \frac{\code{latestRoundData()} \times 10^6}
-                                    {10^{\mkern3mu \code{decimals()}}}
-    $$
-
-$\$^{\text{ETH}(\nu)}$ and $\$^{\text{ETH}(\tau)}$ are calculated by calling the Uniswap V3 \code{getQuoteAtTick} function using ticks read over the last 15 minutes on $\nu$ and $\tau$, respectively.\fref{etherscan.io/address/0x88e6A0c2dDD26FEEb64F039a2c41296FcB3f5640\#code}$^{,}$\fref{etherscan.io/address/0x11b815efB8f581194ae79006d24E0d814B7697F6\#code}
+$\$^{\text{ETH}(\nu)}$ and $\$^{\text{ETH}(\tau)}$ are calculated by calling the Uniswap V3 \code{getQuoteAtTick} function using ticks read over the last 60 minutes on $\nu$ and $\tau$, respectively.\fref{etherscan.io/address/0x88e6A0c2dDD26FEEb64F039a2c41296FcB3f5640\#code}$^{,}$\fref{etherscan.io/address/0x11b815efB8f581194ae79006d24E0d814B7697F6\#code}
 
 We define $\$^{\text{ETH}}$ for a given $\$^{\text{ETH}(\chi)}$, $\$^{\text{ETH}(\nu)}$, $\$^{\text{ETH}(\tau)}$, the percent difference between $\$^{\text{ETH}(\chi)}$ and $\$^{\text{ETH}(\nu)}$ ($\Delta^{\$^{\text{ETH}(\nu \slash \chi)}}$, \term{i.e.}, $\frac{\$^{\text{ETH}(\nu)}}{\$^{\text{ETH}(\chi)}} - 1$) and the percent difference between $\$^{\text{ETH}(\chi)}$ and $\$^{\text{ETH}(\tau)}$ ($\Delta^{\$^{\text{ETH}(\tau \slash \chi)}}$, \term{i.e.}, $\frac{\$^{\text{ETH}(\tau)}}{\$^{\text{ETH}(\chi)}} - 1$), such that $\Delta^{\$^{\text{ETH}(\nu \slash \chi)}},\ \Delta^{\$^{\text{ETH}(\tau \slash \chi)}} \in \{j \times 10^{-6} \mid j \in \mathbb{Z}^{+} \}$, as:
 
@@ -676,6 +676,7 @@ We define $\$^{\text{ETH}}$ for a given $\$^{\text{ETH}(\chi)}$, $\$^{\text{ETH}
         \end{cases} 
     $$
 
+\newpage
 In the future, when the average price of \Bean1 is above its value peg over a \term{Season}, \term{Active} \term{Fertilizer} \term{Fertilizes} \term{Sprouts} such that they become \term{Rinsable} (redeemable) for \Bean1 at anytime. \term{Active} \term{Fertilizer} \term{Fertilizes} a pro-rata portion of \term{Sprouts}, by \term{Fertilizer}. \term{Fertilizer} owners can \term{Rinse} their \term{Rinsable} \term{Sprouts} anytime by calling the \code{rinse} function. There is no penalty for waiting to \term{Rinse} \term{Sprouts}.
 
 \term{Fertilizer} is transferable. In practice, \term{Fertilizer} is a non-callable zero-coupon pari passu bond without a fixed maturity. The number of \term{Sprouts} that \term{Fertilizer} ultimately \term{Fertilizes} is dependent on the \term{Humidity} at its time of purchase.
